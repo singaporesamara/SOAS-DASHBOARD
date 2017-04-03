@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import classNames from 'classnames';
 import { Button, TextInput } from '../../../components/UIKit';
 import styles from './styles.scss';
+import logo from '../../../assets/images/logo.png';
 
 export class LoginPage extends Component {
   static propTypes = {
@@ -33,6 +35,9 @@ export class LoginPage extends Component {
       <div className={styles.page}>
         <Helmet title="Login Page" />
         <div className={styles.pageForm}>
+          <div className={classNames('text-center', styles.pageFormLogo)}>
+            <img className="image -logo" src={logo} alt="" />
+          </div>
           <div className={styles.pageFormTitle}>
             Sign in
           </div>
