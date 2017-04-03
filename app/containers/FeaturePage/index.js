@@ -13,6 +13,8 @@ import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 
+import styles from './styles.scss';
+
 export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   // Since state and props are static,
@@ -23,7 +25,8 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
 
   render() {
     return (
-      <div>
+      <div className={styles.page}>
+        <div className={styles.message}>hey...</div>
         <Helmet
           title="Feature Page"
           meta={[
