@@ -1,0 +1,32 @@
+@import "../../../global-styles/variables";
+
+.page {
+  width: 100%;
+  padding: 20px 0;
+
+  .pageForm {
+    background: $white-color;
+    padding: 30px 48px 71px 48px;
+    width: 580px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+
+    .pageFormTitle {
+      color: $shark-color;
+      margin-top: 50px;
+      font-size: 18px;
+    }
+
+    .pageFormHelp {
+      color: $shark-color;
+      margin-top: 50px;
+      font-size: 12px;
+    }
+
+    input, button {
+      width: 100%;
+    }
+  }
+}

@@ -47,6 +47,14 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        import('containers/User/LoginPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
