@@ -1,11 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { Button, TextInput } from '../../../components/UIKit';
 import styles from './styles.scss';
 
-export class LoginPage extends Component { // eslint-disable-line react/prefer-stateless-function
-  static propTypes = {};
+export class LoginPage extends Component {
+  static propTypes = {
+    push: PropTypes.func.isRequired,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this.goToUrl = this.goToUrl.bind(this);
+    this.login = this.login.bind(this);
+  }
+
+  goToUrl(url) {
+    return (event) => {
+      event.preventDefault();
+      this.props.push(url);
+    };
+  }
+
+  login(event) {
+    event.preventDefault();
+    alert('submit here..');
+  }
 
   render() {
     return (
@@ -15,30 +36,30 @@ export class LoginPage extends Component { // eslint-disable-line react/prefer-s
           <div className={styles.pageFormTitle}>
             Sign in
           </div>
-          <div>
-            <div>
-              <input type="text" placeholder="USERNAME" />
+          <form className={styles.pageFormContainer} onSubmit={this.login}>
+            <div className={styles.pageFormInput}>
+              <TextInput type="text" label="USERNAME" />
             </div>
-            <div>
-              <input type="text" placeholder="PASSWORD" />
+            <div className={styles.pageFormInput}>
+              <TextInput type="password" label="PASSWORD" />
             </div>
-            <div>
-              <button>Login</button>
+            <div className={styles.pageFormButton}>
+              <Button>Login</Button>
             </div>
             <div className={styles.pageFormHelp}>
               <div className="pure-g">
                 <div className="pure-u-1-3 text-left">
-                  <div>Don’t have an account?</div>
+                  <a href="/sign-up" className="link -underline" onClick={this.goToUrl('/sign-up')}>Don’t have an account?</a>
                 </div>
                 <div className="pure-u-1-3 text-center">
-                  <div>English</div>
+                  <a href="/" className="link" onClick={this.goToUrl('/')}>English</a>
                 </div>
                 <div className="pure-u-1-3 text-right">
-                  <div>Forgot password?</div>
+                  <a href="/forgot-password" className="link -underline" onClick={this.goToUrl('/forgot-password')}>Forgot password?</a>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );

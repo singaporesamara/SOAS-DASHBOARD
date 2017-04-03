@@ -1,0 +1,13 @@
+.link {
+  color: inherit;
+
+  &, &:hover {
+    text-decoration: none;
+  }
+
+  &.-underline {
+    &, &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,5 +1,10 @@
 @import "./variables";
+
 @import "./typography";
+@import "./links";
+
+@import "./form/buttons";
+@import "./form/inputs";
 
 html, body {
   height: 100%;

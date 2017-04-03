@@ -2,7 +2,7 @@
 
 .page {
   width: 100%;
-  padding: 20px 0;
+  padding: 100px 0 20px 0;
 
   .pageForm {
     background: $white-color;
@@ -17,16 +17,26 @@
       color: $shark-color;
       margin-top: 50px;
       font-size: 18px;
+
+      & + .pageFormContainer {
+        margin-top: 53px;
+      }
+    }
+
+    .pageFormInput {
+      & + .pageFormInput {
+        margin-top: 45px;
+      }
+    }
+
+    .pageFormButton {
+      margin-top: 63px;
     }
 
     .pageFormHelp {
       color: $shark-color;
       margin-top: 50px;
       font-size: 12px;
-    }
-
-    input, button {
-      width: 100%;
     }
   }
 }
