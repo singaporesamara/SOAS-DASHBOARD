@@ -6,4 +6,5 @@ export default {
   required: {
     presence: true,
   },
+  equalsTo: (field) => ({ equality: field }),
 };
