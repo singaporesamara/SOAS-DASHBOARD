@@ -16,7 +16,7 @@ export class App extends Component { // eslint-disable-line react/prefer-statele
   render() {
     const layout = this.props.layout.toJS();
     const loading = this.props.page.get('loading');
-    const blockUiStyle = styles.blockUIContainer;
+    const blockUiStyle = loading ? styles.blockUIContainer : null;
     return (
       <div className={styles.app}>
         <Helmet titleTemplate="%s - SOAS Pay" defaultTitle="SOAS Pay" meta={[{ name: 'description', content: 'SOAS Pay' }]} />

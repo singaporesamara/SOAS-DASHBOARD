@@ -16,6 +16,15 @@ const loadModule = (cb) => (componentModule) => {
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
+  // loads page with sagas
+  const loadPage = (resources, nextState, cb) => {
+    const importModules = Promise.all(resources);
+    const renderRoute = loadModule(cb);
+    importModules.then(([sagas, component]) => {
+      injectSagas(sagas.default);
+      renderRoute(component);
+    }).catch(errorLoading);
+  };
 
   return [
     {
@@ -49,11 +58,12 @@ export default function createRoutes(store) {
       },
     }, {
       path: ROUTES.USER.SIGN_UP,
-      name: 'login',
+      name: 'sign-up',
       getComponent(nextState, cb) {
-        import('containers/User/SignUpPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/SignUpPage/sagas'),
+          import('containers/User/SignUpPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.FORGOT_PASSWORD,

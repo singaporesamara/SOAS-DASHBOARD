@@ -8,11 +8,13 @@ import BaseComponent from '../../Base';
 import { Button, TextInput } from '../../../components/UIKit';
 import { layoutUpdate } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { signUp } from './actions';
 import styles from './styles.scss';
 
 export class SignUpPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
+    signUp: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -28,7 +30,7 @@ export class SignUpPage extends BaseComponent {
 
   signUp(event) {
     event.preventDefault();
-    alert(`email = ${this.state.email}, password = ${this.state.password}`);
+    this.props.signUp({ email: this.state.email, password: this.state.password });
   }
 
   render() {
@@ -55,4 +57,4 @@ export class SignUpPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { layoutUpdate })(SignUpPage);
+export default connect(() => ({}), { layoutUpdate, signUp })(SignUpPage);
