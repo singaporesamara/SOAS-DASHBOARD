@@ -1,4 +1,12 @@
 {
+  "soas.common.text.dont-have-account": "Don’t have an account?",
+  "soas.common.text.language.english": "English",
+  "soas.common.tex.forgot-password": "Forgot password?",
+  "soas.common.text.username": "Username",
+  "soas.common.text.password": "Password",
+  "soas.common.text.login": "Login",
+  "soas.pages.login.title": "Sign in",
+  "--------------------------------------------": "--------------------------------------------",
   "boilerplate.components.Footer.author.message": "Made with love by {author}.",
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
   "boilerplate.components.Header.features": "Features",

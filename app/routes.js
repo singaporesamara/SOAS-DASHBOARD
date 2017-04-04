@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from './utils/asyncInjectors';
+import { ROUTES } from './constants/routes';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -15,6 +16,15 @@ const loadModule = (cb) => (componentModule) => {
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
+  // loads page with sagas
+  const loadPage = (resources, nextState, cb) => {
+    const importModules = Promise.all(resources);
+    const renderRoute = loadModule(cb);
+    importModules.then(([sagas, component]) => {
+      injectSagas(sagas.default);
+      renderRoute(component);
+    }).catch(errorLoading);
+  };
 
   return [
     {
@@ -39,18 +49,35 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/features',
-      name: 'features',
-      getComponent(nextState, cb) {
-        import('containers/FeaturePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    }, {
-      path: '/login',
+      path: ROUTES.USER.LOGIN,
       name: 'login',
       getComponent(nextState, cb) {
         import('containers/User/LoginPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+      },
+    }, {
+      path: ROUTES.USER.SIGN_UP,
+      name: 'sign-up',
+      getComponent(nextState, cb) {
+        loadPage([
+          import('containers/User/SignUpPage/sagas'),
+          import('containers/User/SignUpPage'),
+        ], nextState, cb);
+      },
+    }, {
+      path: ROUTES.USER.FORGOT_PASSWORD,
+      name: 'login',
+      getComponent(nextState, cb) {
+        import('containers/User/ForgotPasswordPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+      },
+    }, {
+      path: ROUTES.USER.CHANGE_PASSWORD,
+      name: 'login',
+      getComponent(nextState, cb) {
+        import('containers/User/ChangePasswordPage')
             .then(loadModule(cb))
             .catch(errorLoading);
       },

@@ -1,0 +1,18 @@
+.textInput {
+  position: relative;
+
+  :global {
+    .text-input-label {
+      position: absolute;
+      top: 16px;
+      left: 8px;
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+      &.-floating {
+        top: -13px;
+        left: 0;
+      }
+    }
+  }
+}
