@@ -37,7 +37,7 @@ export class LoginPage extends BaseComponent {
           <div className={styles.pageTitle}>Sign in</div>
           <form className={styles.pageForm} onSubmit={this.login}>
             <div className={styles.pageFormInput}>
-              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} />
+              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} error="Invalid user name" />
             </div>
             <div className={styles.pageFormInput}>
               <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} />
