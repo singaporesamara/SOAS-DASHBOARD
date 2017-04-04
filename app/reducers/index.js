@@ -9,7 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from '../containers/App/reducer';
 import languageProviderReducer from '../containers/LanguageProvider/reducer';
-import pages from './pages/index';
+import pages, { commonPageReducer } from './pages/index';
 import layout from './pages/layout';
 
 /*
@@ -44,7 +44,7 @@ function routeReducer(state = routeInitialState, action) {
  * Creates the main reducer with the asynchronously loaded ones
  */
 export default function createReducer(asyncReducers) {
-  return combineReducers({
+  const combined = combineReducers({
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
@@ -52,4 +52,10 @@ export default function createReducer(asyncReducers) {
     pages: pages(),
     ...asyncReducers,
   });
+
+  return (state, action) => {
+    let newState = state;
+    newState = commonPageReducer(newState, action, state);
+    return combined(newState, action);
+  };
 }

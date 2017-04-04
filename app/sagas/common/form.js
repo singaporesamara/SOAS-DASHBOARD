@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { isFunction, forEach } from 'lodash';
-import { invalidForm, clearFormErrors } from '../../actions/common';
+import { setFormErrors, clearFormErrors } from '../../actions/common';
 import { VALIDATE_FORM } from '../../constants/common';
 import { isValid } from '../../utils/validation';
 
@@ -10,7 +10,7 @@ export function* validateFormSaga({ payload: { name, form, rules, onSuccess, onE
   if (!valid && name) {
     const errorMessages = {};
     forEach(messages, (value, key) => { errorMessages[key] = value.join('. '); });
-    yield put(invalidForm(name, errorMessages));
+    yield put(setFormErrors(name, errorMessages));
   } else if (name) {
     yield put(clearFormErrors(name));
   }

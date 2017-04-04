@@ -13,6 +13,7 @@ export class LoginPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
+    page: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
@@ -34,6 +35,7 @@ export class LoginPage extends BaseComponent {
   }
 
   render() {
+    const page = this.props.page.toJS();
     return (
       <NonAuthContainer>
         <Helmet title="Login Page" />
@@ -41,10 +43,10 @@ export class LoginPage extends BaseComponent {
           <div className={styles.pageTitle}>Sign in</div>
           <form className={styles.pageForm} onSubmit={this.login}>
             <div className={styles.pageFormInput}>
-              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} error="Invalid user name" />
+              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} error={page.errors.username} />
             </div>
             <div className={styles.pageFormInput}>
-              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} />
+              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
             </div>
             <div className={styles.pageFormButton}>
               <Button>Login</Button>
@@ -56,4 +58,10 @@ export class LoginPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { layoutUpdate, validateForm })(LoginPage);
+function mapStateToProps(state) {
+  return {
+    page: state.getIn(['pages', 'login']),
+  };
+}
+
+export default connect(mapStateToProps, { layoutUpdate, validateForm })(LoginPage);

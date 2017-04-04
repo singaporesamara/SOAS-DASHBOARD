@@ -1,5 +1,5 @@
 import { merge, pick } from 'lodash';
-import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM } from '../constants/common';
+import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS } from '../constants/common';
 
 export function layoutUpdate(layout) {
   return {
@@ -32,5 +32,19 @@ export function validateForm({ form, rules = {}, name = null, except = [], stric
   return {
     type: VALIDATE_FORM,
     payload: { form, rules, name, onSuccess, onError, strict, except },
+  };
+}
+
+export function setFormErrors(page, errors) {
+  return {
+    type: SET_FORM_ERRORS,
+    payload: { page, errors },
+  };
+}
+
+export function clearFormErrors(page) {
+  return {
+    type: CLEAR_FORM_ERRORS,
+    payload: { page },
   };
 }
