@@ -6,8 +6,10 @@ import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS } from '../../constants/common';
 
 import current from './current';
 import login from '../../containers/User/LoginPage/reduces';
+import signUp from '../../containers/User/SignUpPage/reduces';
+import forgotPassword from '../../containers/User/ForgotPasswordPage/reduces';
 
-const pages = { current, login };
+const pages = { current, login, signUp, forgotPassword };
 
 export default () => (combineReducers(pages));
 
