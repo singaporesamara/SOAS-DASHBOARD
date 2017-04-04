@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import NonAuthContainer from '../NonAuthContainer';
+import { merge } from 'lodash';
+import { ROUTES } from '../../../constants/routes';
+import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
 import BaseComponent from '../../Base';
 import { Button, TextInput } from '../../../components/UIKit';
 import { layoutUpdate } from '../../../actions/common';
@@ -32,8 +34,9 @@ export class SignUpPage extends BaseComponent {
   }
 
   render() {
+    const links = merge({}, FOOTER_LINKS, { left: { title: 'Already have an account?', url: ROUTES.USER.LOGIN } });
     return (
-      <NonAuthContainer>
+      <NonAuthContainer footerLinks={links}>
         <Helmet title="Login Page" />
         <div className={styles.page}>
           <div className={styles.pageTitle}>Sign Up</div>
