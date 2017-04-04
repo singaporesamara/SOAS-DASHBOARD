@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import A from 'components/A';
-
-const IssueLink = styled(A)`
+const IssueLink = styled.a`
   height: 100%;
   color: black;
   display: flex;

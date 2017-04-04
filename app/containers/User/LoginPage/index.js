@@ -4,18 +4,25 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import { Button, TextInput } from '../../../components/UIKit';
+import { layoutUpdate } from '../../../actions/common';
+import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
 import logo from '../../../assets/images/logo.png';
 
 export class LoginPage extends Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
+    layoutUpdate: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
     this.goToUrl = this.goToUrl.bind(this);
     this.login = this.login.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.layoutUpdate(LAYOUT_NO_FOOTER);
   }
 
   goToUrl(url) {
@@ -71,4 +78,4 @@ export class LoginPage extends Component {
   }
 }
 
-export default connect(() => ({}), { push })(LoginPage);
+export default connect(() => ({}), { push, layoutUpdate })(LoginPage);

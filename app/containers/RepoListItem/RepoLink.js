@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import A from 'components/A';
-
-const RepoLink = styled(A)`
+const RepoLink = styled.a`
   height: 100%;
   color: black;
   display: flex;
