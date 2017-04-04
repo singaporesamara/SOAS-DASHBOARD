@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import NonAuthContainer from '../NonAuthContainer';
 import BaseComponent from '../../Base';
 import { Button, TextInput } from '../../../components/UIKit';
-import { layoutUpdate } from '../../../actions/common';
+import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { RULES } from '../../../utils/validation';
 import styles from './styles.scss';
 
 export class LoginPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
+    validateForm: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -25,8 +27,10 @@ export class LoginPage extends BaseComponent {
   }
 
   login(event) {
+    const form = { username: this.state.username, password: this.state.password };
+    const rules = { username: RULES.email, password: RULES.required };
     event.preventDefault();
-    alert(`username = ${this.state.username}, password = ${this.state.password}`);
+    this.props.validateForm({ form, rules, name: 'login' }, { onSuccess: () => { alert('done'); } });
   }
 
   render() {
@@ -52,4 +56,4 @@ export class LoginPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { layoutUpdate })(LoginPage);
+export default connect(() => ({}), { layoutUpdate, validateForm })(LoginPage);

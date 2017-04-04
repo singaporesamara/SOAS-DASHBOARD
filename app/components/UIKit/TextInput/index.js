@@ -59,7 +59,7 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const propsToRender = omit(this.props, ['label', 'onFocus', 'onChange', 'id', 'autoComplete', 'error']);
+    const propsToRender = omit(this.props, ['label', 'onFocus', 'onChange', 'id', 'autoComplete', 'error', 'success']);
     const labelStyles = classNames('text-input-label', { '-floating': this.state.hasValue });
     return (
       <div className={classNames('text-input', styles.textInput)}>
