@@ -1,0 +1,25 @@
+@import "../../../global-styles/variables";
+
+.page {
+  .pageTitle {
+    color: $shark-color;
+    margin-top: 50px;
+    font-size: 18px;
+
+    & + .pageForm {
+      margin-top: 53px;
+    }
+  }
+
+  .pageForm {
+    .pageFormInput {
+      & + .pageFormInput {
+        margin-top: 45px;
+      }
+    }
+
+    .pageFormButton {
+      margin-top: 63px;
+    }
+  }
+}

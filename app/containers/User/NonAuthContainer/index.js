@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import styles from './styles.scss';
 import logo from '../../../assets/images/logo.png';
+import { ROUTES } from '../../../constants/routes';
 
 export class NonAuthContainer extends Component {
   static propTypes = {
@@ -34,13 +35,13 @@ export class NonAuthContainer extends Component {
           <div className={styles.pageFormHelp}>
             <div className="pure-g">
               <div className="pure-u-1-3 text-left">
-                <a href="/sign-up" className="link -underline" onClick={this.goToUrl('/sign-up')}>Don’t have an account?</a>
+                <a href={ROUTES.USER.SIGN_UP} className="link -underline" onClick={this.goToUrl('/sign-up')}>Don’t have an account?</a>
               </div>
               <div className="pure-u-1-3 text-center">
-                <a href="/" className="link" onClick={this.goToUrl('/')}>English</a>
+                <a href={ROUTES.HOME} className="link" onClick={this.goToUrl('/')}>English</a>
               </div>
               <div className="pure-u-1-3 text-right">
-                <a href="/forgot-password" className="link -underline" onClick={this.goToUrl('/forgot-password')}>Forgot password?</a>
+                <a href={ROUTES.USER.FORGOT_PASSWORD} className="link -underline" onClick={this.goToUrl('/forgot-password')}>Forgot password?</a>
               </div>
             </div>
           </div>
