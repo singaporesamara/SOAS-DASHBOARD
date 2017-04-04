@@ -10,14 +10,14 @@ import { layoutUpdate } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
 
-export class ForgotPasswordPage extends BaseComponent {
+export class restorePasswordPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { email: null };
+    this.state = { password: null, passwordConfirmation: null };
     this.restorePassword = this.restorePassword.bind(this);
     this.onValueChange = this.onValueChange.bind(this);
   }
@@ -28,7 +28,7 @@ export class ForgotPasswordPage extends BaseComponent {
 
   restorePassword(event) {
     event.preventDefault();
-    alert(`email = ${this.state.email}`);
+    alert(`password = ${this.state.password}, password confirmation = ${this.state.passwordConfirmation}`);
   }
 
   render() {
@@ -37,13 +37,16 @@ export class ForgotPasswordPage extends BaseComponent {
       <NonAuthContainer footerLinks={links}>
         <Helmet title="Login Page" />
         <div className={styles.page}>
-          <div className={styles.pageTitle}>Forgot password?</div>
+          <div className={styles.pageTitle}>Change your password</div>
           <form className={styles.pageForm} onSubmit={this.restorePassword}>
             <div className={styles.pageFormInput}>
-              <TextInput type="email" label="EMAIL" onChange={this.onValueChange('email')} />
+              <TextInput type="email" label="PASSWORD" onChange={this.onValueChange('password')} />
+            </div>
+            <div className={styles.pageFormInput}>
+              <TextInput type="email" label="PASSWORD CONFIRMATION" onChange={this.onValueChange('passwordConfirmation')} />
             </div>
             <div className={styles.pageFormButton}>
-              <Button>Restore password</Button>
+              <Button>Change password</Button>
             </div>
           </form>
         </div>
@@ -52,4 +55,4 @@ export class ForgotPasswordPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { layoutUpdate })(ForgotPasswordPage);
+export default connect(() => ({}), { layoutUpdate })(restorePasswordPage);

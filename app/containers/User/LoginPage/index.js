@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import NonAuthContainer from '../NonAuthContainer';
 import BaseComponent from '../../Base';
 import { Button, TextInput } from '../../../components/UIKit';
@@ -11,7 +10,6 @@ import styles from './styles.scss';
 
 export class LoginPage extends BaseComponent {
   static propTypes = {
-    push: PropTypes.func.isRequired,
     layoutUpdate: PropTypes.func.isRequired,
   };
 
@@ -54,4 +52,4 @@ export class LoginPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { push, layoutUpdate })(LoginPage);
+export default connect(() => ({}), { layoutUpdate })(LoginPage);

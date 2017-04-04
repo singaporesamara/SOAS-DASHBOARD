@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { merge } from 'lodash';
 import { ROUTES } from '../../../constants/routes';
 import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
@@ -13,7 +12,6 @@ import styles from './styles.scss';
 
 export class SignUpPage extends BaseComponent {
   static propTypes = {
-    push: PropTypes.func.isRequired,
     layoutUpdate: PropTypes.func.isRequired,
   };
 
@@ -57,4 +55,4 @@ export class SignUpPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { push, layoutUpdate })(SignUpPage);
+export default connect(() => ({}), { layoutUpdate })(SignUpPage);

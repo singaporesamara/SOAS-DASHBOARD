@@ -64,6 +64,14 @@ export default function createRoutes(store) {
             .catch(errorLoading);
       },
     }, {
+      path: ROUTES.USER.CHANGE_PASSWORD,
+      name: 'login',
+      getComponent(nextState, cb) {
+        import('containers/User/ChangePasswordPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
