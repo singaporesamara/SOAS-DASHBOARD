@@ -40,6 +40,7 @@ import configureStore from './store';
 import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
+import 'react-block-ui/style.css'; // eslint-disable-line import/first
 import 'purecss/build/grids.css'; // eslint-disable-line import/first
 import './global-styles/main.scss';
 
