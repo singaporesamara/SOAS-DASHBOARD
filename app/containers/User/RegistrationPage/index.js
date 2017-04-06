@@ -32,7 +32,7 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = merge({ step: PAGE_STEPS.BANK_ACCOUNT }, getProfileFields());
+    this.state = merge({ step: PAGE_STEPS.GENERAL }, getProfileFields());
     this.onValueChange = this.onValueChange.bind(this);
     this.renderGeneralStep = this.renderGeneralStep.bind(this);
     this.renderBankAccountStep = this.renderBankAccountStep.bind(this);
@@ -205,11 +205,11 @@ export class RegistrationPage extends BaseComponent {
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <Button theme={BUTTON_THEMES.GREEN_INVERSE_SLIM} onClick={this.toStep(PAGE_STEPS.GENERAL)}>Back</Button>
+                <Button type="button" name="back" theme={BUTTON_THEMES.GREEN_INVERSE_SLIM} onClick={this.toStep(PAGE_STEPS.GENERAL)}>Back</Button>
               </div>
               <div className="pure-u-1-3 form-col"></div>
               <div className="pure-u-1-3 form-col">
-                <Button theme={BUTTON_THEMES.GREEN_SLIM}>Register</Button>
+                <Button type="submit" name="register" theme={BUTTON_THEMES.GREEN_SLIM}>Register</Button>
               </div>
             </div>
           </div>
