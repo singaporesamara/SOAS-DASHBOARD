@@ -8,4 +8,10 @@ export default class BaseComponent extends Component {
       this.setState({ [field]: value });
     };
   }
+
+  onCheckboxChange(field) {
+    return (data) => {
+      this.setState({ [field]: data[1] });
+    };
+  }
 }

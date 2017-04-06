@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { merge, pick } from 'lodash';
+import { merge, pick, omit } from 'lodash';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { register } from './actions';
-import { getProfileFields, generalFormValidationRules } from './utils';
+import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
 import styles from './styles.scss';
 
 const PAGE_STEPS = {
@@ -32,12 +32,14 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = merge({ step: PAGE_STEPS.GENERAL }, getProfileFields());
+    this.state = merge({ step: PAGE_STEPS.BANK_ACCOUNT }, getProfileFields());
     this.onValueChange = this.onValueChange.bind(this);
     this.renderGeneralStep = this.renderGeneralStep.bind(this);
     this.renderBankAccountStep = this.renderBankAccountStep.bind(this);
     this.toStep = this.toStep.bind(this);
     this.submitGeneralForm = this.submitGeneralForm.bind(this);
+    this.submitBankAccountForm = this.submitBankAccountForm.bind(this);
+    this.onCheckboxChange = this.onCheckboxChange.bind(this);
   }
 
   componentWillMount() {
@@ -56,6 +58,13 @@ export class RegistrationPage extends BaseComponent {
     const form = pick(this.state, fields);
     event.preventDefault();
     this.props.validateForm({ form, rules, name: 'registration' }, { onSuccess: () => { this.toStep(PAGE_STEPS.BANK_ACCOUNT)(event); } });
+  }
+
+  submitBankAccountForm(event) {
+    const { fields, rules } = bankAccountFormValidationRules();
+    const form = pick(this.state, fields);
+    event.preventDefault();
+    this.props.validateForm({ form, rules, name: 'registration' }, { onSuccess: () => { this.props.register(omit(this.state, ['step'])); } });
   }
 
   renderGeneralStep() {
@@ -131,77 +140,81 @@ export class RegistrationPage extends BaseComponent {
   }
 
   renderBankAccountStep() {
+    const page = this.props.page.toJS();
+    const [searchable, clearable] = [false, false];
     return (
       <div>
-        <div className={classNames('title -section text -light', styles.pageSectionTitle)}>Autorized Officer</div>
-        {/* <!--/title--> */}
-        <div className="form">
-          <div className="pure-g form-row">
-            <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Full Name" placeholder="Full Name" onChange={this.onValueChange('officerFullName')} />
-            </div>
-            <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Mobile number" placeholder="+65" onChange={this.onValueChange('mobileNumber')} />
-            </div>
-            <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Email" placeholder="Email" onChange={this.onValueChange('email')} />
-            </div>
-          </div>
-          {/* <!--/form-row--> */}
-          <div className="pure-g form-row">
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" onChange={this.onValueChange('foreignMailingAddress')} />
-              <div className={styles.pageSectionInputInfo}>
-                <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onValueChange('sameWithCompanyInfo')}>
-                  <Checkbox value="true" label="Same with Company Registered address Bank Account Information" />
-                </CheckboxGroup>
+        <form onSubmit={this.submitBankAccountForm}>
+          <div className={classNames('title -section text -light', styles.pageSectionTitle)}>Autorized Officer</div>
+          {/* <!--/title--> */}
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Full Name" placeholder="Full Name" onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Mobile number" placeholder="+65" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Email" placeholder="Email" onChange={this.onValueChange('email')} error={page.errors.email} />
               </div>
             </div>
-            <div className="pure-u-1-2 form-col"></div>
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
+                <div className={styles.pageSectionInputInfo}>
+                  <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onCheckboxChange('sameWithCompanyInfo')}>
+                    <Checkbox value="true" label="Same with Company Registered address Bank Account Information" />
+                  </CheckboxGroup>
+                </div>
+              </div>
+              <div className="pure-u-1-2 form-col"></div>
+            </div>
+            {/* <!--/form-row--> */}
           </div>
-          {/* <!--/form-row--> */}
-        </div>
-        <div className={classNames('title -section text -light', styles.pageSubTitle)}>Bank Account Information</div>
-        {/* <!--/title--> */}
-        <div className="form">
-          <div className="pure-g form-row">
-            <div className="pure-u-1-2 form-col">
-              <SelectField options={BANKS} value={this.state.bankName} label="Bank Name" placeholder="Bank Name" onChange={this.onValueChange('bankName')} />
+          <div className={classNames('title -section text -light', styles.pageSubTitle)}>Bank Account Information</div>
+          {/* <!--/title--> */}
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-2 form-col">
+                <SelectField options={BANKS} value={this.state.bankName} searchable={searchable} clearable={clearable} label="Bank Name" placeholder="Bank Name" onChange={this.onValueChange('bankName')} error={page.errors.bankName} />
+              </div>
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Branch Name" placeholder="Branch Name" onChange={this.onValueChange('branchName')} error={page.errors.branchName} />
+              </div>
             </div>
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Branch Name" placeholder="Branch Name" onChange={this.onValueChange('branchName')} />
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumber')} error={page.errors.bankAccountNumber} />
+              </div>
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Confirm Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumberConfirmation')} error={page.errors.bankAccountNumberConfirmation} />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" onChange={this.onValueChange('bankAccountHolderName')} error={page.errors.bankAccountHolderName} />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
+          </div>
+          <div className="hr -spaced"></div>
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <Button theme={BUTTON_THEMES.GREEN_INVERSE_SLIM} onClick={this.toStep(PAGE_STEPS.GENERAL)}>Back</Button>
+              </div>
+              <div className="pure-u-1-3 form-col"></div>
+              <div className="pure-u-1-3 form-col">
+                <Button theme={BUTTON_THEMES.GREEN_SLIM}>Register</Button>
+              </div>
             </div>
           </div>
-          {/* <!--/form-row--> */}
-          <div className="pure-g form-row">
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumber')} />
-            </div>
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Confirm Bank account number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumberConfirmation')} />
-            </div>
-          </div>
-          {/* <!--/form-row--> */}
-          <div className="pure-g form-row">
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" onChange={this.onValueChange('bankAccountHolderName')} />
-            </div>
-          </div>
-          {/* <!--/form-row--> */}
-        </div>
-        <div className="hr -spaced"></div>
-        <div className="form">
-          <div className="pure-g form-row">
-            <div className="pure-u-1-3 form-col">
-              <Button theme={BUTTON_THEMES.GREEN_INVERSE_SLIM} onClick={this.toStep(PAGE_STEPS.GENERAL)}>Back</Button>
-            </div>
-            <div className="pure-u-1-3 form-col"></div>
-            <div className="pure-u-1-3 form-col">
-              <Button theme={BUTTON_THEMES.GREEN_SLIM}>Register</Button>
-            </div>
-          </div>
-        </div>
-        {/* <!--/buttons--> */}
+          {/* <!--/buttons--> */}
+        </form>
       </div>
     );
   }
