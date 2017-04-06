@@ -1,0 +1,21 @@
+@import "../../../global-styles/variables";
+
+.page {
+  margin-top: 25px;
+
+  .pageTitle {
+    color: $oxford-blue-color;
+    & + .pageDescription {
+      margin-top: 20px;
+    }
+  }
+
+  .pageDescription {
+    color: $oxford-blue-color;
+    & + .pageForm {
+      margin-top: 30px;
+    }
+  }
+
+  .pageForm {}
+}

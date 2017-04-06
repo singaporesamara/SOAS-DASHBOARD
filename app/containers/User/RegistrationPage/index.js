@@ -1,13 +1,18 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import className from 'classnames';
 import BaseComponent from '../../Base';
-import { Button, TextInput } from '../../../components/UIKit';
 import { InnerAppContainer } from '../../../components/Containers';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
 import styles from './styles.scss';
+
+const PAGE_STEPS = {
+  GENERAL: 'general',
+  BANK_ACCOUNT: 'bank-account',
+};
 
 export class RegistrationPage extends BaseComponent {
   static propTypes = {
@@ -18,8 +23,7 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { username: null, password: null };
-    this.login = this.login.bind(this);
+    this.state = { step: PAGE_STEPS.GENERAL };
     this.onValueChange = this.onValueChange.bind(this);
   }
 
@@ -27,31 +31,27 @@ export class RegistrationPage extends BaseComponent {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
   }
 
-  login(event) {
-    const form = { username: this.state.username, password: this.state.password };
-    const rules = { username: RULES.email, password: RULES.required };
-    event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'login' }, { onSuccess: () => { alert('done'); } });
+  renderGeneralStep() {
+    return (
+      <div>
+        <div className={className('title -medium text -light', styles.pageTitle)}>Person registration</div>
+        <div className={className('text -light', styles.pageDescription)}>Fixes an issue where the app—while being in the background—would sometimes prevent user notifications from showing up since the (messenger.com) app thought it was still active.</div>
+        <div className={styles.pageForm}>
+          <div>Form...</div>
+          <div className="hr -spaced"></div>
+          <div>Buttons...</div>
+        </div>
+      </div>
+    );
   }
 
   render() {
-    const page = this.props.page.toJS();
+    // const page = this.props.page.toJS();
     return (
       <InnerAppContainer>
         <Helmet title="Registaration Page" />
         <div className={styles.page}>
-          <div className={styles.pageTitle}>Sign in</div>
-          <form className={styles.pageForm} onSubmit={this.login}>
-            <div className={styles.pageFormInput}>
-              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} error={page.errors.username} />
-            </div>
-            <div className={styles.pageFormInput}>
-              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
-            </div>
-            <div className={styles.pageFormButton}>
-              <Button>Login</Button>
-            </div>
-          </form>
+          {this.state.step === PAGE_STEPS.GENERAL && this.renderGeneralStep()}
         </div>
       </InnerAppContainer>
     );
