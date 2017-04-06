@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Wrapper } from '../../UIKit';
+import Header from '../../Header';
 import styles from './styles.scss';
 
 export class InnerAppContainer extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -10,10 +12,10 @@ export class InnerAppContainer extends Component { // eslint-disable-line react/
   render() {
     return (
       <div className={styles.page}>
-        <div>Header is gonna be here..</div>
-        <div className={styles.pageContainer}>
+        <Header />
+        <Wrapper>
           {this.props.children}
-        </div>
+        </Wrapper>
       </div>
     );
   }

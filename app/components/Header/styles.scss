@@ -1,0 +1,10 @@
+@import "../../global-styles/variables";
+
+.header {
+  background: $white-color;
+  padding: 8px 0;
+
+  .headerLogo {
+    height: 54px;
+  }
+}
