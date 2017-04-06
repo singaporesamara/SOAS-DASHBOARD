@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import className from 'classnames';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
+import { TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
-import { RULES } from '../../../utils/validation';
 import styles from './styles.scss';
 
 const PAGE_STEPS = {
@@ -37,7 +37,9 @@ export class RegistrationPage extends BaseComponent {
         <div className={className('title -medium text -light', styles.pageTitle)}>Person registration</div>
         <div className={className('text -light', styles.pageDescription)}>Fixes an issue where the app—while being in the background—would sometimes prevent user notifications from showing up since the (messenger.com) app thought it was still active.</div>
         <div className={styles.pageForm}>
-          <div>Form...</div>
+          <div>
+            <TextInput theme={TEXT_INPUT_THEMES.DEFAULT} />
+          </div>
           <div className="hr -spaced"></div>
           <div>Buttons...</div>
         </div>
