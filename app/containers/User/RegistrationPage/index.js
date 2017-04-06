@@ -2,13 +2,14 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import { merge, pick } from 'lodash';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { register } from './actions';
-import { getProfileFields } from './utils';
+import { getProfileFields, generalFormValidationRules } from './utils';
 import styles from './styles.scss';
 
 const PAGE_STEPS = {
@@ -31,11 +32,12 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { step: PAGE_STEPS.GENERAL, profile: getProfileFields() };
+    this.state = merge({ step: PAGE_STEPS.GENERAL }, getProfileFields());
     this.onValueChange = this.onValueChange.bind(this);
     this.renderGeneralStep = this.renderGeneralStep.bind(this);
     this.renderBankAccountStep = this.renderBankAccountStep.bind(this);
     this.toStep = this.toStep.bind(this);
+    this.submitGeneralForm = this.submitGeneralForm.bind(this);
   }
 
   componentWillMount() {
@@ -49,20 +51,28 @@ export class RegistrationPage extends BaseComponent {
     };
   }
 
+  submitGeneralForm(event) {
+    const { fields, rules } = generalFormValidationRules();
+    const form = pick(this.state, fields);
+    event.preventDefault();
+    this.props.validateForm({ form, rules, name: 'registration' }, { onSuccess: () => { this.toStep(PAGE_STEPS.BANK_ACCOUNT)(event); } });
+  }
+
   renderGeneralStep() {
+    const page = this.props.page.toJS();
     const disabled = true;
     return (
       <div>
         <div className={classNames('title -medium text -light', styles.pageTitle)}>Person registration</div>
         <div className={classNames('text -light', styles.pageDescription)}>Fixes an issue where the app—while being in the background—would sometimes prevent user notifications from showing up since the (messenger.com) app thought it was still active.</div>
-        <div className={styles.pageForm}>
+        <form className={styles.pageForm} onSubmit={this.submitGeneralForm}>
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Company Name" placeholder="Company Name" onChange={this.onValueChange('companyName')} />
+                <TextInput type="text" label="Company Name" placeholder="Company Name" value={this.state.companyName} onChange={this.onValueChange('companyName')} error={page.errors.companyName} />
               </div>
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Company UEN" placeholder="Company UEN" onChange={this.onValueChange('companyUEN')} />
+                <TextInput type="text" label="Company UEN" placeholder="Company UEN" value={this.state.companyUEN} onChange={this.onValueChange('companyUEN')} error={page.errors.companyUEN} />
               </div>
               {/* <!--/form-row--> */}
             </div>
@@ -72,22 +82,22 @@ export class RegistrationPage extends BaseComponent {
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Block/House number" placeholder="Block/House number" onChange={this.onValueChange('houseNumber')} />
+                <TextInput type="text" label="Block/House number" placeholder="Block/House number" value={this.state.houseNumber} onChange={this.onValueChange('houseNumber')} error={page.errors.houseNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Street name" placeholder="Street name" onChange={this.onValueChange('streetName')} />
+                <TextInput type="text" label="Street name" placeholder="Street name" value={this.state.streetName} onChange={this.onValueChange('streetName')} error={page.errors.streetName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Storey level" placeholder="Storey level" onChange={this.onValueChange('storeyLevel')} />
+                <TextInput type="text" label="Storey level" placeholder="Storey level" value={this.state.storeyLevel} onChange={this.onValueChange('storeyLevel')} error={page.errors.storeyLevel} />
               </div>
             </div>
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Unit number" placeholder="00000000" onChange={this.onValueChange('unitNumber')} />
+                <TextInput type="text" label="Unit number" placeholder="00000000" value={this.state.unitNumber} onChange={this.onValueChange('unitNumber')} error={page.errors.unitNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Building Name" placeholder="Building Name" onChange={this.onValueChange('buildingName')} />
+                <TextInput type="text" label="Building Name" placeholder="Building Name" value={this.state.buildingName} onChange={this.onValueChange('buildingName')} error={page.errors.buildingName} />
               </div>
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="City" value={this.state.city} disabled={disabled} placeholder="Singapore" />
@@ -99,7 +109,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Country" value={this.state.country} disabled={disabled} placeholder="Singapore" />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Postal Code" placeholder="00000000" onChange={this.onValueChange('postalCode')} />
+                <TextInput type="text" label="Postal Code" placeholder="00000000" value={this.state.postalCode} onChange={this.onValueChange('postalCode')} error={page.errors.postalCode} />
               </div>
             </div>
             {/* <!--/form-row--> */}
@@ -110,12 +120,12 @@ export class RegistrationPage extends BaseComponent {
               <div className="pure-u-1-3 form-col"></div>
               <div className="pure-u-1-3 form-col"></div>
               <div className="pure-u-1-3 form-col">
-                <Button theme={BUTTON_THEMES.GREEN_SLIM} onClick={this.toStep(PAGE_STEPS.BANK_ACCOUNT)}>Continue</Button>
+                <Button theme={BUTTON_THEMES.GREEN_SLIM}>Continue</Button>
               </div>
             </div>
           </div>
           {/* <!--/buttons--> */}
-        </div>
+        </form>
       </div>
     );
   }
