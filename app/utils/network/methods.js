@@ -1,6 +1,10 @@
 import { each } from 'lodash';
 import request, { toQueryString, postJson, putJson, deleteJson } from './request';
 
+function getCleanedUrl(url) {
+  return url.replace(/(^https?:|)\/\//, '').replace(/(?:\:\d{2,4})/, ''); // eslint-disable-line no-useless-escape
+}
+
 function makePath(path, { replacements, params }) {
   let newPath = path;
   if (replacements) {
@@ -14,7 +18,7 @@ function makePath(path, { replacements, params }) {
         throw new Error(`Can't find :${name} in ${newPath}`);
       }
     });
-    if (newPath.includes(':')) {
+    if (getCleanedUrl(newPath).includes(':')) {
       throw new Error(`Not all replacements were provided: ${newPath}`);
     }
   }
@@ -27,7 +31,7 @@ function makePath(path, { replacements, params }) {
 }
 
 function resolvePathArgs(path, args) {
-  const shouldHaveReplacements = path.includes(':');
+  const shouldHaveReplacements = getCleanedUrl(path).includes(':');
   let replacements;
   let data;
   let options;

@@ -1,6 +1,8 @@
 import 'whatwg-fetch';
 // import { newNotice } from '../components/NoticeStack/actions';
 
+const BASE_URL = 'http://localhost:3000/';
+
 /**
  * Parses the JSON returned by a network request
  *
@@ -106,4 +108,10 @@ export function deleteJson(url, body = {}, options = {}) {
 
 export function toQueryString(params) {
   return Object.keys(params).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join('&');
+}
+
+export function withBasePath(url = BASE_URL) {
+  return (path) => { // eslint-disable-line arrow-body-style
+    return `${url}${path}`;
+  };
 }

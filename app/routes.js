@@ -52,9 +52,10 @@ export default function createRoutes(store) {
       path: ROUTES.USER.LOGIN,
       name: 'login',
       getComponent(nextState, cb) {
-        import('containers/User/LoginPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/LoginPage/sagas'),
+          import('containers/User/LoginPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.SIGN_UP,
