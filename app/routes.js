@@ -79,9 +79,10 @@ export default function createRoutes(store) {
       path: ROUTES.USER.CHANGE_PASSWORD,
       name: 'change-password',
       getComponent(nextState, cb) {
-        import('containers/User/ChangePasswordPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/ChangePasswordPage/sagas'),
+          import('containers/User/ChangePasswordPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.REGISTRATION,
