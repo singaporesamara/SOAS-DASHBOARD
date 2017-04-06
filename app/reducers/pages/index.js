@@ -9,8 +9,9 @@ import login from '../../containers/User/LoginPage/reduces';
 import signUp from '../../containers/User/SignUpPage/reduces';
 import forgotPassword from '../../containers/User/ForgotPasswordPage/reduces';
 import changePassword from '../../containers/User/ChangePasswordPage/reduces';
+import registration from '../../containers/User/RegistrationPage/reduces';
 
-const pages = { current, login, signUp, forgotPassword, changePassword };
+const pages = { current, login, signUp, forgotPassword, changePassword, registration };
 
 export default () => (combineReducers(pages));
 

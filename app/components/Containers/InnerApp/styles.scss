@@ -1,0 +1,13 @@
+@import "../../../global-styles/variables";
+
+.page {
+  background: $aqua-haze-color;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+
+  .pageContainer {
+    width: $inner-app-width;
+    margin: 0 auto;
+  }
+}

@@ -5,5 +5,6 @@ export const ROUTES = {
     FORGOT_PASSWORD: '/forgot-password',
     SIGN_UP: '/sign-up',
     CHANGE_PASSWORD: '/change-password',
+    REGISTRATION: '/app/registration',
   },
 };

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import NormalIssueIcon from 'components/IssueIcon';
-
-const IssueIcon = styled(NormalIssueIcon)`
+const IssueIcon = styled.span`
   fill: #ccc;
   margin-right: 0.25em;
 `;
