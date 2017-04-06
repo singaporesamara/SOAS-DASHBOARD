@@ -7,6 +7,8 @@ import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { register } from './actions';
+import { getProfileFields } from './utils';
 import styles from './styles.scss';
 
 const PAGE_STEPS = {
@@ -23,13 +25,16 @@ export class RegistrationPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { step: PAGE_STEPS.GENERAL };
+    this.state = { step: PAGE_STEPS.BANK_ACCOUNT, profile: getProfileFields() };
     this.onValueChange = this.onValueChange.bind(this);
+    this.renderGeneralStep = this.renderGeneralStep.bind(this);
+    this.renderBankAccountStep = this.renderBankAccountStep.bind(this);
     this.toStep = this.toStep.bind(this);
   }
 
@@ -45,6 +50,7 @@ export class RegistrationPage extends BaseComponent {
   }
 
   renderGeneralStep() {
+    const disabled = true;
     return (
       <div>
         <div className={classNames('title -medium text -light', styles.pageTitle)}>Person registration</div>
@@ -53,10 +59,10 @@ export class RegistrationPage extends BaseComponent {
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Company Name" placeholder="Company Name" />
+                <TextInput type="text" label="Company Name" placeholder="Company Name" onChange={this.onValueChange('companyName')} />
               </div>
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Company UEN" placeholder="Company UEN" />
+                <TextInput type="text" label="Company UEN" placeholder="Company UEN" onChange={this.onValueChange('companyUEN')} />
               </div>
               {/* <!--/form-row--> */}
             </div>
@@ -66,34 +72,34 @@ export class RegistrationPage extends BaseComponent {
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Block/House number" placeholder="Block/House number" />
+                <TextInput type="text" label="Block/House number" placeholder="Block/House number" onChange={this.onValueChange('houseNumber')} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Street name" placeholder="Street name" />
+                <TextInput type="text" label="Street name" placeholder="Street name" onChange={this.onValueChange('streetName')} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Storey level" placeholder="Storey level" />
-              </div>
-            </div>
-            {/* <!--/form-row--> */}
-            <div className="pure-g form-row">
-              <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Unit number" placeholder="00000000" />
-              </div>
-              <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Building Name" placeholder="Building Name" />
-              </div>
-              <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="City" placeholder="Singapore" />
+                <TextInput type="text" label="Storey level" placeholder="Storey level" onChange={this.onValueChange('storeyLevel')} />
               </div>
             </div>
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Country" placeholder="Singapore" />
+                <TextInput type="text" label="Unit number" placeholder="00000000" onChange={this.onValueChange('unitNumber')} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Postal Code" placeholder="00000000" />
+                <TextInput type="text" label="Building Name" placeholder="Building Name" onChange={this.onValueChange('buildingName')} />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="City" value={this.state.city} disabled={disabled} placeholder="Singapore" />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Country" value={this.state.country} disabled={disabled} placeholder="Singapore" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Postal Code" placeholder="00000000" onChange={this.onValueChange('postalCode')} />
               </div>
             </div>
             {/* <!--/form-row--> */}
@@ -122,22 +128,22 @@ export class RegistrationPage extends BaseComponent {
         <div className="form">
           <div className="pure-g form-row">
             <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Full Name" placeholder="Full Name" />
+              <TextInput type="text" label="Full Name" placeholder="Full Name" onChange={this.onValueChange('officerFullName')} />
             </div>
             <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Mobile number" placeholder="+65" />
+              <TextInput type="text" label="Mobile number" placeholder="+65" onChange={this.onValueChange('mobileNumber')} />
             </div>
             <div className="pure-u-1-3 form-col">
-              <TextInput type="text" label="Email" placeholder="Email" />
+              <TextInput type="text" label="Email" placeholder="Email" onChange={this.onValueChange('email')} />
             </div>
           </div>
           {/* <!--/form-row--> */}
           <div className="pure-g form-row">
             <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" />
+              <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" onChange={this.onValueChange('foreignMailingAddress')} />
               <div className={styles.pageSectionInputInfo}>
-                <CheckboxGroup name="checkbox-name" value={['Yes']}>
-                  <Checkbox value="Yes" label="Same with Company Registered address Bank Account Information" />
+                <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onValueChange('sameWithCompanyInfo')}>
+                  <Checkbox value="true" label="Same with Company Registered address Bank Account Information" />
                 </CheckboxGroup>
               </div>
             </div>
@@ -150,25 +156,25 @@ export class RegistrationPage extends BaseComponent {
         <div className="form">
           <div className="pure-g form-row">
             <div className="pure-u-1-2 form-col">
-              <SelectField options={BANKS} label="Bank Name" placeholder="Bank Name" error="Please, select your bank name" />
+              <SelectField options={BANKS} value={this.state.bankName} label="Bank Name" placeholder="Bank Name" onChange={this.onValueChange('bankName')} />
             </div>
             <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Branch Name" placeholder="Branch Name" />
-            </div>
-          </div>
-          {/* <!--/form-row--> */}
-          <div className="pure-g form-row">
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Bank Account Number" placeholder="00000000r" />
-            </div>
-            <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Confirm Bank account number" placeholder="00000000" />
+              <TextInput type="text" label="Branch Name" placeholder="Branch Name" onChange={this.onValueChange('branchName')} />
             </div>
           </div>
           {/* <!--/form-row--> */}
           <div className="pure-g form-row">
             <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" />
+              <TextInput type="text" label="Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumber')} />
+            </div>
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Confirm Bank account number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumberConfirmation')} />
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+          <div className="pure-g form-row">
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" onChange={this.onValueChange('bankAccountHolderName')} />
             </div>
           </div>
           {/* <!--/form-row--> */}
@@ -210,4 +216,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, validateForm })(RegistrationPage);
+export default connect(mapStateToProps, { layoutUpdate, validateForm, register })(RegistrationPage);

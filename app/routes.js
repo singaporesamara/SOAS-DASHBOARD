@@ -88,9 +88,10 @@ export default function createRoutes(store) {
       path: ROUTES.USER.REGISTRATION,
       name: 'registration',
       getComponent(nextState, cb) {
-        import('containers/User/RegistrationPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/RegistrationPage/sagas'),
+          import('containers/User/RegistrationPage'),
+        ], nextState, cb);
       },
     }, {
       path: '*',

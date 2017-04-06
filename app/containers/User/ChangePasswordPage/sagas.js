@@ -1,7 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { requestStarted, requestFinished } from '../../../actions/common';
 import { CHANGE_PASSWORD } from './constants';
-import { restorationResent } from './actions';
 import routes from '../../../utils/network/api';
 
 function* changePasswordSaga({ payload: { password, passwordConfirmation } }) {
@@ -11,8 +10,6 @@ function* changePasswordSaga({ payload: { password, passwordConfirmation } }) {
 
   if (response.err) {
     alert('error...');
-  } else {
-    yield put(restorationResent());
   }
 }
 
