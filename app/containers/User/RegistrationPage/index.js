@@ -23,12 +23,20 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { step: PAGE_STEPS.GENERAL };
+    this.state = { step: PAGE_STEPS.BANK_ACCOUNT };
     this.onValueChange = this.onValueChange.bind(this);
+    this.toStep = this.toStep.bind(this);
   }
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
+  }
+
+  toStep(step) {
+    return (event) => {
+      event.preventDefault();
+      this.setState({ step });
+    };
   }
 
   renderGeneralStep() {
@@ -49,6 +57,7 @@ export class RegistrationPage extends BaseComponent {
             </div>
           </div>
           <div className={classNames('title -section text -light', styles.pageSubTitle)}>Company Registered Address</div>
+          {/* <!--/title--> */}
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
@@ -90,11 +99,85 @@ export class RegistrationPage extends BaseComponent {
               <div className="pure-u-1-3 form-col"></div>
               <div className="pure-u-1-3 form-col"></div>
               <div className="pure-u-1-3 form-col">
-                <Button theme={BUTTON_THEMES.GREEN_SLIM}>Continue</Button>
+                <Button theme={BUTTON_THEMES.GREEN_SLIM} onClick={this.toStep(PAGE_STEPS.BANK_ACCOUNT)}>Continue</Button>
               </div>
             </div>
           </div>
+          {/* <!--/buttons--> */}
         </div>
+      </div>
+    );
+  }
+
+  renderBankAccountStep() {
+    return (
+      <div>
+        <div className={classNames('title -section text -light', styles.pageSectionTitle)}>Autorized Officer</div>
+        {/* <!--/title--> */}
+        <div className="form">
+          <div className="pure-g form-row">
+            <div className="pure-u-1-3 form-col">
+              <TextInput type="text" label="Full Name" placeholder="Full Name" />
+            </div>
+            <div className="pure-u-1-3 form-col">
+              <TextInput type="text" label="Mobile number" placeholder="+65" />
+            </div>
+            <div className="pure-u-1-3 form-col">
+              <TextInput type="text" label="Email" placeholder="Email" />
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+          <div className="pure-g form-row">
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" />
+              <div>
+                Same with Company Registered address Bank Account Information
+              </div>
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+        </div>
+        <div className={classNames('title -section text -light', styles.pageSubTitle)}>Bank Account Information</div>
+        {/* <!--/title--> */}
+        <div className="form">
+          <div className="pure-g form-row">
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Bank Name" placeholder="Bank Name" />
+            </div>
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Branch Name" placeholder="Branch Name" />
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+          <div className="pure-g form-row">
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Bank Account Number" placeholder="00000000r" />
+            </div>
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Confirm Bank account number" placeholder="00000000" />
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+          <div className="pure-g form-row">
+            <div className="pure-u-1-2 form-col">
+              <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" />
+            </div>
+          </div>
+          {/* <!--/form-row--> */}
+        </div>
+        <div className="hr -spaced"></div>
+        <div className="form">
+          <div className="pure-g form-row">
+            <div className="pure-u-1-3 form-col">
+              <Button theme={BUTTON_THEMES.GREEN_INVERSE_SLIM} onClick={this.toStep(PAGE_STEPS.GENERAL)}>Back</Button>
+            </div>
+            <div className="pure-u-1-3 form-col"></div>
+            <div className="pure-u-1-3 form-col">
+              <Button theme={BUTTON_THEMES.GREEN_SLIM}>Register</Button>
+            </div>
+          </div>
+        </div>
+        {/* <!--/buttons--> */}
       </div>
     );
   }
@@ -106,6 +189,7 @@ export class RegistrationPage extends BaseComponent {
         <Helmet title="Registaration Page" />
         <div className={styles.page}>
           {this.state.step === PAGE_STEPS.GENERAL && this.renderGeneralStep()}
+          {this.state.step === PAGE_STEPS.BANK_ACCOUNT && this.renderBankAccountStep()}
         </div>
       </InnerAppContainer>
     );
