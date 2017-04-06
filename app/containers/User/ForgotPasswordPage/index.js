@@ -40,7 +40,7 @@ export class ForgotPasswordPage extends BaseComponent {
 
   renderMessage() {
     const page = this.props.page.toJS();
-    const message = 'Enter a work email address<br />ruzan.404@gmail.com looks like a personal email address.<br />If you want to be connected with your team, please use your work email address.';
+    const message = `We have successfully sent the email with password reset details. Please, visit <strong>${this.state.email}</strong> and follow the instructions.`;
     return page.show.message ? (
       <SuccessNotice message={message} />
     ) : null;
