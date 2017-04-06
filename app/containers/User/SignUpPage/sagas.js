@@ -1,11 +1,18 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, call } from 'redux-saga/effects';
 import { requestStarted, requestFinished } from '../../../actions/common';
 import { SIGN_UP } from './constants';
+import routes from '../../../utils/network/api';
 
-function* signUpSaga({ payload: { user } }) {
+function* signUpSaga({ payload: { email, password } }) {
   yield put(requestStarted());
-  console.info(user);
+  const response = yield call(routes.user.signUp, { email, password });
   yield put(requestFinished());
+
+  if (response.err) {
+    alert('error...');
+  } else {
+    alert('done...');
+  }
 }
 
 export function* signUpFlow() {
