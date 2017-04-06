@@ -1,0 +1,12 @@
+@import "../../../global-styles/variables";
+
+.checkboxGroup {
+  .checkboxGroupLabel {
+
+    & + .checkboxGroupField {
+
+    }
+  }
+
+  .checkboxGroupField {}
+}

@@ -1,0 +1,65 @@
+@import "../../../global-styles/variables";
+
+.select {
+  .selectLabel {
+    color: $tundora-color;
+    margin-bottom: 5px;
+    font-size: 16px;
+
+    &.selectLabelInvalid {
+      color: $red-orange-color;
+    }
+  }
+
+  .selectField {
+    position: relative;
+
+    :global {
+      .Select-arrow-zone {
+        padding-right: 10px;
+      }
+
+      .Select-control {
+        border-color: $iron-color;
+        height: 40px;
+
+        &:hover {
+          box-shadow: none;
+        }
+
+        .Select-placeholder {
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+        }
+      }
+
+      .is-focused:not(.is-open) {
+        .Select-control {
+          border-color: $iron-color;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.selectFieldInvalid {
+      :global {
+        .Select-control {
+          border-color: $red-orange-color;
+        }
+      }
+    }
+
+    .selectFieldError {
+      color: $red-orange-color;
+      position: absolute;
+      width: 100%;
+      bottom: -15px;
+      right: 10px;
+      display: block;
+      text-align: right;
+      text-transform: uppercase;
+      font-size: 9px;
+    }
+  }
+}

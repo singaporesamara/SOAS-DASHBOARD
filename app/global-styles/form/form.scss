@@ -1,0 +1,19 @@
+.form {
+  .form-row {
+    & + .form-row {
+      margin-top: 20px;
+    }
+
+    .form-col {
+      padding: 0 15px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}

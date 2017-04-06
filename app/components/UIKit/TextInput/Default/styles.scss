@@ -1,0 +1,55 @@
+@import "../../../../global-styles/variables";
+
+.textInput {
+  position: relative;
+
+  input {
+    color: $tundora-color;
+    border: 1px solid $iron-color;
+    background: $white-color;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding: 0 35px 0 10px;
+  }
+
+  :global {
+    .text-input-label {
+      margin-bottom: 5px;
+    }
+
+    .text-input-error {
+      position: absolute;
+      width: 100%;
+      bottom: -15px;
+      right: 10px;
+      display: block;
+      text-align: right;
+    }
+
+    .text-input-icon {
+      position: absolute;
+      top: 38px;
+      right: 10px;
+    }
+  }
+
+  &.textInputSuccess {
+    input {
+      border: 1px solid $emerald-color;
+    }
+  }
+
+  &.textInputError {
+    input {
+      border: 1px solid $red-orange-color;
+    }
+
+    :global {
+      .text-input-label {
+        color: $red-orange-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../global-styles/variables";
+
+.header {
+  background: $white-color;
+  border-bottom: 1px solid $iron-color;
+  padding: 8px 0;
+
+  .headerLogo {
+    height: 54px;
+  }
+}

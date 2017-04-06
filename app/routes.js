@@ -67,7 +67,7 @@ export default function createRoutes(store) {
       },
     }, {
       path: ROUTES.USER.FORGOT_PASSWORD,
-      name: 'login',
+      name: 'forgot-password',
       getComponent(nextState, cb) {
         loadPage([
           import('containers/User/ForgotPasswordPage/sagas'),
@@ -76,9 +76,17 @@ export default function createRoutes(store) {
       },
     }, {
       path: ROUTES.USER.CHANGE_PASSWORD,
-      name: 'login',
+      name: 'change-password',
       getComponent(nextState, cb) {
         import('containers/User/ChangePasswordPage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+      },
+    }, {
+      path: ROUTES.USER.REGISTRATION,
+      name: 'registration',
+      getComponent(nextState, cb) {
+        import('containers/User/RegistrationPage')
             .then(loadModule(cb))
             .catch(errorLoading);
       },

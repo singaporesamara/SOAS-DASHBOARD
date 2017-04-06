@@ -1,3 +1,5 @@
+@import "./variables";
+
 .text-left {
   text-align: left;
 }
@@ -8,4 +10,43 @@
 
 .text-center {
   text-align: center;
+}
+
+.text {
+  &.-light {
+    font-weight: $font-light;
+  }
+
+  &.-regular {
+    font-weight: $font-normal;
+  }
+
+  &.-bold {
+    font-weight: $font-bold;
+  }
+}
+
+.title {
+  font-size: 36px;
+
+  &.-medium {
+    font-size: 30px;
+  }
+
+  &.-small {
+    font-size: 24px;
+  }
+
+  &.-section {
+    font-size: 20px;
+  }
+}
+
+.hr {
+  background: $iron-color;
+  height: 2px;
+
+  &.-spaced {
+    margin: 20px 0;
+  }
 }
