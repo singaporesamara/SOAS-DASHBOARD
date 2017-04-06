@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="9px" viewBox="0 0 15 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39 (31667) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon-Set</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="10---Invoices-2" transform="translate(-557.000000, -451.000000)" fill="#000000">
+            <g id="Icon-Set" transform="translate(557.000000, 451.000000)">
+                <path d="M14.8166672,0.187831517 C14.5709731,-0.0626105057 14.1733613,-0.0626105057 13.9289175,0.187831517 L7.49960927,7.437807 L1.07155137,0.187831517 C0.826482448,-0.0626105057 0.42887062,-0.0626105057 0.183801694,0.187831517 C-0.0612672314,0.44469513 -0.0612672314,0.855676912 0.183801694,1.10611893 L7.02510081,8.81844892 C7.15576256,8.95330232 7.32893626,9.01109663 7.49960927,8.99825345 C7.67090744,9.01109663 7.84408115,8.95330232 7.97536807,8.81844892 L14.8166672,1.10611893 C15.0611109,0.855676912 15.0611109,0.44469513 14.8166672,0.187831517" id="chevron-down"></path>
+            </g>
+        </g>
+    </g>
+</svg>

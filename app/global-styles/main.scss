@@ -14,10 +14,12 @@ html, body {
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  &, input, textearea, button {
+    font-family: $default-font-family;
+  }
 
   &.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: $full-font-family;
   }
 }
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
-import { TextInput, Button, BUTTON_THEMES } from '../../../components/UIKit';
+import { TextInput, Button, BUTTON_THEMES, SelectField } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
@@ -13,6 +13,11 @@ const PAGE_STEPS = {
   GENERAL: 'general',
   BANK_ACCOUNT: 'bank-account',
 };
+
+const BANKS = [
+  { label: 'Chase', value: 'chase' },
+  { label: 'American Express', value: 'amex' },
+];
 
 export class RegistrationPage extends BaseComponent {
   static propTypes = {
@@ -142,7 +147,7 @@ export class RegistrationPage extends BaseComponent {
         <div className="form">
           <div className="pure-g form-row">
             <div className="pure-u-1-2 form-col">
-              <TextInput type="text" label="Bank Name" placeholder="Bank Name" />
+              <SelectField options={BANKS} label="Bank Name" placeholder="Bank Name" error="Please, select your bank name" />
             </div>
             <div className="pure-u-1-2 form-col">
               <TextInput type="text" label="Branch Name" placeholder="Branch Name" />
