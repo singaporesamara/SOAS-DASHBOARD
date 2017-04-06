@@ -6,15 +6,15 @@ import styles from './styles.scss';
 const Checkbox = (props) => {
   const className = classNames(styles.checkbox, props.className);
   return (
-      <div className={className}>
-        { /* eslint-disable */}
-        <label>
-          { /* eslint-enable */}
-          <BaseCheckbox value={props.value} />
-          { props.label }
-          <div className={styles.check}></div>
-        </label>
-      </div>
+    <div className={className}>
+      { /* eslint-disable */}
+      <label>
+        { /* eslint-enable */}
+        <BaseCheckbox value={props.value} />
+        { props.label }
+        <div className={styles.check}></div>
+      </label>
+    </div>
   );
 };
 

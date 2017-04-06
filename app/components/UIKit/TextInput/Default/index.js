@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { omit, isEmpty, isFunction, uniqueId } from 'lodash';
+import { omit, uniqueId } from 'lodash';
 import classNames from 'classnames';
 import styles from './styles.scss';
 import errorIcon from '../../../../assets/images/icons/danger-sign.svg';
