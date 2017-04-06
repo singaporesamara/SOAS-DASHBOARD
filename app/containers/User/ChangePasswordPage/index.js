@@ -9,12 +9,14 @@ import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit'
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
+import { changePassword } from './actions';
 import styles from './styles.scss';
 
 export class ChangePasswordPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
+    changePassword: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -32,7 +34,7 @@ export class ChangePasswordPage extends BaseComponent {
     const form = { password: this.state.password, passwordConfirmation: this.state.passwordConfirmation };
     const rules = { password: RULES.required, passwordConfirmation: merge({}, RULES.required, RULES.equalsTo('password')) };
     event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { alert('done'); } });
+    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { this.props.changePassword(form); } });
   }
 
   render() {
@@ -66,4 +68,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, validateForm })(ChangePasswordPage);
+export default connect(mapStateToProps, { layoutUpdate, validateForm, changePassword })(ChangePasswordPage);

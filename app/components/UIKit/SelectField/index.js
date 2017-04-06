@@ -8,7 +8,6 @@ import chevronIcon from '../../../assets/images/icons/chevron-down.svg';
 export default class SelectField extends Component {
   static propTypes = {
     label: PropTypes.string,
-    invalid: PropTypes.bool,
     error: PropTypes.string,
     className: PropTypes.string,
   };

@@ -1,8 +1,8 @@
 import { SIGN_UP } from './constants';
 
-export function signUp(user) {
+export function signUp({ email, password }) {
   return {
     type: SIGN_UP,
-    payload: { user },
+    payload: { email, password },
   };
 }

@@ -52,9 +52,10 @@ export default function createRoutes(store) {
       path: ROUTES.USER.LOGIN,
       name: 'login',
       getComponent(nextState, cb) {
-        import('containers/User/LoginPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/LoginPage/sagas'),
+          import('containers/User/LoginPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.SIGN_UP,
@@ -78,17 +79,19 @@ export default function createRoutes(store) {
       path: ROUTES.USER.CHANGE_PASSWORD,
       name: 'change-password',
       getComponent(nextState, cb) {
-        import('containers/User/ChangePasswordPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/ChangePasswordPage/sagas'),
+          import('containers/User/ChangePasswordPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.REGISTRATION,
       name: 'registration',
       getComponent(nextState, cb) {
-        import('containers/User/RegistrationPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/RegistrationPage/sagas'),
+          import('containers/User/RegistrationPage'),
+        ], nextState, cb);
       },
     }, {
       path: '*',

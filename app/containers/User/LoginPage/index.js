@@ -7,12 +7,14 @@ import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit'
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
+import { login } from './actions';
 import styles from './styles.scss';
 
 export class LoginPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
@@ -31,7 +33,11 @@ export class LoginPage extends BaseComponent {
     const form = { username: this.state.username, password: this.state.password };
     const rules = { username: RULES.email, password: RULES.required };
     event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'login' }, { onSuccess: () => { alert('done'); } });
+    this.props.validateForm({ form, rules, name: 'login' }, {
+      onSuccess: () => {
+        this.props.login({ email: this.state.username, password: this.state.password });
+      },
+    });
   }
 
   render() {
@@ -64,4 +70,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, validateForm })(LoginPage);
+export default connect(mapStateToProps, { layoutUpdate, validateForm, login })(LoginPage);

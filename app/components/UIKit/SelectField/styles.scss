@@ -19,6 +19,17 @@
         padding-right: 10px;
       }
 
+      .Select-value-label {
+        font-size: 14px;
+        line-height: 38px;
+      }
+
+      .Select-menu-outer {
+        .Select-option {
+          font-size: 14px;
+        }
+      }
+
       .Select-control {
         border-color: $iron-color;
         height: 40px;
