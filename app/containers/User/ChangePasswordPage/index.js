@@ -5,7 +5,7 @@ import { merge } from 'lodash';
 import { ROUTES } from '../../../constants/routes';
 import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
 import BaseComponent from '../../Base';
-import { Button, TextInput } from '../../../components/UIKit';
+import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
@@ -45,10 +45,10 @@ export class ChangePasswordPage extends BaseComponent {
           <div className={styles.pageTitle}>Change your password</div>
           <form className={styles.pageForm} onSubmit={this.restorePassword}>
             <div className={styles.pageFormInput}>
-              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
+              <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
             </div>
             <div className={styles.pageFormInput}>
-              <TextInput type="password" label="PASSWORD CONFIRMATION" onChange={this.onValueChange('passwordConfirmation')} error={page.errors.passwordConfirmation} />
+              <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="password" label="PASSWORD CONFIRMATION" onChange={this.onValueChange('passwordConfirmation')} error={page.errors.passwordConfirmation} />
             </div>
             <div className={styles.pageFormButton}>
               <Button>Change password</Button>

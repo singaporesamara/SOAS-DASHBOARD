@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import className from 'classnames';
+import classNames from 'classnames';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
-import { TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
+import { TextInput, Button } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
@@ -34,14 +34,66 @@ export class RegistrationPage extends BaseComponent {
   renderGeneralStep() {
     return (
       <div>
-        <div className={className('title -medium text -light', styles.pageTitle)}>Person registration</div>
-        <div className={className('text -light', styles.pageDescription)}>Fixes an issue where the app—while being in the background—would sometimes prevent user notifications from showing up since the (messenger.com) app thought it was still active.</div>
+        <div className={classNames('title -medium text -light', styles.pageTitle)}>Person registration</div>
+        <div className={classNames('text -light', styles.pageDescription)}>Fixes an issue where the app—while being in the background—would sometimes prevent user notifications from showing up since the (messenger.com) app thought it was still active.</div>
         <div className={styles.pageForm}>
-          <div>
-            <TextInput theme={TEXT_INPUT_THEMES.DEFAULT} />
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Company Name" placeholder="Company Name" />
+              </div>
+              <div className="pure-u-1-2 form-col">
+                <TextInput type="text" label="Company UEN" placeholder="Company UEN" />
+              </div>
+              {/* <!--/form-row--> */}
+            </div>
+          </div>
+          <div className={classNames('title -section text -light', styles.pageSubTitle)}>Company Registered Address</div>
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Block/House number" placeholder="Block/House number" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Street name" placeholder="Street name" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Storey level" placeholder="Storey level" />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Unit number" placeholder="00000000" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Building Name" placeholder="Building Name" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="City" placeholder="Singapore" />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Country" placeholder="Singapore" />
+              </div>
+              <div className="pure-u-1-3 form-col">
+                <TextInput type="text" label="Postal Code" placeholder="00000000" />
+              </div>
+            </div>
+            {/* <!--/form-row--> */}
           </div>
           <div className="hr -spaced"></div>
-          <div>Buttons...</div>
+          <div className="form">
+            <div className="pure-g form-row">
+              <div className="pure-u-1-3 form-col"></div>
+              <div className="pure-u-1-3 form-col"></div>
+              <div className="pure-u-1-3 form-col">
+                <Button>Continue</Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

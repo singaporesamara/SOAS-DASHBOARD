@@ -1,32 +1,55 @@
+@import "../../../../global-styles/variables";
+
 .textInput {
   position: relative;
 
+  input {
+    color: $tundora-color;
+    border: 1px solid $iron-color;
+    background: $white-color;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding: 0 35px 0 10px;
+  }
+
   :global {
     .text-input-label {
-      position: absolute;
-      top: 16px;
-      left: 8px;
-      transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-      &.-floating {
-        top: -13px;
-        left: 0;
-      }
+      margin-bottom: 5px;
     }
 
     .text-input-error {
       position: absolute;
       width: 100%;
-      bottom: -20px;
+      bottom: -15px;
+      right: 10px;
       display: block;
       text-align: right;
     }
 
     .text-input-icon {
       position: absolute;
-      top: 16px;
-      right: 0;
+      top: 38px;
+      right: 10px;
+    }
+  }
+
+  &.textInputSuccess {
+    input {
+      border: 1px solid $emerald-color;
+    }
+  }
+
+  &.textInputError {
+    input {
+      border: 1px solid $red-orange-color;
+    }
+
+    :global {
+      .text-input-label {
+        color: $red-orange-color;
+      }
     }
   }
 }

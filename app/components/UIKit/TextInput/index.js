@@ -11,7 +11,7 @@ export default class TextInput extends Component {
   };
 
   static defaultProps = {
-    theme: THEMES.MATERIAL,
+    theme: THEMES.DEFAULT,
   };
 
   render() {

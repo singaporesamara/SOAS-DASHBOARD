@@ -17,6 +17,14 @@
     text-transform: uppercase;
     font-size: 13px;
     pointer-events: none;
+
+    &.-default {
+      color: $tundora-color;
+      display: block;
+      text-transform: none;
+      pointer-events: auto;
+      font-size: 16px;
+    }
   }
 
   .text-input-error {

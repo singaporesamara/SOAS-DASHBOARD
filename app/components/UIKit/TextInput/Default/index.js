@@ -2,14 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { omit, isEmpty, isFunction, uniqueId } from 'lodash';
 import classNames from 'classnames';
 import styles from './styles.scss';
-import errorIcon from '../../../../assets/images/icons/times.svg';
-import successIcon from '../../../../assets/images/icons/checkmark.svg';
+import errorIcon from '../../../../assets/images/icons/danger-sign.svg';
 
 export default class TextInput extends Component {
   static propTypes = {
     label: PropTypes.string,
-    onFocus: PropTypes.func,
-    onChange: PropTypes.func,
     error: PropTypes.string,
     success: PropTypes.bool,
   };
@@ -20,25 +17,7 @@ export default class TextInput extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { hasValue: false, id: uniqueId('TextInput-') };
-    this.onFocus = this.onFocus.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onFocus(event) {
-    const value = event.target.value;
-    this.setState({ hasValue: !isEmpty(value) });
-    if (isFunction(this.props.onFocus)) {
-      this.props.onFocus(event);
-    }
-  }
-
-  onChange(event) {
-    const value = event.target.value;
-    this.setState({ hasValue: !isEmpty(value) });
-    if (isFunction(this.props.onChange)) {
-      this.props.onChange(event);
-    }
+    this.state = { id: uniqueId('TextInput-') };
   }
 
   renderErrors() {
@@ -50,24 +29,17 @@ export default class TextInput extends Component {
     ) : null;
   }
 
-  renderIcons() {
-    return this.props.success ? (
-      <div>
-        <span className="text-input-icon -right"><img src={successIcon} alt="success" /></span>
-      </div>
-    ) : null;
-  }
-
   render() {
-    const propsToRender = omit(this.props, ['label', 'onFocus', 'onChange', 'id', 'autoComplete', 'error', 'success']);
-    const labelStyles = classNames('text-input-label', { '-floating': this.state.hasValue });
+    const propsToRender = omit(this.props, ['label', 'id', 'autoComplete', 'error', 'success']);
+    const labelStyles = classNames('text-input-label -default');
+    const textInputStyles = classNames('text-input', styles.textInput, { [styles.textInputSuccess]: this.props.success, [styles.textInputError]: this.props.error });
     return (
-      <div className={classNames('text-input', styles.textInput)}>
-        <div>Default...</div>
-        <input id={this.state.id} {...propsToRender} onFocus={this.onFocus} onChange={this.onChange} autoComplete="off" />
+      <div className={textInputStyles}>
         <label htmlFor={this.state.id} className={labelStyles}>{this.props.label}</label>
+        <div>
+          <input id={this.state.id} {...propsToRender} onFocus={this.onFocus} onChange={this.onChange} autoComplete="off" />
+        </div>
         {this.renderErrors()}
-        {this.renderIcons()}
       </div>
     );
   }

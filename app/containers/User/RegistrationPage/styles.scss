@@ -1,13 +1,17 @@
 @import "../../../global-styles/variables";
 
 .page {
-  margin-top: 25px;
+  margin: 25px 0;
 
   .pageTitle {
     color: $oxford-blue-color;
     & + .pageDescription {
       margin-top: 20px;
     }
+  }
+
+  .pageSubTitle {
+    margin: 30px 0;
   }
 
   .pageDescription {
