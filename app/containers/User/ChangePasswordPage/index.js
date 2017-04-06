@@ -34,7 +34,7 @@ export class ChangePasswordPage extends BaseComponent {
     const form = { password: this.state.password, passwordConfirmation: this.state.passwordConfirmation };
     const rules = { password: RULES.required, passwordConfirmation: merge({}, RULES.required, RULES.equalsTo('password')) };
     event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { this.props.changePassword(form); }});
+    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { this.props.changePassword(form); } });
   }
 
   render() {
