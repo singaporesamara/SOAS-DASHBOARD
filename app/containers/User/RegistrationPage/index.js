@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
-import { TextInput, Button, BUTTON_THEMES, SelectField } from '../../../components/UIKit';
+import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
@@ -135,10 +135,13 @@ export class RegistrationPage extends BaseComponent {
           <div className="pure-g form-row">
             <div className="pure-u-1-2 form-col">
               <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" />
-              <div>
-                Same with Company Registered address Bank Account Information
+              <div className={styles.pageSectionInputInfo}>
+                <CheckboxGroup name="checkbox-name" value={['Yes']}>
+                  <Checkbox value="Yes" label="Same with Company Registered address Bank Account Information" />
+                </CheckboxGroup>
               </div>
             </div>
+            <div className="pure-u-1-2 form-col"></div>
           </div>
           {/* <!--/form-row--> */}
         </div>

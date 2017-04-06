@@ -6320,6 +6320,10 @@ react-block-ui@^0.2.4:
     classnames "^2.2.3"
     raf "^3.3.0"
 
+react-checkbox-group@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-checkbox-group/-/react-checkbox-group-3.1.0.tgz#53dd3a667b627bc28adb44ced98275f81171d205"
+
 react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
@@ -6361,6 +6365,10 @@ react-proxy@^1.1.7:
   dependencies:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
+
+react-radio-group@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-radio-group/-/react-radio-group-3.0.1.tgz#b8890cc7c159de4522a918e548dde38bc2493bc1"
 
 react-redux@4.4.6:
   version "4.4.6"
