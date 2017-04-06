@@ -14,5 +14,19 @@
         left: 0;
       }
     }
+
+    .text-input-error {
+      position: absolute;
+      width: 100%;
+      bottom: -20px;
+      display: block;
+      text-align: right;
+    }
+
+    .text-input-icon {
+      position: absolute;
+      top: 16px;
+      right: 0;
+    }
   }
 }

@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import NonAuthContainer from '../NonAuthContainer';
 import BaseComponent from '../../Base';
 import { Button, TextInput } from '../../../components/UIKit';
-import { layoutUpdate } from '../../../actions/common';
+import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { RULES } from '../../../utils/validation';
 import styles from './styles.scss';
 
 export class LoginPage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
+    validateForm: PropTypes.func.isRequired,
+    page: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
@@ -25,11 +28,14 @@ export class LoginPage extends BaseComponent {
   }
 
   login(event) {
+    const form = { username: this.state.username, password: this.state.password };
+    const rules = { username: RULES.email, password: RULES.required };
     event.preventDefault();
-    alert(`username = ${this.state.username}, password = ${this.state.password}`);
+    this.props.validateForm({ form, rules, name: 'login' }, { onSuccess: () => { alert('done'); } });
   }
 
   render() {
+    const page = this.props.page.toJS();
     return (
       <NonAuthContainer>
         <Helmet title="Login Page" />
@@ -37,10 +43,10 @@ export class LoginPage extends BaseComponent {
           <div className={styles.pageTitle}>Sign in</div>
           <form className={styles.pageForm} onSubmit={this.login}>
             <div className={styles.pageFormInput}>
-              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} />
+              <TextInput type="text" label="USERNAME" onChange={this.onValueChange('username')} error={page.errors.username} />
             </div>
             <div className={styles.pageFormInput}>
-              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} />
+              <TextInput type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
             </div>
             <div className={styles.pageFormButton}>
               <Button>Login</Button>
@@ -52,4 +58,10 @@ export class LoginPage extends BaseComponent {
   }
 }
 
-export default connect(() => ({}), { layoutUpdate })(LoginPage);
+function mapStateToProps(state) {
+  return {
+    page: state.getIn(['pages', 'login']),
+  };
+}
+
+export default connect(mapStateToProps, { layoutUpdate, validateForm })(LoginPage);

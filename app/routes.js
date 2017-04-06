@@ -69,9 +69,10 @@ export default function createRoutes(store) {
       path: ROUTES.USER.FORGOT_PASSWORD,
       name: 'login',
       getComponent(nextState, cb) {
-        import('containers/User/ForgotPasswordPage')
-            .then(loadModule(cb))
-            .catch(errorLoading);
+        loadPage([
+          import('containers/User/ForgotPasswordPage/sagas'),
+          import('containers/User/ForgotPasswordPage'),
+        ], nextState, cb);
       },
     }, {
       path: ROUTES.USER.CHANGE_PASSWORD,
