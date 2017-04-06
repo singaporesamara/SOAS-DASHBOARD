@@ -14,15 +14,15 @@
 
 .text {
   &.-light {
-    font-weight: 300;
+    font-weight: $font-light;
   }
 
   &.-regular {
-    font-weight: normal;
+    font-weight: $font-normal;
   }
 
   &.-bold {
-    font-weight: bold;
+    font-weight: $font-bold;
   }
 }
 
