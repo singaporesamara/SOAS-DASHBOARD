@@ -31,7 +31,7 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { step: PAGE_STEPS.BANK_ACCOUNT, profile: getProfileFields() };
+    this.state = { step: PAGE_STEPS.GENERAL, profile: getProfileFields() };
     this.onValueChange = this.onValueChange.bind(this);
     this.renderGeneralStep = this.renderGeneralStep.bind(this);
     this.renderBankAccountStep = this.renderBankAccountStep.bind(this);

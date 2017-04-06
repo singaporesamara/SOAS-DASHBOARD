@@ -37,7 +37,7 @@ export default class TextInput extends Component {
       <div className={textInputStyles}>
         <label htmlFor={this.state.id} className={labelStyles}>{this.props.label}</label>
         <div>
-          <input id={this.state.id} {...propsToRender} onFocus={this.onFocus} onChange={this.onChange} autoComplete="off" />
+          <input id={this.state.id} {...propsToRender} autoComplete="off" />
         </div>
         {this.renderErrors()}
       </div>
