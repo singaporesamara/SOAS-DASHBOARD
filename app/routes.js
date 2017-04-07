@@ -52,46 +52,31 @@ export default function createRoutes(store) {
       path: ROUTES.USER.LOGIN,
       name: 'login',
       getComponent(nextState, cb) {
-        loadPage([
-          import('containers/User/LoginPage/sagas'),
-          import('containers/User/LoginPage'),
-        ], nextState, cb);
+        import('containers/User/LoginPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
       path: ROUTES.USER.SIGN_UP,
       name: 'sign-up',
       getComponent(nextState, cb) {
-        loadPage([
-          import('containers/User/SignUpPage/sagas'),
-          import('containers/User/SignUpPage'),
-        ], nextState, cb);
+        import('containers/User/SignUpPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
       path: ROUTES.USER.FORGOT_PASSWORD,
       name: 'forgot-password',
       getComponent(nextState, cb) {
-        loadPage([
-          import('containers/User/ForgotPasswordPage/sagas'),
-          import('containers/User/ForgotPasswordPage'),
-        ], nextState, cb);
+        import('containers/User/ForgotPasswordPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
       path: ROUTES.USER.CHANGE_PASSWORD,
       name: 'change-password',
       getComponent(nextState, cb) {
-        loadPage([
-          import('containers/User/ChangePasswordPage/sagas'),
-          import('containers/User/ChangePasswordPage'),
-        ], nextState, cb);
+        import('containers/User/ChangePasswordPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
       path: ROUTES.USER.REGISTRATION,
       name: 'registration',
       getComponent(nextState, cb) {
-        loadPage([
-          import('containers/User/RegistrationPage/sagas'),
-          import('containers/User/RegistrationPage'),
-        ], nextState, cb);
+        import('containers/User/RegistrationPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
       path: '*',

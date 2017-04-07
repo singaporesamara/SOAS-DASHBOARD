@@ -13,6 +13,9 @@ function* loginSaga({ payload: { email, password } }) {
   } else {
     alert('done....');
   }
+
+  console.info('=== RESPONSE ===');
+  console.info(response);
 }
 
 export function* loginFlow() {
