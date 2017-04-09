@@ -1,6 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { requestStarted, requestFinished, setFormErrors, clearFormErrors } from '../../../actions/common';
-import { login } from '../../../actions/user';
+import { login, resolveAppStage } from '../../../actions/user';
 import { LOGIN } from './constants';
 import routes from '../../../utils/network/api';
 
@@ -15,8 +15,9 @@ function* loginSaga({ payload: { email, password } }) {
     yield put(setFormErrors('login', { username: message, password: message }));
   } else {
     const { token } = response.data;
-    yield put(login({ token }));
-    // TODO login user here..
+    const user = { token };
+    yield put(login(user));
+    yield put(resolveAppStage(user));
   }
 }
 
