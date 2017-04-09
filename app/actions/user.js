@@ -1,4 +1,4 @@
-import { LOGIN, SET_USER, RESOLVE_APP_STAGE, GET_PROFILE, SIGN_OUT, DESTROY_USER } from '../constants/user';
+import { LOGIN, SET_USER, RESOLVE_APP_STAGE, GET_PROFILE, SIGN_OUT, DESTROY_USER, SET_PROFILE } from '../constants/user';
 
 export function login(user) {
   return {
@@ -36,5 +36,12 @@ export function signOut() {
 export function destroyUser() {
   return {
     type: DESTROY_USER,
+  };
+}
+
+export function setProfile(profile) {
+  return {
+    type: SET_PROFILE,
+    payload: { profile },
   };
 }

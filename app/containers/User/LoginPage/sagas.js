@@ -1,8 +1,10 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
 import { requestStarted, requestFinished, setPageNotices, clearPageNotices } from '../../../actions/common';
-import { login, resolveAppStage } from '../../../actions/user';
+import { login, resolveAppStage, setProfile } from '../../../actions/user';
+import { getUserProfile } from '../../../sagas/common/user';
 import { LOGIN } from './constants';
 import routes from '../../../utils/network/api';
+import { convertProfileResponse } from '../../../utils/converters/api/response';
 
 function* loginSaga({ payload: { email, password } }) {
   yield put(requestStarted());
@@ -15,9 +17,11 @@ function* loginSaga({ payload: { email, password } }) {
     yield put(setPageNotices('login', [{ type: 'error', message }]));
   } else {
     const { token } = response.data;
-    const user = { token };
-    yield put(login(user));
-    yield put(resolveAppStage(user));
+    yield put(login({ token }));
+    const profile = yield getUserProfile();
+    yield put(setProfile(convertProfileResponse(profile)));
+    const user = yield select((state) => state.get('user'));
+    yield put(resolveAppStage(user.toJS()));
   }
 }
 
