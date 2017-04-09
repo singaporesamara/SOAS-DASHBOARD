@@ -9,5 +9,6 @@ export default {
     forgotPassword: post(host('/auth/forgot/')),
     changePassword: post(host('/auth/set-password/')),
     register: post(host('/profile/registration-form/')),
+    profile: post(host('/profile')),
   },
 };

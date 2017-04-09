@@ -1,4 +1,4 @@
-import { LOGIN, SET_USER, RESOLVE_APP_STAGE } from '../constants/user';
+import { LOGIN, SET_USER, RESOLVE_APP_STAGE, GET_PROFILE } from '../constants/user';
 
 export function login(user) {
   return {
@@ -18,5 +18,11 @@ export function resolveAppStage(user) {
   return {
     type: RESOLVE_APP_STAGE,
     payload: { user },
+  };
+}
+
+export function getProfile() {
+  return {
+    type: GET_PROFILE,
   };
 }

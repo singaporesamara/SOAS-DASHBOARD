@@ -7,6 +7,7 @@ import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
+import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { register } from './actions';
 import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
@@ -27,6 +28,7 @@ export class RegistrationPage extends BaseComponent {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
+    getProfile: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
@@ -44,6 +46,7 @@ export class RegistrationPage extends BaseComponent {
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
+    this.props.getProfile();
   }
 
   toStep(step) {
@@ -239,4 +242,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, validateForm, register })(RegistrationPage);
+export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register })(RegistrationPage);
