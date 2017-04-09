@@ -16,15 +16,6 @@ const loadModule = (cb) => (componentModule) => {
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
-  // loads page with sagas
-  const loadPage = (resources, nextState, cb) => {
-    const importModules = Promise.all(resources);
-    const renderRoute = loadModule(cb);
-    importModules.then(([sagas, component]) => {
-      injectSagas(sagas.default);
-      renderRoute(component);
-    }).catch(errorLoading);
-  };
 
   return [
     {

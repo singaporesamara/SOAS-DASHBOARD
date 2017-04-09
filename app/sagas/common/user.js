@@ -1,9 +1,9 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { LOGIN, RESOLVE_APP_STAGE, GET_PROFILE } from '../../constants/user';
+import { LOGIN, RESOLVE_APP_STAGE, GET_PROFILE, SIGN_OUT } from '../../constants/user';
 import { ROUTES } from '../../constants/routes';
-import { setUser } from '../../actions/user';
-import { setAuthToken } from '../../utils/auth';
+import { setUser, destroyUser } from '../../actions/user';
+import { setAuthToken, removeAuthToken } from '../../utils/auth';
 import routes from '../../utils/network/api';
 
 export function* resolveAppStageSaga({ payload: { user } }) {
@@ -16,6 +16,12 @@ export function* loginUserSaga({ payload: { user } }) {
   const { token } = user;
   setAuthToken(token);
   yield put(setUser(user));
+}
+
+export function* signOutSaga() {
+  removeAuthToken();
+  yield put(destroyUser());
+  yield put(push(ROUTES.USER.LOGIN));
 }
 
 export function* getUserProfile() {
@@ -33,6 +39,7 @@ function* userFlow() {
   yield takeLatest(LOGIN, loginUserSaga);
   yield takeLatest(RESOLVE_APP_STAGE, resolveAppStageSaga);
   yield takeLatest(GET_PROFILE, getUserProfile);
+  yield takeLatest(SIGN_OUT, signOutSaga);
 }
 
 export default [

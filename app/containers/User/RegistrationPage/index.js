@@ -48,7 +48,6 @@ export class RegistrationPage extends BaseComponent {
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
     this.props.loadPage('registration');
-    this.props.getProfile();
   }
 
   toStep(step) {
