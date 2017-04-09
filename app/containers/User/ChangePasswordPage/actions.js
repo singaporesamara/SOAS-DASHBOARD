@@ -1,8 +1,14 @@
-import { CHANGE_PASSWORD } from './constants';
+import { CHANGE_PASSWORD, PASSWORD_CHANGED } from './constants';
 
-export function changePassword({ password, passwordConfirmation }) {
+export function changePassword({ password, checkword }) {
   return {
     type: CHANGE_PASSWORD,
-    payload: { password, passwordConfirmation },
+    payload: { password, checkword },
+  };
+}
+
+export function passwordChanged() {
+  return {
+    type: PASSWORD_CHANGED,
   };
 }

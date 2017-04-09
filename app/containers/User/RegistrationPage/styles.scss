@@ -30,4 +30,13 @@
   }
 
   .pageForm {}
+
+  .pageMessage {
+    margin: 100px 0;
+
+    .pageMessageButton {
+      margin: 100px auto 0 auto;
+      width: 305px;
+    }
+  }
 }

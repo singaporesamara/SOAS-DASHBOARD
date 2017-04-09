@@ -6,7 +6,7 @@ import { restorePassword } from './actions';
 import { ROUTES } from '../../../constants/routes';
 import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
 import BaseComponent from '../../Base';
-import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
+import { Button, TextInput, TEXT_INPUT_THEMES, Notice } from '../../../components/UIKit';
 import { SuccessNotice } from '../../../components/UIKit/Notice';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
@@ -52,6 +52,9 @@ export class ForgotPasswordPage extends BaseComponent {
       <div>
         <div className={styles.pageTitle}>Forgot password?</div>
         <form className={styles.pageForm} onSubmit={this.restorePassword}>
+          <div className={styles.pageFormInput}>
+            <Notice page="forgotPassword" />
+          </div>
           <div className={styles.pageFormInput}>
             <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="email" label="EMAIL" onChange={this.onValueChange('email')} error={page.errors.email} />
           </div>

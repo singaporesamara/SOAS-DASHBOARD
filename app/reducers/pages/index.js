@@ -2,16 +2,17 @@ import { fromJS } from 'immutable';
 import { omit, keys, forEach } from 'lodash';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS } from '../../constants/common';
+import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, DEFAULT_PAGE_STATE } from '../../constants/common';
 
 import current from './current';
-import login from '../../containers/User/LoginPage/reduces';
-import signUp from '../../containers/User/SignUpPage/reduces';
-import forgotPassword from '../../containers/User/ForgotPasswordPage/reduces';
-import changePassword from '../../containers/User/ChangePasswordPage/reduces';
-import registration from '../../containers/User/RegistrationPage/reduces';
+import login from '../../containers/User/LoginPage/reducer';
+import signUp from '../../containers/User/SignUpPage/reducer';
+import forgotPassword from '../../containers/User/ForgotPasswordPage/reducer';
+import changePassword from '../../containers/User/ChangePasswordPage/reducer';
+import registration from '../../containers/User/RegistrationPage/reducer';
+import application from '../../containers/Application/HomePage/reducer';
 
-const pages = { current, login, signUp, forgotPassword, changePassword, registration };
+const pages = { current, login, signUp, forgotPassword, changePassword, registration, application };
 
 export default () => (combineReducers(pages));
 
@@ -24,7 +25,7 @@ export function commonPageReducer(globalState = fromJS({}), action) {
     case LOCATION_CHANGE: {
       const newState = state.asMutable();
       forEach(omit(keys(pages), ['current']), (page) => {
-        newState.mergeIn(['pages', page], { errors: {} });
+        newState.mergeIn(['pages', page], DEFAULT_PAGE_STATE);
       });
       return newState.asImmutable();
       // if (action.type === LOCATION_CHANGE) {
@@ -46,6 +47,14 @@ export function commonPageReducer(globalState = fromJS({}), action) {
       return state.setIn(['pages', action.payload.page, 'errors'], fromJS(action.payload.errors));
     case CLEAR_FORM_ERRORS:
       return state.setIn(['pages', action.payload.page, 'errors'], fromJS({}));
+    case SET_PAGE_NOTICES:
+      return state.setIn(['pages', action.payload.page, 'notices'], fromJS(action.payload.notices));
+    case CLEAR_PAGE_NOTICES:
+      return state.setIn(['pages', action.payload.page, 'notices'], fromJS({}));
+    case LOAD_PAGE:
+      return state.setIn(['pages', action.payload.page, 'loading'], true);
+    case PAGE_LOADED:
+      return state.setIn(['pages', action.payload.page, 'loading'], false);
     default:
       return state;
   }

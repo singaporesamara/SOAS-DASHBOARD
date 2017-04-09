@@ -5,8 +5,9 @@ import classNames from 'classnames';
 import { merge, pick, omit } from 'lodash';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
-import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
-import { layoutUpdate, validateForm } from '../../../actions/common';
+import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox, SuccessNotice, Notice } from '../../../components/UIKit';
+import { layoutUpdate, validateForm, loadPage } from '../../../actions/common';
+import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { register } from './actions';
 import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
@@ -27,6 +28,8 @@ export class RegistrationPage extends BaseComponent {
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
+    getProfile: PropTypes.func.isRequired,
+    loadPage: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
@@ -44,6 +47,7 @@ export class RegistrationPage extends BaseComponent {
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
+    this.props.loadPage('registration');
   }
 
   toStep(step) {
@@ -219,14 +223,39 @@ export class RegistrationPage extends BaseComponent {
     );
   }
 
+  renderForm() {
+    const page = this.props.page.toJS();
+    return page.show.form ? (
+      <div>
+        {this.state.step === PAGE_STEPS.GENERAL && this.renderGeneralStep()}
+        {this.state.step === PAGE_STEPS.BANK_ACCOUNT && this.renderBankAccountStep()}
+      </div>
+    ) : null;
+  }
+
+  renderMessage() {
+    const page = this.props.page.toJS();
+    const message = 'Thank you! You have successfully completed the registration.';
+    return page.show.message ? (
+      <div className={styles.pageMessage}>
+        <SuccessNotice message={message} />
+        <div className={styles.pageMessageButton}>
+          <Button type="submit" name="register" theme={BUTTON_THEMES.GREEN_SLIM}>Start using the system!</Button>
+        </div>
+      </div>
+    ) : null;
+  }
+
   render() {
-    // const page = this.props.page.toJS();
+    const page = this.props.page.toJS();
+    if (page.loading) return null;
     return (
       <InnerAppContainer>
         <Helmet title="Registaration Page" />
         <div className={styles.page}>
-          {this.state.step === PAGE_STEPS.GENERAL && this.renderGeneralStep()}
-          {this.state.step === PAGE_STEPS.BANK_ACCOUNT && this.renderBankAccountStep()}
+          <Notice page="registration" />
+          {this.renderForm()}
+          {this.renderMessage()}
         </div>
       </InnerAppContainer>
     );
@@ -239,4 +268,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, validateForm, register })(RegistrationPage);
+export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register, loadPage })(RegistrationPage);

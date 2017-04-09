@@ -5,7 +5,7 @@ import { merge } from 'lodash';
 import { ROUTES } from '../../../constants/routes';
 import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
 import BaseComponent from '../../Base';
-import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
+import { Button, TextInput, TEXT_INPUT_THEMES, Notice, SuccessNotice } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
@@ -38,25 +38,43 @@ export class SignUpPage extends BaseComponent {
     this.props.validateForm({ form, rules, name: 'signUp' }, { onSuccess: () => { this.props.signUp(form); } });
   }
 
+  renderMessage() {
+    const page = this.props.page.toJS();
+    const message = 'Thank you for choosing our service.<br/>To complete the registration process, you need to confirm the email address. Please check your email and follow the instructions in the email.';
+    return page.show.message ? (
+      <SuccessNotice message={message} />
+    ) : null;
+  }
+
+  renderForm() {
+    const page = this.props.page.toJS();
+    return page.show.form ? (
+      <div>
+        <div className={styles.pageTitle}>Sign Up</div>
+        <form className={styles.pageForm} onSubmit={this.signUp}>
+          <div className={styles.pageFormInput}><Notice page="signUp" /></div>
+          <div className={styles.pageFormInput}>
+            <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="email" label="EMAIL" onChange={this.onValueChange('email')} error={page.errors.email} />
+          </div>
+          <div className={styles.pageFormInput}>
+            <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
+          </div>
+          <div className={styles.pageFormButton}>
+            <Button>Sign Up</Button>
+          </div>
+        </form>
+      </div>
+    ) : null;
+  }
+
   render() {
     const links = merge({}, FOOTER_LINKS, { left: { title: 'Already have an account?', url: ROUTES.USER.LOGIN } });
-    const page = this.props.page.toJS();
     return (
       <NonAuthContainer footerLinks={links}>
-        <Helmet title="Login Page" />
+        <Helmet title="Sign Up" />
         <div className={styles.page}>
-          <div className={styles.pageTitle}>Sign Up</div>
-          <form className={styles.pageForm} onSubmit={this.signUp}>
-            <div className={styles.pageFormInput}>
-              <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="email" label="EMAIL" onChange={this.onValueChange('email')} error={page.errors.email} />
-            </div>
-            <div className={styles.pageFormInput}>
-              <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="password" label="PASSWORD" onChange={this.onValueChange('password')} error={page.errors.password} />
-            </div>
-            <div className={styles.pageFormButton}>
-              <Button>Sign Up</Button>
-            </div>
-          </form>
+          {this.renderForm()}
+          {this.renderMessage()}
         </div>
       </NonAuthContainer>
     );

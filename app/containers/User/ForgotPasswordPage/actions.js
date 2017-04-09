@@ -1,6 +1,6 @@
 import { RESTORE_PASSWORD, RESTORATION_RESENT } from './constants';
 
-export function restorePassword(email) {
+export function restorePassword({ email }) {
   return {
     type: RESTORE_PASSWORD,
     payload: { email },

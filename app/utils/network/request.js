@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import { getAuthToken } from '../auth';
 // import { newNotice } from '../components/NoticeStack/actions';
 
 const BASE_URL = 'http://localhost:3000/';
@@ -41,20 +42,25 @@ function checkStatus(response) {
  */
 export default function request(url, options = {}) {
   const requestOptions = Object.assign({}, {
-    credentials: 'include',
+    // credentials: 'include',Request header field auth-token is not allowed by Access-Control-Allow-Headers in preflight response.
     headers: {
-      'Auth-Token': window.__authToken || '' // eslint-disable-line
+      Authorization: getAuthToken(),
     },
   }, options);
   return fetch(url, requestOptions)
       .then(checkStatus)
       .then(parseResponse)
       .then((data) => {
-        let dataObject = data;
+        let dataObject = data.data;
+        let err = null;
         if (dataObject === '') {
           dataObject = {};
         }
-        return { data: dataObject };
+        if (data.error) {
+          err = data.data;
+          dataObject = {};
+        }
+        return { data: dataObject, err };
       })
       .catch((err) => {
         if (!err.response) {
@@ -72,12 +78,12 @@ export default function request(url, options = {}) {
 function jsonWithBody(url, body, options, method) {
   const requestOptions = Object.assign({},
     {
-      credentials: 'include',
+      // credentials: 'include',
       method,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Auth-Token': window.__authToken || '', // eslint-disable-line
+        Authorization: getAuthToken(),
       },
     },
     options);
