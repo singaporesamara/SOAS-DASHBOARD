@@ -14,6 +14,8 @@ import styles from './styles.scss';
 
 export class ChangePasswordPage extends BaseComponent {
   static propTypes = {
+    page: PropTypes.object.isRequired,
+    checkword: PropTypes.string,
     layoutUpdate: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     changePassword: PropTypes.func.isRequired,
@@ -34,7 +36,7 @@ export class ChangePasswordPage extends BaseComponent {
     const form = { password: this.state.password, passwordConfirmation: this.state.passwordConfirmation };
     const rules = { password: RULES.required, passwordConfirmation: merge({}, RULES.required, RULES.equalsTo('password')) };
     event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { this.props.changePassword(form); } });
+    this.props.validateForm({ form, rules, name: 'changePassword' }, { onSuccess: () => { this.props.changePassword({ password: this.state.password, checkword: this.props.checkword }); } });
   }
 
   renderMessage() {
@@ -82,9 +84,12 @@ export class ChangePasswordPage extends BaseComponent {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+  const { router } = ownProps;
+  const { checkword } = router.location.query;
   return {
     page: state.getIn(['pages', 'changePassword']),
+    checkword,
   };
 }
 

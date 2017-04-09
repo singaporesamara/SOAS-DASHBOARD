@@ -4,10 +4,10 @@ import { CHANGE_PASSWORD } from './constants';
 import { passwordChanged } from './actions';
 import routes from '../../../utils/network/api';
 
-function* changePasswordSaga({ payload: { password, passwordConfirmation } }) {
+function* changePasswordSaga({ payload: { password, checkword } }) {
   yield put(requestStarted());
   yield put(clearPageNotices('changePassword'));
-  const response = yield call(routes.user.changePassword, { password, checkword: passwordConfirmation });
+  const response = yield call(routes.user.changePassword, { password, checkword });
   yield put(requestFinished());
 
   if (response.err) {
