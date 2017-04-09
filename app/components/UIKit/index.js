@@ -6,3 +6,5 @@ export { default as SelectField } from './SelectField';
 export { default as Checkbox } from './Checkbox';
 export { default as CheckboxGroup } from './CheckboxGroup';
 export { default as Wrapper } from './Wrapper';
+export { Notice } from './Notice';
+export { SuccessNotice } from './Notice';

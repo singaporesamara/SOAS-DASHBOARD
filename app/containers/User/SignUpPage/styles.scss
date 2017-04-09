@@ -5,13 +5,10 @@
     color: $shark-color;
     margin-top: 50px;
     font-size: 18px;
-
-    & + .pageForm {
-      margin-top: 53px;
-    }
   }
 
   .pageForm {
+    margin-top: 53px;
     .pageFormInput {
       & + .pageFormInput {
         margin-top: 45px;

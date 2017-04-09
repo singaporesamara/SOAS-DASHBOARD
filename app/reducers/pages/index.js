@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { omit, keys, forEach } from 'lodash';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS } from '../../constants/common';
+import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES } from '../../constants/common';
 
 import current from './current';
 import login from '../../containers/User/LoginPage/reduces';
@@ -46,6 +46,10 @@ export function commonPageReducer(globalState = fromJS({}), action) {
       return state.setIn(['pages', action.payload.page, 'errors'], fromJS(action.payload.errors));
     case CLEAR_FORM_ERRORS:
       return state.setIn(['pages', action.payload.page, 'errors'], fromJS({}));
+    case SET_PAGE_NOTICES:
+      return state.setIn(['pages', action.payload.page, 'notices'], fromJS(action.payload.notices));
+    case CLEAR_PAGE_NOTICES:
+      return state.setIn(['pages', action.payload.page, 'notices'], fromJS({}));
     default:
       return state;
   }

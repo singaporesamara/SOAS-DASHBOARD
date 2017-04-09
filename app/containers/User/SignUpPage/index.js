@@ -5,7 +5,7 @@ import { merge } from 'lodash';
 import { ROUTES } from '../../../constants/routes';
 import NonAuthContainer, { FOOTER_LINKS } from '../NonAuthContainer';
 import BaseComponent from '../../Base';
-import { Button, TextInput, TEXT_INPUT_THEMES } from '../../../components/UIKit';
+import { Button, TextInput, TEXT_INPUT_THEMES, Notice } from '../../../components/UIKit';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
@@ -47,6 +47,7 @@ export class SignUpPage extends BaseComponent {
         <div className={styles.page}>
           <div className={styles.pageTitle}>Sign Up</div>
           <form className={styles.pageForm} onSubmit={this.signUp}>
+            <div className={styles.pageFormInput}><Notice page="signUp" /></div>
             <div className={styles.pageFormInput}>
               <TextInput theme={TEXT_INPUT_THEMES.MATERIAL} type="email" label="EMAIL" onChange={this.onValueChange('email')} error={page.errors.email} />
             </div>
