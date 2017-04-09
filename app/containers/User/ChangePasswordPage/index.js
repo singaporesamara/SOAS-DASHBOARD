@@ -70,7 +70,6 @@ export class ChangePasswordPage extends BaseComponent {
 
   render() {
     const links = merge({}, FOOTER_LINKS, { right: null, left: { title: 'Already have an account?', url: ROUTES.USER.LOGIN } });
-    const page = this.props.page.toJS();
     return (
       <NonAuthContainer footerLinks={links}>
         <Helmet title="Login Page" />

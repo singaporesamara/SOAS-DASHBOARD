@@ -6,7 +6,7 @@ import { merge, pick, omit } from 'lodash';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox } from '../../../components/UIKit';
-import { layoutUpdate, validateForm } from '../../../actions/common';
+import { layoutUpdate, validateForm, loadPage } from '../../../actions/common';
 import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { register } from './actions';
@@ -29,6 +29,7 @@ export class RegistrationPage extends BaseComponent {
     validateForm: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
     getProfile: PropTypes.func.isRequired,
+    loadPage: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
@@ -46,6 +47,7 @@ export class RegistrationPage extends BaseComponent {
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
+    this.props.loadPage('registration');
     this.props.getProfile();
   }
 
@@ -223,7 +225,8 @@ export class RegistrationPage extends BaseComponent {
   }
 
   render() {
-    // const page = this.props.page.toJS();
+    const page = this.props.page.toJS();
+    if (page.loading) return null;
     return (
       <InnerAppContainer>
         <Helmet title="Registaration Page" />
@@ -242,4 +245,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register })(RegistrationPage);
+export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register, loadPage })(RegistrationPage);

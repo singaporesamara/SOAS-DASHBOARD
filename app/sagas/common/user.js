@@ -20,7 +20,13 @@ export function* loginUserSaga({ payload: { user } }) {
 
 export function* getUserProfile() {
   const response = yield call(routes.user.profile);
-  console.info(response);
+  let profile = null;
+
+  if (!response.err) {
+    profile = response.data.profile;
+  }
+
+  return profile;
 }
 
 function* userFlow() {
