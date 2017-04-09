@@ -1,4 +1,4 @@
-import { put, takeLatest, call, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { requestStarted, requestFinished, pageLoaded } from '../../../actions/common';
 import { ROUTES } from '../../../constants/routes';
