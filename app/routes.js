@@ -70,6 +70,12 @@ export default function createRoutes(store) {
         import('containers/User/RegistrationPage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
+      path: ROUTES.APP.HOME,
+      name: 'application',
+      getComponent(nextState, cb) {
+        import('containers/Application/HomePage').then(loadModule(cb)).catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

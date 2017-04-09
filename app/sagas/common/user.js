@@ -7,8 +7,12 @@ import { setAuthToken, removeAuthToken } from '../../utils/auth';
 import routes from '../../utils/network/api';
 
 export function* resolveAppStageSaga({ payload: { user } }) {
-  if (user.token && user.profile && !user.registered) {
-    yield put(push(ROUTES.USER.REGISTRATION));
+  if (user.token && user.profile) {
+    if (!user.profile.registered) {
+      yield put(push(ROUTES.USER.REGISTRATION));
+    } else {
+      yield put(push(ROUTES.APP.HOME));
+    }
   }
 }
 

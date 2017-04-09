@@ -7,4 +7,7 @@ export const ROUTES = {
     CHANGE_PASSWORD: '/change-password',
     REGISTRATION: '/app/registration',
   },
+  APP: {
+    HOME: '/app',
+  },
 };

@@ -5,13 +5,14 @@ import { LOCATION_CHANGE } from 'connected-react-router';
 import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, DEFAULT_PAGE_STATE } from '../../constants/common';
 
 import current from './current';
-import login from '../../containers/User/LoginPage/reduces';
-import signUp from '../../containers/User/SignUpPage/reduces';
-import forgotPassword from '../../containers/User/ForgotPasswordPage/reduces';
-import changePassword from '../../containers/User/ChangePasswordPage/reduces';
-import registration from '../../containers/User/RegistrationPage/reduces';
+import login from '../../containers/User/LoginPage/reducer';
+import signUp from '../../containers/User/SignUpPage/reducer';
+import forgotPassword from '../../containers/User/ForgotPasswordPage/reducer';
+import changePassword from '../../containers/User/ChangePasswordPage/reducer';
+import registration from '../../containers/User/RegistrationPage/reducer';
+import application from '../../containers/Application/HomePage/reducer';
 
-const pages = { current, login, signUp, forgotPassword, changePassword, registration };
+const pages = { current, login, signUp, forgotPassword, changePassword, registration, application };
 
 export default () => (combineReducers(pages));
 
