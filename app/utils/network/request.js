@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import { getAuthToken } from '../auth';
 // import { newNotice } from '../components/NoticeStack/actions';
 
 const BASE_URL = 'http://localhost:3000/';
@@ -43,7 +44,7 @@ export default function request(url, options = {}) {
   const requestOptions = Object.assign({}, {
     // credentials: 'include',Request header field auth-token is not allowed by Access-Control-Allow-Headers in preflight response.
     headers: {
-      'Auth-Token': window.__authToken || '' // eslint-disable-line
+      'Auth-Token': getAuthToken(),
     },
   }, options);
   return fetch(url, requestOptions)
@@ -82,7 +83,7 @@ function jsonWithBody(url, body, options, method) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Auth-Token': window.__authToken || '', // eslint-disable-line
+        'Auth-Token': getAuthToken(),
       },
     },
     options);

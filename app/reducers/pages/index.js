@@ -24,7 +24,7 @@ export function commonPageReducer(globalState = fromJS({}), action) {
     case LOCATION_CHANGE: {
       const newState = state.asMutable();
       forEach(omit(keys(pages), ['current']), (page) => {
-        newState.mergeIn(['pages', page], { errors: {} });
+        newState.mergeIn(['pages', page], { errors: {}, notices: {} });
       });
       return newState.asImmutable();
       // if (action.type === LOCATION_CHANGE) {

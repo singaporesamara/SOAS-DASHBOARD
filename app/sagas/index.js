@@ -5,9 +5,10 @@ import changePasswordSaga from '../containers/User/ChangePasswordPage/sagas';
 import registrationSaga from '../containers/User/RegistrationPage/sagas';
 
 import formSaga from './common/form';
+import userSaga from './common/user';
 
 const addSagas = (store) => {
-  const allSagas = [formSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga];
+  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga];
 
   allSagas.forEach((sagas) => {
     sagas.forEach((saga) => {
