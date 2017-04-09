@@ -1,19 +1,25 @@
 import { put, takeLatest, call, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { requestStarted, requestFinished, pageLoaded } from '../../../actions/common';
+import { requestStarted, requestFinished, pageLoaded, setPageNotices, clearPageNotices } from '../../../actions/common';
 import { ROUTES } from '../../../constants/routes';
 import { LOAD_PAGE } from '../../../constants/common';
 import { getUserProfile } from '../../../sagas/common/user';
 import { REGISTER } from './constants';
+import { registrationCompleted } from './actions';
 import routes from '../../../utils/network/api';
+import { convertRegistrationRequest } from '../../../utils/converters/api/request';
 
 export function* registrationSaga({ payload: { profile } }) {
   yield put(requestStarted());
-  const response = yield call(routes.user.register, { profile });
+  yield put(clearPageNotices('registration'));
+  const response = yield call(routes.user.register, convertRegistrationRequest(profile));
   yield put(requestFinished());
 
   if (response.err) {
-    alert('error...');
+    const { message } = response.err;
+    yield put(setPageNotices('registration', [{ type: 'error', message }]));
+  } else {
+    yield put(registrationCompleted());
   }
 }
 
