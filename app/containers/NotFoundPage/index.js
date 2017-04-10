@@ -6,15 +6,16 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Wrapper } from '../../components/UIKit';
 
 import messages from './messages';
 
 export default function NotFound() {
   return (
-    <article>
+    <Wrapper>
       <h1>
         <FormattedMessage {...messages.header} />
       </h1>
-    </article>
+    </Wrapper>
   );
 }

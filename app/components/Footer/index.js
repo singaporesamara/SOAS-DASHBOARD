@@ -1,27 +1,13 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
-import messages from './messages';
+import { Wrapper } from '../UIKit';
+import styles from './styles.scss';
 
 function Footer() {
   return (
     <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <a href="https://twitter.com/mxstbr">Max Stoiber</a>,
-          }}
-        />
-      </section>
+      <div className={styles.footer}>
+        SOAS Pay LLC &copy; 2017
+      </div>
     </Wrapper>
   );
 }

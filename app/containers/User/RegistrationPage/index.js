@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import { merge, pick, omit } from 'lodash';
 import BaseComponent from '../../Base';
@@ -9,6 +10,7 @@ import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox,
 import { layoutUpdate, validateForm, loadPage } from '../../../actions/common';
 import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { ROUTES } from '../../../constants/routes';
 import { register } from './actions';
 import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
 import styles from './styles.scss';
@@ -30,6 +32,7 @@ export class RegistrationPage extends BaseComponent {
     register: PropTypes.func.isRequired,
     getProfile: PropTypes.func.isRequired,
     loadPage: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
   };
 
@@ -43,6 +46,7 @@ export class RegistrationPage extends BaseComponent {
     this.submitGeneralForm = this.submitGeneralForm.bind(this);
     this.submitBankAccountForm = this.submitBankAccountForm.bind(this);
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
+    this.toHomePage = this.toHomePage.bind(this);
   }
 
   componentWillMount() {
@@ -55,6 +59,11 @@ export class RegistrationPage extends BaseComponent {
       event.preventDefault();
       this.setState({ step });
     };
+  }
+
+  toHomePage(event) {
+    event.preventDefault();
+    this.props.push(ROUTES.APP.HOME);
   }
 
   submitGeneralForm(event) {
@@ -240,7 +249,7 @@ export class RegistrationPage extends BaseComponent {
       <div className={styles.pageMessage}>
         <SuccessNotice message={message} />
         <div className={styles.pageMessageButton}>
-          <Button type="submit" name="register" theme={BUTTON_THEMES.GREEN_SLIM}>Start using the system!</Button>
+          <Button theme={BUTTON_THEMES.GREEN_SLIM} onClick={this.toHomePage}>Start using the system!</Button>
         </div>
       </div>
     ) : null;
@@ -268,4 +277,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register, loadPage })(RegistrationPage);
+export default connect(mapStateToProps, { layoutUpdate, getProfile, validateForm, register, loadPage, push })(RegistrationPage);
