@@ -1,47 +1,20 @@
-/**
- * Gets the repositories of the user from Github
- */
+import { put, takeEvery } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
+import { requestStarted, requestFinished, pageLoaded } from '../../actions/common';
+import { ROUTES } from '../../constants/routes';
+import { LOAD_PAGE } from '../../constants/common';
 
-import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
-
-import request from 'utils/network/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
-
-/**
- * Github repos request/response handler
- */
-export function* getRepos() {
-  // Select username from store
-  const username = yield select(makeSelectUsername());
-  const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-
-  try {
-    // Call our request helper (see 'utils/request')
-    const repos = yield call(request, requestURL);
-    yield put(reposLoaded(repos, username));
-  } catch (err) {
-    yield put(repoLoadingError(err));
-  }
+export function* pageSaga() {
+  yield put(requestStarted());
+  yield put(push(ROUTES.USER.LOGIN));
+  yield put(requestFinished());
+  yield put(pageLoaded('home'));
 }
 
-/**
- * Root saga manages watcher lifecycle
- */
-export function* githubData() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
-  // By using `takeLatest` only the result of the latest API call is applied.
-  // It returns task descriptor (just like fork) so we can continue execution
-  const watcher = yield takeLatest(LOAD_REPOS, getRepos);
-
-  // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
-  yield cancel(watcher);
+export function* homeFlow() {
+  yield takeEvery((action) => action.type === LOAD_PAGE && action.payload.page === 'home', pageSaga);
 }
 
-// Bootstrap sagas
 export default [
-  githubData,
+  homeFlow,
 ];
