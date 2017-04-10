@@ -1,4 +1,5 @@
 export const ROUTES = {
+  INDEX: '/',
   HOME: '/app',
   USER: {
     LOGIN: '/login',

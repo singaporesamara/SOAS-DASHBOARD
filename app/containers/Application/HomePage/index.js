@@ -33,7 +33,7 @@ export class HomePage extends BaseComponent {
         <Helmet title="Home" />
         <div className={styles.page}>
           <div className={messageStyles}>
-            Hey yo! The application home page will be here...
+            The application home page will be here...
           </div>
         </div>
       </InnerAppContainer>
