@@ -169,6 +169,7 @@ export class RegistrationPage extends BaseComponent {
   renderBankAccountStep() {
     const page = this.props.page.toJS();
     const [searchable, clearable] = [false, false];
+    const foreignMailingAddressPlaceholder = this.state.disabled.foreignMailingAddress ? '' : 'Foreign mailing address';
     return (
       <div>
         <form onSubmit={this.submitBankAccountForm}>
@@ -189,7 +190,7 @@ export class RegistrationPage extends BaseComponent {
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" disabled={this.state.disabled.foreignMailingAddress} value={this.state.foreignMailingAddress} onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
+                <TextInput type="text" label="Foreign mailing address" placeholder={foreignMailingAddressPlaceholder} disabled={this.state.disabled.foreignMailingAddress} value={this.state.foreignMailingAddress} onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
                 <div className={styles.pageSectionInputInfo}>
                   <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onSameAddressChange}>
                     <Checkbox value="true" label="Same with Company Registered address" />
