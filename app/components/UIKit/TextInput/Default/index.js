@@ -32,7 +32,7 @@ export default class TextInput extends Component {
   render() {
     const propsToRender = omit(this.props, ['label', 'id', 'autoComplete', 'error', 'success']);
     const labelStyles = classNames('text-input-label -default');
-    const textInputStyles = classNames('text-input', styles.textInput, { [styles.textInputSuccess]: this.props.success, [styles.textInputError]: this.props.error });
+    const textInputStyles = classNames('text-input -default', styles.textInput, { [styles.textInputSuccess]: this.props.success, [styles.textInputError]: this.props.error });
     return (
       <div className={textInputStyles}>
         <label htmlFor={this.state.id} className={labelStyles}>{this.props.label}</label>

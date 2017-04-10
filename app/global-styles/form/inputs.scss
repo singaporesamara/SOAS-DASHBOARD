@@ -3,13 +3,24 @@
 .text-input {
   width: 100%;
 
-  input, &.-default {
+  input {
     width: 100%;
     border-bottom: 1px solid $heather-color;
     color: $shark-color;
     font-size: 16px;
     padding: 16px 8px;
     outline: none;
+  }
+
+  &.-default {
+    input {
+      color: $tundora-color;
+      border: 1px solid $iron-color;
+      background: $white-color;
+      border-radius: 4px;
+      padding: 10px 35px 10px 10px;
+      font-size: 14px;
+    }
   }
 
   .text-input-label {
