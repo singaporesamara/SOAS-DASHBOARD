@@ -163,19 +163,19 @@ export class RegistrationPage extends BaseComponent {
           <div className="form">
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Full Name" placeholder="Full Name" onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
+                <TextInput type="text" label="Full Name" placeholder="Full Name" value={this.state.officerFullName} onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Mobile number" placeholder="+65" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
+                <TextInput type="text" label="Mobile number" placeholder="+65" value={this.state.mobileNumber} onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Email" placeholder="Email" onChange={this.onValueChange('email')} error={page.errors.email} />
+                <TextInput type="text" label="Email" placeholder="Email" value={this.state.email} onChange={this.onValueChange('email')} error={page.errors.email} />
               </div>
             </div>
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
+                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" value={this.state.foreignMailingAddress} onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
                 <div className={styles.pageSectionInputInfo}>
                   <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onCheckboxChange('sameWithCompanyInfo')}>
                     <Checkbox value="true" label="Same with Company Registered address Bank Account Information" />
@@ -200,16 +200,16 @@ export class RegistrationPage extends BaseComponent {
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumber')} error={page.errors.bankAccountNumber} />
+                <TextInput type="text" label="Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumber} onChange={this.onValueChange('bankAccountNumber')} error={page.errors.bankAccountNumber} />
               </div>
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Confirm Bank Account Number" placeholder="00000000" onChange={this.onValueChange('bankAccountNumberConfirmation')} error={page.errors.bankAccountNumberConfirmation} />
+                <TextInput type="text" label="Confirm Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumberConfirmation} onChange={this.onValueChange('bankAccountNumberConfirmation')} error={page.errors.bankAccountNumberConfirmation} />
               </div>
             </div>
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" onChange={this.onValueChange('bankAccountHolderName')} error={page.errors.bankAccountHolderName} />
+                <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" value={this.state.bankAccountHolderName} onChange={this.onValueChange('bankAccountHolderName')} error={page.errors.bankAccountHolderName} />
               </div>
             </div>
             {/* <!--/form-row--> */}
