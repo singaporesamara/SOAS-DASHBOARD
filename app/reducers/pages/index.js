@@ -11,8 +11,9 @@ import forgotPassword from '../../containers/User/ForgotPasswordPage/reducer';
 import changePassword from '../../containers/User/ChangePasswordPage/reducer';
 import registration from '../../containers/User/RegistrationPage/reducer';
 import application from '../../containers/Application/HomePage/reducer';
+import home from '../../containers/HomePage/reducer';
 
-const pages = { current, login, signUp, forgotPassword, changePassword, registration, application };
+const pages = { current, login, signUp, forgotPassword, changePassword, registration, application, home };
 
 export default () => (combineReducers(pages));
 

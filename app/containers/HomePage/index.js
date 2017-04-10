@@ -1,26 +1,26 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { ROUTES } from '../../constants/routes';
+import { layoutUpdate, loadPage } from '../../actions/common';
+import { LAYOUT_NO_FOOTER } from '../../constants/common';
 import { Wrapper } from '../../components/UIKit';
 import styles from './styles.scss';
 
 export class HomePage extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    push: PropTypes.func.isRequired,
+    loadPage: PropTypes.func.isRequired,
+    layoutUpdate: PropTypes.func.isRequired,
+    page: PropTypes.object.isRequired,
   };
 
   componentWillMount() {
-    this.props.push(ROUTES.USER.LOGIN);
+    this.props.layoutUpdate(LAYOUT_NO_FOOTER);
+    this.props.loadPage('home');
   }
 
   render() {
+    const page = this.props.page.toJS();
+    if (page.loading) return null;
+
     return (
       <Wrapper>
         <div className={styles.page}>
@@ -31,4 +31,10 @@ export class HomePage extends Component { // eslint-disable-line react/prefer-st
   }
 }
 
-export default connect(() => ({}), { push })(HomePage);
+function mapStateToProps(state) {
+  return {
+    page: state.getIn(['pages', 'home']),
+  };
+}
+
+export default connect(mapStateToProps, { loadPage, layoutUpdate })(HomePage);
