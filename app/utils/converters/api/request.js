@@ -2,9 +2,9 @@ export function convertRegistrationRequest(params) {
   return {
     CoName: params.companyName,
     CoUEN: params.companyUEN,
-    BlkHseNo: params.buildingName,
-    StreetName: params.storeyLevel,
-    Storey: params.streetName,
+    BlkHseNo: params.houseNumber,
+    StreetName: params.streetName,
+    Storey: params.storeyLevel,
     UnitNo: params.unitNumber,
     BuildingName: params.buildingName,
     PostalCode: params.postalCode,

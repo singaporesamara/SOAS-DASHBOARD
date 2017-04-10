@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
-import { merge, pick, omit } from 'lodash';
+import { merge, pick, omit, values } from 'lodash';
 import BaseComponent from '../../Base';
 import { InnerAppContainer } from '../../../components/Containers';
 import { TextInput, Button, BUTTON_THEMES, SelectField, CheckboxGroup, Checkbox, SuccessNotice, Notice } from '../../../components/UIKit';
@@ -38,7 +38,7 @@ export class RegistrationPage extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = merge({ step: PAGE_STEPS.GENERAL }, getProfileFields());
+    this.state = merge({ step: PAGE_STEPS.GENERAL, disabled: { foreignMailingAddress: false } }, getProfileFields());
     this.onValueChange = this.onValueChange.bind(this);
     this.renderGeneralStep = this.renderGeneralStep.bind(this);
     this.renderBankAccountStep = this.renderBankAccountStep.bind(this);
@@ -47,11 +47,25 @@ export class RegistrationPage extends BaseComponent {
     this.submitBankAccountForm = this.submitBankAccountForm.bind(this);
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
     this.toHomePage = this.toHomePage.bind(this);
+    this.onSameAddressChange = this.onSameAddressChange.bind(this);
   }
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
     this.props.loadPage('registration');
+  }
+
+  onSameAddressChange(data) {
+    const sameWithCompanyInfo = data[1];
+    this.setState({ sameWithCompanyInfo });
+
+    if (sameWithCompanyInfo) {
+      const fullAddress = values(pick(this.state, ['buildingName', 'streetName', 'houseNumber', 'storeyLevel', 'unitNumber', 'postalCode'])).join(', ');
+      const address = `Singapore, ${fullAddress}`;
+      this.setState({ foreignMailingAddress: address, disabled: { foreignMailingAddress: true } });
+    } else {
+      this.setState({ foreignMailingAddress: '', disabled: { foreignMailingAddress: false } });
+    }
   }
 
   toStep(step) {
@@ -77,7 +91,7 @@ export class RegistrationPage extends BaseComponent {
     const { fields, rules } = bankAccountFormValidationRules();
     const form = pick(this.state, fields);
     event.preventDefault();
-    this.props.validateForm({ form, rules, name: 'registration' }, { onSuccess: () => { this.props.register(omit(this.state, ['step'])); } });
+    this.props.validateForm({ form, rules, name: 'registration' }, { onSuccess: () => { this.props.register(omit(this.state, ['step', 'disabled'])); } });
   }
 
   renderGeneralStep() {
@@ -175,10 +189,10 @@ export class RegistrationPage extends BaseComponent {
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" value={this.state.foreignMailingAddress} onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
+                <TextInput type="text" label="Foreign mailing address" placeholder="Foreign mailing address" disabled={this.state.disabled.foreignMailingAddress} value={this.state.foreignMailingAddress} onChange={this.onValueChange('foreignMailingAddress')} error={page.errors.foreignMailingAddress} />
                 <div className={styles.pageSectionInputInfo}>
-                  <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onCheckboxChange('sameWithCompanyInfo')}>
-                    <Checkbox value="true" label="Same with Company Registered address Bank Account Information" />
+                  <CheckboxGroup name="checkbox-name" value={[this.state.sameWithCompanyInfo]} onChange={this.onSameAddressChange}>
+                    <Checkbox value="true" label="Same with Company Registered address" />
                   </CheckboxGroup>
                 </div>
               </div>
