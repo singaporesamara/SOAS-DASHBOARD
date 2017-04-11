@@ -6,5 +6,11 @@ export default {
   required: {
     presence: true,
   },
+  phone: {
+    presence: true,
+    length: {
+      minimum: 10,
+    },
+  },
   equalsTo: (field) => ({ equality: field }),
 };

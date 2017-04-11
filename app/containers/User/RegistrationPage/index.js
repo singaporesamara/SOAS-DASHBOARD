@@ -48,6 +48,7 @@ export class RegistrationPage extends BaseComponent {
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
     this.toHomePage = this.toHomePage.bind(this);
     this.onSameAddressChange = this.onSameAddressChange.bind(this);
+    this.checkStoreyLevel = this.checkStoreyLevel.bind(this);
   }
 
   componentWillMount() {
@@ -65,6 +66,13 @@ export class RegistrationPage extends BaseComponent {
       this.setState({ foreignMailingAddress: address, disabled: { foreignMailingAddress: true } });
     } else {
       this.setState({ foreignMailingAddress: '', disabled: { foreignMailingAddress: false } });
+    }
+  }
+
+  checkStoreyLevel(event) {
+    const { value } = event.target;
+    if (value && value.length > 0 && value.length < 2) {
+      this.setState({ storeyLevel: `0${value}` });
     }
   }
 
@@ -124,13 +132,13 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Street name" placeholder="Street name" value={this.state.streetName} onChange={this.onValueChange('streetName')} error={page.errors.streetName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Storey level" placeholder="Storey level" value={this.state.storeyLevel} onChange={this.onValueChange('storeyLevel')} error={page.errors.storeyLevel} />
+                <TextInput type="text" label="Storey level" placeholder="Storey level" value={this.state.storeyLevel} mask="digits" onChange={this.onValueChange('storeyLevel')} onBlur={this.checkStoreyLevel} error={page.errors.storeyLevel} />
               </div>
             </div>
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Unit number" placeholder="00000000" value={this.state.unitNumber} onChange={this.onValueChange('unitNumber')} error={page.errors.unitNumber} />
+                <TextInput type="text" label="Unit number" placeholder="00000000" value={this.state.unitNumber} mask="digits" onChange={this.onValueChange('unitNumber')} error={page.errors.unitNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="Building Name" placeholder="Building Name" value={this.state.buildingName} onChange={this.onValueChange('buildingName')} error={page.errors.buildingName} />
@@ -145,7 +153,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Country" value={this.state.country} disabled={disabled} placeholder="Singapore" />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Postal Code" placeholder="00000000" value={this.state.postalCode} onChange={this.onValueChange('postalCode')} error={page.errors.postalCode} />
+                <TextInput type="text" label="Postal Code" placeholder="00000000" value={this.state.postalCode} mask="digits" onChange={this.onValueChange('postalCode')} error={page.errors.postalCode} />
               </div>
             </div>
             {/* <!--/form-row--> */}
@@ -181,7 +189,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Full Name" placeholder="Full Name" value={this.state.officerFullName} onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Mobile number" placeholder="+65" value={this.state.mobileNumber} onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
+                <TextInput type="text" label="Mobile number" placeholder="+65" value={this.state.mobileNumber} mask="mobilePhone" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="Email" placeholder="Email" value={this.state.email} onChange={this.onValueChange('email')} error={page.errors.email} />
@@ -215,10 +223,10 @@ export class RegistrationPage extends BaseComponent {
             {/* <!--/form-row--> */}
             <div className="pure-g form-row">
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumber} onChange={this.onValueChange('bankAccountNumber')} error={page.errors.bankAccountNumber} />
+                <TextInput type="text" label="Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumber} mask="digits" onChange={this.onValueChange('bankAccountNumber')} error={page.errors.bankAccountNumber} />
               </div>
               <div className="pure-u-1-2 form-col">
-                <TextInput type="text" label="Confirm Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumberConfirmation} onChange={this.onValueChange('bankAccountNumberConfirmation')} error={page.errors.bankAccountNumberConfirmation} />
+                <TextInput type="text" label="Confirm Bank Account Number" placeholder="00000000" value={this.state.bankAccountNumberConfirmation} mask="digits" onChange={this.onValueChange('bankAccountNumberConfirmation')} error={page.errors.bankAccountNumberConfirmation} />
               </div>
             </div>
             {/* <!--/form-row--> */}
