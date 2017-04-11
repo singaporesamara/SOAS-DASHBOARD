@@ -11,10 +11,11 @@
     .text-input-error {
       position: absolute;
       width: 100%;
-      bottom: -15px;
+      top: 100%;
       right: 10px;
       display: block;
       text-align: right;
+      padding-top: 1px;
     }
 
     .text-input-icon {

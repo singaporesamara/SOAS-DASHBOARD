@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { omit, uniqueId } from 'lodash';
+import MaskedInput from 'react-text-mask';
 import classNames from 'classnames';
+import { prepareMask } from '../utils';
 import styles from './styles.scss';
 import errorIcon from '../../../../assets/images/icons/danger-sign.svg';
 
@@ -9,10 +11,14 @@ export default class TextInput extends Component {
     label: PropTypes.string,
     error: PropTypes.string,
     success: PropTypes.bool,
+    mask: PropTypes.string,
+    guide: PropTypes.bool,
   };
 
   static defaultProps = {
     success: false,
+    mask: null,
+    guide: false,
   };
 
   constructor(props, context) {
@@ -30,14 +36,17 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const propsToRender = omit(this.props, ['label', 'id', 'autoComplete', 'error', 'success']);
+    const propsToRender = omit(this.props, ['label', 'id', 'autoComplete', 'error', 'success', 'mask', 'guide']);
     const labelStyles = classNames('text-input-label -default');
     const textInputStyles = classNames('text-input -default', styles.textInput, { [styles.textInputSuccess]: this.props.success, [styles.textInputError]: this.props.error });
+    const hasMask = !!this.props.mask;
+    const mask = prepareMask(this.props.mask);
     return (
       <div className={textInputStyles}>
         <label htmlFor={this.state.id} className={labelStyles}>{this.props.label}</label>
         <div>
-          <input id={this.state.id} {...propsToRender} autoComplete="off" />
+          {!hasMask && <input id={this.state.id} {...propsToRender} autoComplete="off" />}
+          {hasMask && <MaskedInput id={this.state.id} {...propsToRender} guide={this.props.guide} autoComplete="off" mask={mask} />}
         </div>
         {this.renderErrors()}
       </div>

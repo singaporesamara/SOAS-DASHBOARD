@@ -44,7 +44,7 @@ export function bankAccountFormValidationRules() {
   const fields = ['officerFullName', 'mobileNumber', 'email', 'foreignMailingAddress', 'bankName', 'branchName', 'bankAccountNumber', 'bankAccountNumberConfirmation', 'bankAccountHolderName'];
   const rules = {
     officerFullName: RULES.required,
-    mobileNumber: RULES.required,
+    mobileNumber: RULES.phone,
     email: RULES.email,
     foreignMailingAddress: RULES.required,
     bankName: RULES.required,
