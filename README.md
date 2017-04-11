@@ -20,3 +20,17 @@ $ yarn run lint:watch # to run eslint in watch mode
 ```sh
 $ ssh root@112.74.37.201 / SoC9M8O7
 ```
+
+## Troubleshooting
+
+### Something happened with node-sass
+
+* npm i node-sass
+
+### Module build failed: Error: spawn /var/www/web/node_modules/pngquant-bin/vendor/pngquant ENOENT
+
+* npm i pngquant-bin
+
+### Module build failed: Error: spawn /var/www/web/node_modules/optipng-bin/vendor/optipng ENOENT
+
+* npm i optipng-bin
