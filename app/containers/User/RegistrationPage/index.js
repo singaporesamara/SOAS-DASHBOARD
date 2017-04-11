@@ -48,6 +48,7 @@ export class RegistrationPage extends BaseComponent {
     this.onCheckboxChange = this.onCheckboxChange.bind(this);
     this.toHomePage = this.toHomePage.bind(this);
     this.onSameAddressChange = this.onSameAddressChange.bind(this);
+    this.checkStoreyLevel = this.checkStoreyLevel.bind(this);
   }
 
   componentWillMount() {
@@ -65,6 +66,13 @@ export class RegistrationPage extends BaseComponent {
       this.setState({ foreignMailingAddress: address, disabled: { foreignMailingAddress: true } });
     } else {
       this.setState({ foreignMailingAddress: '', disabled: { foreignMailingAddress: false } });
+    }
+  }
+
+  checkStoreyLevel(event) {
+    const { value } = event.target;
+    if (value && value.length > 0 && value.length < 2) {
+      this.setState({ storeyLevel: `0${value}` });
     }
   }
 
@@ -124,7 +132,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Street name" placeholder="Street name" value={this.state.streetName} onChange={this.onValueChange('streetName')} error={page.errors.streetName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Storey level" placeholder="Storey level" value={this.state.storeyLevel} onChange={this.onValueChange('storeyLevel')} error={page.errors.storeyLevel} />
+                <TextInput type="text" label="Storey level" placeholder="Storey level" value={this.state.storeyLevel} mask="digits" onChange={this.onValueChange('storeyLevel')} onBlur={this.checkStoreyLevel} error={page.errors.storeyLevel} />
               </div>
             </div>
             {/* <!--/form-row--> */}
