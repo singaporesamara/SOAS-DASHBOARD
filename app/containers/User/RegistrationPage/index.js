@@ -186,7 +186,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Full Name" placeholder="Full Name" value={this.state.officerFullName} onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Mobile number" placeholder="+65" value={this.state.mobileNumber} mask="mobilePhone" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
+                <TextInput type="text" label="Mobile number" placeholder="+65 0000-0000" value={this.state.mobileNumber} mask="mobilePhone" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="Email" placeholder="Email" value={this.state.email} onChange={this.onValueChange('email')} error={page.errors.email} />

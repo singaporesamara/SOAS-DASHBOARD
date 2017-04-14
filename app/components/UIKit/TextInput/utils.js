@@ -11,7 +11,7 @@ const getCardType = (number) => {
   return type;
 };
 
-const mobilePhoneMask = ['+', '6', '5', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/, /\d/];
+const mobilePhoneMask = ['+', '6', '5', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
 const creditCardMask = (rawValue) => {
   const cardType = getCardType(rawValue);
