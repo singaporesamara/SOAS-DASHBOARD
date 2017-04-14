@@ -11,6 +11,7 @@ import { layoutUpdate, validateForm, loadPage } from '../../../actions/common';
 import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { ROUTES } from '../../../constants/routes';
+import BANKS from './banks';
 import { register } from './actions';
 import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
 import styles from './styles.scss';
@@ -19,11 +20,6 @@ const PAGE_STEPS = {
   GENERAL: 'general',
   BANK_ACCOUNT: 'bank-account',
 };
-
-const BANKS = [
-  { label: 'Chase', value: 'chase' },
-  { label: 'American Express', value: 'amex' },
-];
 
 export class RegistrationPage extends BaseComponent {
   static propTypes = {
@@ -155,6 +151,7 @@ export class RegistrationPage extends BaseComponent {
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="Postal Code" placeholder="00000000" value={this.state.postalCode} mask="digits" onChange={this.onValueChange('postalCode')} error={page.errors.postalCode} />
               </div>
+              <div className="pure-u-1-3 form-col"></div>
             </div>
             {/* <!--/form-row--> */}
           </div>
@@ -176,7 +173,7 @@ export class RegistrationPage extends BaseComponent {
 
   renderBankAccountStep() {
     const page = this.props.page.toJS();
-    const [searchable, clearable] = [false, false];
+    const [searchable, clearable] = [true, false];
     const foreignMailingAddressPlaceholder = this.state.disabled.foreignMailingAddress ? '' : 'Foreign mailing address';
     return (
       <div>
@@ -189,7 +186,7 @@ export class RegistrationPage extends BaseComponent {
                 <TextInput type="text" label="Full Name" placeholder="Full Name" value={this.state.officerFullName} onChange={this.onValueChange('officerFullName')} error={page.errors.officerFullName} />
               </div>
               <div className="pure-u-1-3 form-col">
-                <TextInput type="text" label="Mobile number" placeholder="+65" value={this.state.mobileNumber} mask="mobilePhone" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
+                <TextInput type="text" label="Mobile number" placeholder="+65 0000-0000" value={this.state.mobileNumber} mask="mobilePhone" onChange={this.onValueChange('mobileNumber')} error={page.errors.mobileNumber} />
               </div>
               <div className="pure-u-1-3 form-col">
                 <TextInput type="text" label="Email" placeholder="Email" value={this.state.email} onChange={this.onValueChange('email')} error={page.errors.email} />
@@ -234,6 +231,7 @@ export class RegistrationPage extends BaseComponent {
               <div className="pure-u-1-2 form-col">
                 <TextInput type="text" label="Bank Account Holder Name" placeholder="Bank Account Holder Name" value={this.state.bankAccountHolderName} onChange={this.onValueChange('bankAccountHolderName')} error={page.errors.bankAccountHolderName} />
               </div>
+              <div className="pure-u-1-2 form-col"></div>
             </div>
             {/* <!--/form-row--> */}
           </div>

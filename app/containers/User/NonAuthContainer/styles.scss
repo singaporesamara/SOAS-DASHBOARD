@@ -2,11 +2,11 @@
 
 .page {
   width: 100%;
-  padding: 50px 0;
+  padding: 80px 0;
 
   .pageForm {
     background: $white-color;
-    padding: 30px 48px 71px 48px;
+    padding: 30px 35px 50px 35px;
     width: 580px;
     margin: 0 auto;
     -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
@@ -14,12 +14,12 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 
     .pageFormLogo {
-      margin-bottom: 50px;
+      margin-bottom: 33px;
     }
 
     .pageFormHelp {
       color: $shark-color;
-      margin-top: 50px;
+      margin-top: 35px;
       font-size: 12px;
     }
   }
