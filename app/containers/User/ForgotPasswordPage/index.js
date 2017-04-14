@@ -11,6 +11,7 @@ import { SuccessNotice } from '../../../components/UIKit/Notice';
 import { layoutUpdate, validateForm } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { RULES } from '../../../utils/validation';
+import envelopeIcon from '../../../assets/images/icons/envelope.svg';
 import styles from './styles.scss';
 
 export class ForgotPasswordPage extends BaseComponent {
@@ -42,7 +43,9 @@ export class ForgotPasswordPage extends BaseComponent {
     const page = this.props.page.toJS();
     const message = `We have successfully sent the email with password reset details. Please, visit <strong>${this.state.email}</strong> and follow the instructions.`;
     return page.show.message ? (
-      <SuccessNotice message={message} />
+      <div className={styles.pageMessage}>
+        <SuccessNotice message={message} icon={envelopeIcon} />
+      </div>
     ) : null;
   }
 

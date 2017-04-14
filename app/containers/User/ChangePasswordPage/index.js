@@ -43,7 +43,9 @@ export class ChangePasswordPage extends BaseComponent {
     const page = this.props.page.toJS();
     const message = 'Your password was successfully changed!';
     return page.show.message ? (
-      <SuccessNotice message={message} />
+      <div className={styles.pageMessage}>
+        <SuccessNotice message={message} />
+      </div>
     ) : null;
   }
 
