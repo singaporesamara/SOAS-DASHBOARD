@@ -25,13 +25,13 @@
     }
   }
 
-  &.textInputSuccess {
+  &.textInputSuccess.textInputSuccess {
     input {
       border: 1px solid $emerald-color;
     }
   }
 
-  &.textInputError {
+  &.textInputError.textInputError {
     input {
       border: 1px solid $red-orange-color;
     }
