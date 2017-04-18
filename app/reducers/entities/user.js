@@ -3,7 +3,7 @@ import { SET_USER, DESTROY_USER, DEFAULT_USER_STATE, SET_PROFILE } from '../../c
 
 const initialUserState = DEFAULT_USER_STATE;
 
-export default function reducer(state = initialUserState, action) {
+export default function reducer(state = fromJS(initialUserState), action) {
   switch (action.type) {
     case SET_USER:
       return fromJS(action.payload.user);
