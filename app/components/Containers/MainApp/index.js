@@ -16,7 +16,9 @@ export class MainAppContainer extends Component { // eslint-disable-line react/p
           <MainSidebar />
         </div>
         <div className={styles.pageContent}>
-          <MainHeader title="Account" />
+          <div className={styles.pageHeader}>
+            <MainHeader title="Account" />
+          </div>
           <div className={styles.pageContentWrapper}>
             {this.props.children}
           </div>
