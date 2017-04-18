@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import BaseComponent from '../../Base';
-import { InnerAppContainer } from '../../../components/Containers';
+import { MainAppContainer } from '../../../components/Containers';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
@@ -29,14 +29,14 @@ export class HomePage extends BaseComponent {
     if (page.loading) return null;
     const messageStyles = classNames(styles.pageMessage, 'text-center');
     return (
-      <InnerAppContainer>
+      <MainAppContainer>
         <Helmet title="Home" />
         <div className={styles.page}>
           <div className={messageStyles}>
             The application home page will be here...
           </div>
         </div>
-      </InnerAppContainer>
+      </MainAppContainer>
     );
   }
 }
