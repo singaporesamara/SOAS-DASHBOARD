@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MainHeader } from '../../Header';
+import { MainSidebar } from '../../Sidebar';
 import styles from './styles.scss';
 
 export class MainAppContainer extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -12,7 +13,7 @@ export class MainAppContainer extends Component { // eslint-disable-line react/p
     return (
       <div className={styles.page}>
         <div className={styles.pageSidebar}>
-          1
+          <MainSidebar />
         </div>
         <div className={styles.pageContent}>
           <MainHeader title="Account" />

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import userIcon from '../../../assets/images/icons/user-navbar.svg';
 import styles from './styles.scss';
 
 export class MainHeader extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -19,7 +20,9 @@ export class MainHeader extends Component { // eslint-disable-line react/prefer-
             <div className={styles.headerTitle}>{this.props.title}</div>
           </div>
           <div className="pure-u-2-5 text-right">
-            icon..
+            <div className={styles.headerLogo}>
+              <img src={userIcon} alt="user" />
+            </div>
           </div>
         </div>
       </div>
