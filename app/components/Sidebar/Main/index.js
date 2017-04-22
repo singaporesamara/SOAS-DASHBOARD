@@ -30,7 +30,7 @@ export class MainSidebar extends Component {
               <li className={styles.sidebarMenuItemsGroup}>
                 <ul>
                   <li className={activeItem}>
-                    <div>Payments</div>
+                    <div className={styles.sidebarMenuItemTitle}>Payments</div>
                     <ul>
                       <li>Create Transaction</li>
                       <li>Send invoice</li>
@@ -42,33 +42,33 @@ export class MainSidebar extends Component {
               <li className={styles.sidebarMenuItemsGroup}>
                 <ul>
                   <li className={styles.sidebarMenuItem}>
-                    <div>Analytics</div>
+                    <div className={styles.sidebarMenuItemTitle}>Analytics</div>
                   </li>
                   <li className={styles.sidebarMenuItem}>
-                    <div>Documents</div>
+                    <div className={styles.sidebarMenuItemTitle}>Documents</div>
                   </li>
                   <li className={styles.sidebarMenuItem}>
-                    <div>Partners</div>
+                    <div className={styles.sidebarMenuItemTitle}>Partners</div>
                   </li>
                 </ul>
               </li>
               <li className={styles.sidebarMenuItemsGroup}>
                 <ul>
                   <li className={styles.sidebarMenuItem}>
-                    <div>Services</div>
+                    <div className={styles.sidebarMenuItemTitle}>Services</div>
                   </li>
                   <li className={styles.sidebarMenuItem}>
-                    <div>Support</div>
+                    <div className={styles.sidebarMenuItemTitle}>Support</div>
                   </li>
                 </ul>
               </li>
               <li className={styles.sidebarMenuItemsGroup}>
                 <ul>
                   <li className={tinyItem}>
-                    <div>Settings</div>
+                    <div className={styles.sidebarMenuItemTitle}>Settings</div>
                   </li>
                   <li className={tinyItem}>
-                    <div>
+                    <div className={styles.sidebarMenuItemTitle}>
                       <a href className="link" onClick={this.onLogOut}>Log Out</a>
                     </div>
                   </li>
