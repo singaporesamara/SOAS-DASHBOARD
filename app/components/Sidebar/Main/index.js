@@ -69,7 +69,7 @@ export class MainSidebar extends Component {
                   </li>
                   <li className={tinyItem}>
                     <div className={styles.sidebarMenuItemTitle}>
-                      <a href className="link" onClick={this.onLogOut}>Log Out</a>
+                      <a href="/sign-out" className="link" onClick={this.onLogOut}>Log Out</a>
                     </div>
                   </li>
                 </ul>

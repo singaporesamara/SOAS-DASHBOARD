@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
+import { MyBalance } from '../../../components/Profile/Balance';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
@@ -27,13 +28,12 @@ export class HomePage extends BaseComponent {
   render() {
     const page = this.props.page.toJS();
     if (page.loading) return null;
-    const messageStyles = classNames(styles.pageMessage, 'text-center');
     return (
       <MainAppContainer>
         <Helmet title="Home" />
         <div className={styles.page}>
-          <div className={messageStyles}>
-            The application home page will be here...
+          <div className={styles.pageBalance}>
+            <MyBalance />
           </div>
         </div>
       </MainAppContainer>
