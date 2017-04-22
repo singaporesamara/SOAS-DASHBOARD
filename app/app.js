@@ -43,7 +43,6 @@ import { translationMessages } from './i18n';
 import 'react-block-ui/style.css'; // eslint-disable-line import/first
 import 'purecss/build/grids.css'; // eslint-disable-line import/first
 import 'react-select/dist/react-select.css'; // eslint-disable-line import/first
-import '!!style-loader!css-loader!./assets/fonts/camphor/main.css'; // eslint-disable-line import/first
 import './global-styles/main.scss';
 
 // Import routes

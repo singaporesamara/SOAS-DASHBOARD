@@ -1,27 +1,8 @@
 @import "../../../global-styles/variables";
 
 .sidebar {
-  .sidebarLogo {
-    min-height: 69px;
-    line-height: 69px;
-    border-bottom: 1px solid $iron-color;
-    box-shadow: 0 2px 1px -2px $iron-color;
-
-    img {
-      width: 150px;
-    }
-  }
-
   .sidebarMenu {
-    padding: 12px 0 0 0;
-
-    .sidebarMenuTitle {
-      padding: 12px 25px;
-      font-size: 12px;
-      text-transform: uppercase;
-      color: $regent-gray-color;
-      font-weight: $font-bold;
-    }
+    padding: 100px 0 0 0;
 
     .sidebarMenuItems {
       list-style: none;
@@ -29,30 +10,54 @@
       padding: 0;
     }
 
-    .sidebarMenuItem {
-      cursor: pointer;
-      font-weight: $font-normal;
-      color: $regent-gray-color;
-      font-size: 14px;
-      padding: 12px 25px 12px 60px;
-      border-left: 2px solid $transparent-color;
-      position: relative;
-
-      .sidebarMenuItemIcon {
-        position: absolute;
-        left: 23px;
-        top: 0;
-        line-height: 44px;
+    .sidebarMenuItemsGroup {
+      &, ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
 
-      &.sidebarMenuItemActive, &:hover {
-        color: $oxford-blue-color;
-        border-left-color: $emerald-color;
+      & + .sidebarMenuItemsGroup {
+        margin-top: 40px;
+      }
+    }
 
-        .sidebarMenuItemIcon {
-          img {
-            fill: $emerald-color;
-          }
+    .sidebarMenuItem {
+      font-family: $font-family-regular;
+      cursor: pointer;
+      color: $white-color;
+      font-size: 24px;
+      line-height: 24px;
+      position: relative;
+
+      & > div {
+        padding: 5px 20px;
+      }
+
+      & > ul {
+        font-size: 18px;
+        line-height: 18px;
+        padding: 0 20px;
+
+        li {
+          padding: 10px 0;
+        }
+      }
+
+      &.sidebarMenuItemActive {
+        color: $white-color;
+
+        & > div {
+          background: transparentize($nevada-color, 0.5);
+        }
+      }
+
+      &.sidebarMenuItemTiny {
+        font-size: 14px;
+        line-height: 14px;
+
+        & > div {
+          padding: 10px 20px;
         }
       }
     }
