@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import { Button, BUTTON_THEMES } from '../../../UIKit';
 import styles from './styles.scss';
 
-export class MyBalance extends Component {
-  constructor(props, context) {
+export class MyBalance extends Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props, context) { // eslint-disable-line no-useless-constructor
     super(props, context);
   }
 
@@ -23,17 +22,7 @@ export class MyBalance extends Component {
             <div className={styles.eWalletBalanceTitle}>e-Wallet balance</div>
           </div>
           <div>
-            <Button theme={BUTTON_THEMES.DEFAULT_BLUE}>Top Up</Button>
-            <hr />
             <Button theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE}>Top Up</Button>
-            <hr />
-            <Button theme={BUTTON_THEMES.DEFAULT_GREEN}>Top Up</Button>
-            <hr />
-            <Button theme={BUTTON_THEMES.DEFAULT_GREEN_INVERSE}>Top Up</Button>
-            <hr />
-            <Button theme={BUTTON_THEMES.DEFAULT_GRAY}>Top Up</Button>
-            <hr />
-            <Button theme={BUTTON_THEMES.DEFAULT_GRAY_INVERSE}>Top Up</Button>
           </div>
         </div>
       </div>

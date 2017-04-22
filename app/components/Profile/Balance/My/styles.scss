@@ -26,6 +26,15 @@
   .eWalletBalance {
     margin-top: 40px;
 
+    & > div {
+      display: inline-block;
+      vertical-align: middle;
+
+      &:first-child {
+        padding-right: 28px;
+      }
+    }
+
     .eWalletBalanceAmount {
       color: $tundora-color;
       font-family: $font-family-bold;

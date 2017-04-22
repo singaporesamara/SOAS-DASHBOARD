@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
 import { MyBalance } from '../../../components/Profile/Balance';
@@ -23,6 +23,32 @@ export class HomePage extends BaseComponent {
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
     this.props.loadPage('application');
+    Tabs.setUseDefaultStyles(false);
+  }
+
+  renderEvents() {
+    return (
+      <Tabs className="tabs -default">
+        <TabList className="tabs-head" activeTabClassName="-selected">
+          <Tab className="tabs-head-item">News</Tab>
+          <Tab className="tabs-head-item">Transactions</Tab>
+          <Tab className="tabs-head-item">Invoices</Tab>
+        </TabList>
+        <TabPanel className="tabs-content">
+          <div>Hello from Foo</div>
+        </TabPanel>
+        <TabPanel className="tabs-content">
+          <div className={styles.pageEventsEmpty}>
+            Sorry, there are no Transactions yet..
+          </div>
+        </TabPanel>
+        <TabPanel className="tabs-content">
+          <div className={styles.pageEventsEmpty}>
+            Sorry, there are no Invoices yet..
+          </div>
+        </TabPanel>
+      </Tabs>
+    );
   }
 
   render() {
@@ -34,6 +60,9 @@ export class HomePage extends BaseComponent {
         <div className={styles.page}>
           <div className={styles.pageBalance}>
             <MyBalance />
+          </div>
+          <div className={styles.pageEvents}>
+            {this.renderEvents()}
           </div>
         </div>
       </MainAppContainer>
