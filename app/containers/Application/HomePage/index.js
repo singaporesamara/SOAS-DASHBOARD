@@ -59,7 +59,7 @@ export class HomePage extends BaseComponent {
     const page = this.props.page.toJS();
     const { profile } = this.props.user.toJS();
     if (page.loading || !profile) return null;
-    const eWalletVisible = true;
+    const eWalletVisible = false;
     return (
       <MainAppContainer>
         <Helmet title="Home" />
