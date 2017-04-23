@@ -11,6 +11,7 @@ import styles from './styles.scss';
 export class EWalletTopUpModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
+    formWidget: PropTypes.object.isRequired,
     triggerWalletTopUp: PropTypes.func.isRequired,
     clearFormErrors: PropTypes.func.isRequired,
   };
@@ -26,10 +27,11 @@ export class EWalletTopUpModalWidget extends Component {
   }
 
   render() {
-    const { widget } = this.props;
+    const { widget, formWidget } = this.props;
     const { opened } = widget.toJS();
+    const { loading } = formWidget.toJS();
     return (
-      <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose}>
+      <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <Tabs className="tabs -blue-and-white">
@@ -58,6 +60,7 @@ export class EWalletTopUpModalWidget extends Component {
 function mapStateToProps(state) {
   return {
     widget: state.getIn(['widgets', 'eWalletTopUpModal']),
+    formWidget: state.getIn(['widgets', 'eWalletCreditCard']),
   };
 }
 
