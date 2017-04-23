@@ -117,6 +117,8 @@
           }
 
           .Select-placeholder {
+            color: transparentize($dusty-gray-color, 0.5);
+            font-family: $font-family-regular;
             height: 44px;
             line-height: 44px;
             font-size: 16px;
