@@ -1,8 +1,9 @@
 import { LOAD_EVENTS, SET_EVENTS } from '../constants/events';
 
-export function loadEvents() {
+export function loadEvents(loader = false) {
   return {
     type: LOAD_EVENTS,
+    payload: { loader },
   };
 }
 

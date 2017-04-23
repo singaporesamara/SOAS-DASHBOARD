@@ -11,12 +11,14 @@ import { EWalletTopUpModalWidget, EWalletCreateTransactionModalWidget } from '..
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { TYPES as EVENT_TYPES } from '../../../constants/events';
+import { refreshEvents } from './actions';
 import styles from './styles.scss';
 
 export class HomePage extends BaseComponent {
   static propTypes = {
     layoutUpdate: PropTypes.func.isRequired,
     loadPage: PropTypes.func.isRequired,
+    refreshEvents: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     events: PropTypes.object.isRequired,
@@ -24,12 +26,17 @@ export class HomePage extends BaseComponent {
 
   constructor(props, context) { // eslint-disable-line no-useless-constructor
     super(props, context);
+    this.refreshEvents = ::this.refreshEvents;
   }
 
   componentWillMount() {
     this.props.layoutUpdate(LAYOUT_NO_FOOTER);
     this.props.loadPage('application');
     Tabs.setUseDefaultStyles(false);
+  }
+
+  refreshEvents() {
+    this.props.refreshEvents();
   }
 
   renderEvents() {
@@ -43,10 +50,10 @@ export class HomePage extends BaseComponent {
           <Tab className="tabs-head-item">Invoices</Tab>
         </TabList>
         <TabPanel className="tabs-content -tiny">
-          <EventsTable events={events} />
+          <EventsTable events={events} onRefresh={this.refreshEvents} />
         </TabPanel>
         <TabPanel className="tabs-content -tiny">
-          <EventsTable events={transactions} />
+          <EventsTable events={transactions} onRefresh={this.refreshEvents} />
         </TabPanel>
         <TabPanel className="tabs-content">
           <div className={styles.pageEventsEmpty}>
@@ -87,4 +94,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { layoutUpdate, loadPage })(HomePage);
+export default connect(mapStateToProps, { layoutUpdate, loadPage, refreshEvents })(HomePage);

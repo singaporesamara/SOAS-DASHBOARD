@@ -9,7 +9,7 @@ export default class Loader extends Component { // eslint-disable-line react/pre
           Transaction is in progress
         </div>
         <div className={styles.loaderIcon}>
-          loader icon...
+
         </div>
       </div>
     );
