@@ -57,10 +57,11 @@ export class HomePage extends BaseComponent {
   render() {
     const page = this.props.page.toJS();
     if (page.loading) return null;
+    const eWalletVisible = true;
     return (
       <MainAppContainer>
         <Helmet title="Home" />
-        <EWalletModalWidget visible={true} />
+        <EWalletModalWidget visible={eWalletVisible} />
         <div className={styles.page}>
           <div className={styles.pageBalance}>
             <MyBalance />

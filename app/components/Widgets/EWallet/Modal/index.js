@@ -18,7 +18,7 @@ export class EWalletModalWidget extends Component {
   render() {
     const opened = this.props.visible;
     return (
-      <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay}>
+      <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay} contentLabel="EWalletModalWidget">
         <div className={styles.modal}>
           <div className={styles.modalTitle}>
             <a href="/" className={styles.modalClose}><img src={crossIcon} alt="Close" /></a>
@@ -31,7 +31,9 @@ export class EWalletModalWidget extends Component {
                 <Tab className="tabs-head-item">by GIRO</Tab>
               </TabList>
               <TabPanel className="tabs-content">
-                <CreditCardWidget />
+                <div className={styles.creditCard}>
+                  <CreditCardWidget />
+                </div>
               </TabPanel>
               <TabPanel className="tabs-content">
                 <div>

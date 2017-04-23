@@ -6,8 +6,11 @@
   right: 0;
   min-height: 100%;
   position: absolute;
-  font-family: $font-family-regular;
-  font-weight: normal;
+
+  &, input, button {
+    font-family: $font-family-regular;
+    font-weight: normal;
+  }
 
   .pageSidebar {
     background: $limed-spruce-color;
