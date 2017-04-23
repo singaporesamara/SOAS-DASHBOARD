@@ -5,14 +5,10 @@ import Loader from './Loader';
 import TransactionCompleted from './TransactionCompleted';
 import TransactionDeclined from './TransactionDeclined';
 
-export class CreditCardWidget extends Component {
+export class CreditCardWidget extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     widget: PropTypes.object.isRequired,
   };
-
-  constructor(props, context) {
-    super(props, context);
-  }
 
   render() {
     const widget = this.props.widget.toJS();

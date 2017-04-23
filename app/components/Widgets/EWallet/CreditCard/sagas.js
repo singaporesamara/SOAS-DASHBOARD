@@ -1,9 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
-import { TOP_UP } from './constants';
 import routes from '../../../../utils/network/api';
 import { convertTopUpRequest } from '../../../../utils/converters/api/request';
-import { setLoading } from './actions';
+import { setLoading, transactionFinished } from './actions';
+import { TOP_UP, TRANSACTION_STATUS } from './constants';
 
 export function* eWalletCreditCardSaga({ payload }) {
   yield put(setLoading(true));
@@ -11,10 +10,9 @@ export function* eWalletCreditCardSaga({ payload }) {
   yield put(setLoading(false));
 
   if (response.err) {
-    const { message } = response.err;
-
+    yield put(transactionFinished(TRANSACTION_STATUS.DECLINED));
   } else {
-
+    yield put(transactionFinished(TRANSACTION_STATUS.COMPLETED));
   }
 }
 
