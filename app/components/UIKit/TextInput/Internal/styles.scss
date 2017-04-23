@@ -34,7 +34,7 @@
 
   &.textInputError.textInputError {
     input {
-      border-bottom: 1px solid $flamingo-color;
+      border: 1px solid $flamingo-color;
     }
 
     :global {

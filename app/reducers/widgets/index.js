@@ -4,8 +4,9 @@ import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, VALIDATION_TYPES } from '../../cons
 import eWalletCreditCard from '../../components/Widgets/EWallet/Forms/CreditCard/reducer';
 import eWalletTopUpModal from '../../components/Widgets/EWallet/Modals/TopUp/reducer';
 import eWalletCreateTransactionModal from '../../components/Widgets/EWallet/Modals/CreateTransaction/reducer';
+import eWalletCreateTransactionForm from '../../components/Widgets/EWallet/Forms/CreateTransaction/reducer';
 
-const widgets = { eWalletTopUpModal, eWalletCreditCard, eWalletCreateTransactionModal };
+const widgets = { eWalletTopUpModal, eWalletCreditCard, eWalletCreateTransactionModal, eWalletCreateTransactionForm };
 
 export default () => (combineReducers(widgets));
 

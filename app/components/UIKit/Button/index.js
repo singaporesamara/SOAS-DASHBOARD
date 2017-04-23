@@ -29,7 +29,7 @@ export default class Button extends Component { // eslint-disable-line
 
   render() {
     const theme = this.props.theme;
-    const propsToRender = omit(this.props, ['theme', 'className']);
+    const propsToRender = omit(this.props, ['theme', 'className', 'tiny']);
     const buttonStyles = classNames('button', {
       '-green': theme === THEMES.GREEN,
       '-green -slim': theme === THEMES.GREEN_SLIM,
