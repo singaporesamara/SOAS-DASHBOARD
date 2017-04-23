@@ -2,26 +2,37 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { CreditCardWidget } from '../../index';
+import CreditCardWidget from '../CreditCard';
+import { triggerWalletTopUp } from '../../../../actions/wallet';
 import styles from './styles.scss';
 import crossIcon from '../../../../assets/images/icons/cross-white.svg';
 
 export class EWalletModalWidget extends Component {
   static propTypes = {
-    visible: PropTypes.bool,
+    widget: PropTypes.object.isRequired,
+    triggerWalletTopUp: PropTypes.func.isRequired,
   };
 
-  static defaultProps = {
-    visible: false,
-  };
+  constructor(props, context) {
+    super(props, context);
+    this.onWalletClose = ::this.onWalletClose;
+  }
+
+  onWalletClose(event) {
+    event.preventDefault();
+    this.props.triggerWalletTopUp({ opened: false });
+  }
 
   render() {
-    const opened = this.props.visible;
+    const { widget } = this.props;
+    const { opened } = widget.toJS();
     return (
       <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay} contentLabel="EWalletModalWidget">
         <div className={styles.modal}>
           <div className={styles.modalTitle}>
-            <a href="/" className={styles.modalClose}><img src={crossIcon} alt="Close" /></a>
+            <a href="/" className={styles.modalClose} onClick={this.onWalletClose}>
+              <img src={crossIcon} alt="Close" />
+            </a>
             Top up eWallet
           </div>
           <div className={styles.modalContent}>
@@ -48,4 +59,10 @@ export class EWalletModalWidget extends Component {
   }
 }
 
-export default connect(() => ({}), {})(EWalletModalWidget);
+function mapStateToProps(state) {
+  return {
+    widget: state.getIn(['widgets', 'eWalletModal']),
+  };
+}
+
+export default connect(mapStateToProps, { triggerWalletTopUp })(EWalletModalWidget);

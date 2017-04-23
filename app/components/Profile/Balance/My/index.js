@@ -2,15 +2,23 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Button, BUTTON_THEMES } from '../../../UIKit';
 import { toMoneyString } from '../../../../utils/helpers';
+import { triggerWalletTopUp } from '../../../../actions/wallet';
 import styles from './styles.scss';
 
-export class MyBalance extends Component { // eslint-disable-line react/prefer-stateless-function
+export class MyBalance extends Component {
   static propTypes = {
     profile: PropTypes.object,
+    triggerWalletTopUp: PropTypes.func.isRequired,
   };
 
-  constructor(props, context) { // eslint-disable-line no-useless-constructor
+  constructor(props, context) {
     super(props, context);
+    this.onTopUpClick = ::this.onTopUpClick;
+  }
+
+  onTopUpClick(event) {
+    event.preventDefault();
+    this.props.triggerWalletTopUp({ opened: true });
   }
 
   render() {
@@ -28,7 +36,7 @@ export class MyBalance extends Component { // eslint-disable-line react/prefer-s
             <div className={styles.eWalletBalanceTitle}>e-Wallet balance</div>
           </div>
           <div>
-            <Button theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE}>Top Up</Button>
+            <Button theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} onClick={this.onTopUpClick}>Top Up</Button>
           </div>
         </div>
       </div>
@@ -36,4 +44,4 @@ export class MyBalance extends Component { // eslint-disable-line react/prefer-s
   }
 }
 
-export default connect(() => ({}), {})(MyBalance);
+export default connect(() => ({}), { triggerWalletTopUp })(MyBalance);
