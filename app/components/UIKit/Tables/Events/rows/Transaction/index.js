@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class TransactionRow extends Component {
+export default class TransactionRow extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     event: PropTypes.object.isRequired,
   };

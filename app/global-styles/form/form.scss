@@ -2,6 +2,10 @@
   .form-row {
     & + .form-row {
       margin-top: 20px;
+
+      &.-tiny {
+        margin-top: 15px;
+      }
     }
 
     .form-col {

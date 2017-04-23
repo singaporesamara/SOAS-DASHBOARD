@@ -26,6 +26,7 @@ export default class EventsTable extends Component {
       } else if (event.type === TYPES.TRANSACTION) {
         return <TransactionRow key={index} event={event} />;
       }
+      return null;
     });
   }
 
@@ -34,8 +35,8 @@ export default class EventsTable extends Component {
     return (
       <div className={styles.table}>
         <div className={refreshStyles}>
-          <a href="#" className="link -gray -dotted" onClick={this.props.onRefresh}>
-            <img src={refreshIcon} /> Refresh
+          <a href="/" className="link -gray -dotted" onClick={this.props.onRefresh}>
+            <img src={refreshIcon} alt="Refresh" /> Refresh
           </a>
         </div>
         <div className={styles.tableWrapper}>

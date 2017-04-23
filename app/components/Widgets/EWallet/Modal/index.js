@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { CreditCardWidget } from '../../index';
 import styles from './styles.scss';
-import crossIcon from '../../../assets/images/icons/cross-white.svg';
+import crossIcon from '../../../../assets/images/icons/cross-white.svg';
 
 export class EWalletModalWidget extends Component {
   static propTypes = {
@@ -20,7 +21,7 @@ export class EWalletModalWidget extends Component {
       <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay}>
         <div className={styles.modal}>
           <div className={styles.modalTitle}>
-            <a href="#" className={styles.modalClose}><img src={crossIcon} alt="Close"/></a>
+            <a href="/" className={styles.modalClose}><img src={crossIcon} alt="Close" /></a>
             Top up eWallet
           </div>
           <div className={styles.modalContent}>
@@ -30,7 +31,7 @@ export class EWalletModalWidget extends Component {
                 <Tab className="tabs-head-item">by GIRO</Tab>
               </TabList>
               <TabPanel className="tabs-content">
-                <div>ssasa</div>
+                <CreditCardWidget />
               </TabPanel>
               <TabPanel className="tabs-content">
                 <div>

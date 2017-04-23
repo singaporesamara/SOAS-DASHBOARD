@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class InvoiceRow extends Component {
+export default class InvoiceRow extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     event: PropTypes.object,
   };
@@ -12,7 +12,7 @@ export default class InvoiceRow extends Component {
         <td className="-w10">{event.date}</td>
         <td className="-w20">{event.title}</td>
         <td className="-w30" colSpan="2">{event.description}</td>
-        <td className="-w40"><a href="#" className="link -blue -underline">See invoice</a></td>
+        <td className="-w40"><a href="/" className="link -blue -underline">See invoice</a></td>
       </tr>
     );
   }

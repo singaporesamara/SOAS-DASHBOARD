@@ -1,0 +1,26 @@
+@import "../../../../global-styles/variables";
+
+.creditCard {
+  .card {
+    padding: 15px 16px 40px 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 38px rgba(0, 0, 0, 0.05), 0 0 12px rgba(0, 0, 0, 0.05);
+
+    .cardIcons {
+      img {
+        margin-right: 10px;
+
+        & + img {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .cardNumber {
+      margin-top: 35px;
+    }
+
+    .cardExpiration {}
+    .cardCVC {}
+  }
+}
