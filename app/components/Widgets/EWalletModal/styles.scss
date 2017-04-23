@@ -1,0 +1,54 @@
+@import "../../../global-styles/variables";
+
+.dialog {
+  background-color: $white-color;
+  position: absolute;
+  overflow: hidden;
+  outline: none;
+  top: 60px;
+  right: 0;
+  height: 550px;
+  width: 500px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 3px 38px rgba(0, 0, 0, 0.05), 0 0 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-out;
+}
+
+.overlay {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $transparent-color;
+  z-index: 9999;
+  padding: 0 10px;
+}
+
+.modal {
+  .modalClose {
+    position: absolute;
+    top: 37px;
+    left: 33px;
+    font-size: 0;
+    height: 16px;
+    width: 16px;
+  }
+
+  .modalTitle {
+    color: $white-color;
+    background: $curious-blue-color;
+    font-size: 32px;
+    padding: 20px 33px 68px 70px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .modalContent {
+    position: relative;
+    z-index: 2;
+    margin-top: -44px;
+  }
+}
