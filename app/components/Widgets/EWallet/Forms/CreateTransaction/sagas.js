@@ -3,10 +3,11 @@ import routes from '../../../../../utils/network/api';
 import { setFormErrors } from '../../../../../actions/common';
 import { loadEvents } from '../../../../../actions/events';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
+import { TRANSACTION_STATUS } from '../../../../../constants/tansactions';
 import { updateUserProfile } from '../../../../../sagas/common/user';
 import { convertCreateTransactionRequest } from '../../../../../utils/converters/api/request';
 import { CREATE_TRANSACTION } from './constants';
-import { setLoading } from './actions';
+import { setLoading, transactionFinished } from './actions';
 
 export function* eWalletCreateTransactionFormSaga({ payload }) {
   yield put(setLoading(true));
@@ -21,9 +22,9 @@ export function* eWalletCreateTransactionFormSaga({ payload }) {
       alert(message);
     }
   } else {
-    yield updateUserProfile();
+    yield put(transactionFinished(TRANSACTION_STATUS.COMPLETED));
     yield put(loadEvents());
-    alert('done..');
+    yield updateUserProfile();
   }
 }
 

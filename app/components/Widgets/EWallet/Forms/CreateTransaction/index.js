@@ -2,13 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { pick, merge } from 'lodash';
+import TransactionCompleted from '../../Messages/TransactionCompleted';
 import { validateForm, clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
-import { createTransaction } from './actions';
+import { createTransaction, backToForm } from './actions';
 import PURPOSES from './purposes';
 import styles from './styles.scss';
 
@@ -19,6 +20,7 @@ export class CreateTransactionForm extends BaseComponent {
     triggerWalletCreateTransaction: PropTypes.func.isRequired,
     clearFormErrors: PropTypes.func.isRequired,
     createTransaction: PropTypes.func.isRequired,
+    backToForm: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -27,6 +29,7 @@ export class CreateTransactionForm extends BaseComponent {
     this.onFormSubmit = ::this.onFormSubmit;
     this.onValueChange = ::this.onValueChange;
     this.onCancel = ::this.onCancel;
+    this.onClose = ::this.onClose;
   }
 
   onFormSubmit(event) {
@@ -38,11 +41,16 @@ export class CreateTransactionForm extends BaseComponent {
 
   onCancel(event) {
     event.preventDefault();
-    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
-    this.props.triggerWalletCreateTransaction({ opened: false });
+    this.onClose();
   }
 
-  render() {
+  onClose() {
+    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
+    this.props.triggerWalletCreateTransaction({ opened: false });
+    this.props.backToForm();
+  }
+
+  renderForm() {
     const widget = this.props.widget.toJS();
     const tiny = true;
     const footerStyles = classNames('pure-g form-row', styles.formFooter);
@@ -77,6 +85,13 @@ export class CreateTransactionForm extends BaseComponent {
       </div>
     );
   }
+
+  render() {
+    const widget = this.props.widget.toJS();
+    const { transaction } = widget;
+    if (transaction.completed) return <TransactionCompleted onClose={this.onClose} />;
+    return this.renderForm();
+  }
 }
 
 function mapStateToProps(state) {
@@ -85,4 +100,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { validateForm, triggerWalletCreateTransaction, clearFormErrors, createTransaction })(CreateTransactionForm);
+export default connect(mapStateToProps, { validateForm, triggerWalletCreateTransaction, clearFormErrors, createTransaction, backToForm })(CreateTransactionForm);

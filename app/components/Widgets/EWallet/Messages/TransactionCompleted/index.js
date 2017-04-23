@@ -1,15 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Button, BUTTON_THEMES } from '../../../../../UIKit';
-import { triggerWalletTopUp } from '../../../../../../actions/wallet';
-import { backToForm } from '../actions';
+import { Button, BUTTON_THEMES } from '../../../../UIKit';
 import styles from './styles.scss';
-import successIcon from '../../../../../../assets/images/icons/success-circle-green.svg';
+import successIcon from '../../../../../assets/images/icons/success-circle-green.svg';
 
 export class TransactionCompleted extends Component {
   static propTypes = {
-    backToForm: PropTypes.func.isRequired,
-    triggerWalletTopUp: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onClose: () => {},
   };
 
   constructor(props, context) {
@@ -19,8 +20,7 @@ export class TransactionCompleted extends Component {
 
   onOKClick(event) {
     event.preventDefault();
-    this.props.triggerWalletTopUp({ opened: false });
-    this.props.backToForm();
+    this.props.onClose();
   }
 
   render() {
@@ -40,4 +40,4 @@ export class TransactionCompleted extends Component {
   }
 }
 
-export default connect(() => ({}), { backToForm, triggerWalletTopUp })(TransactionCompleted);
+export default connect(() => ({}), {})(TransactionCompleted);

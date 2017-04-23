@@ -1,7 +1,8 @@
 import { fromJS } from 'immutable';
 import { merge } from 'lodash';
 import { DEFAULT_WIDGET_STATE } from '../../../../../constants/common';
-import { SET_LOADING, BACK_TO_FORM, TRANSACTION_FINISHED, TRANSACTION_STATUS } from './constants';
+import { SET_LOADING, BACK_TO_FORM, TRANSACTION_FINISHED } from './constants';
+import { TRANSACTION_STATUS } from '../../../../../constants/tansactions';
 
 const initialWidget = { transaction: { declined: false, completed: false } };
 const initialState = fromJS(merge({}, initialWidget, DEFAULT_WIDGET_STATE));
