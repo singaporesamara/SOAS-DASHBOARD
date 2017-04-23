@@ -18,3 +18,12 @@ export function convertRegistrationRequest(params) {
     AccountHolderName: params.bankAccountHolderName,
   };
 }
+
+export function convertTopUpRequest(params) {
+  return {
+    card_number: params.number,
+    card_expire: params.expirationDate,
+    card_cvc: params.cvc,
+    amount: params.amount,
+  };
+}

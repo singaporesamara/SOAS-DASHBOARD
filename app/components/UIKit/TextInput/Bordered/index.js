@@ -26,7 +26,7 @@ export default class TextInput extends Component {
   }
 
   renderErrors() {
-    return this.props.error ? (
+    return false && this.props.error ? (
       <div>
         <span className="text-input-error">{this.props.error}</span>
         <span className="text-input-icon -right"><img src={errorIcon} alt="error" /></span>

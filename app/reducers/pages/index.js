@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { omit, keys, forEach } from 'lodash';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'connected-react-router';
-import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, DEFAULT_PAGE_STATE } from '../../constants/common';
+import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, DEFAULT_PAGE_STATE, VALIDATION_TYPES } from '../../constants/common';
 
 import current from './current';
 import login from '../../containers/User/LoginPage/reducer';
@@ -45,9 +45,15 @@ export function commonPageReducer(globalState = fromJS({}), action) {
       // return newState.asImmutable();
     }
     case SET_FORM_ERRORS:
-      return state.setIn(['pages', action.payload.page, 'errors'], fromJS(action.payload.errors));
+      if (action.payload.type === VALIDATION_TYPES.PAGE) {
+        return state.setIn(['pages', action.payload.page, 'errors'], fromJS(action.payload.errors));
+      }
+      return state;
     case CLEAR_FORM_ERRORS:
-      return state.setIn(['pages', action.payload.page, 'errors'], fromJS({}));
+      if (action.payload.type === VALIDATION_TYPES.PAGE) {
+        return state.setIn(['pages', action.payload.page, 'errors'], fromJS({}));
+      }
+      return state;
     case SET_PAGE_NOTICES:
       return state.setIn(['pages', action.payload.page, 'notices'], fromJS(action.payload.notices));
     case CLEAR_PAGE_NOTICES:

@@ -12,5 +12,18 @@ export default {
       minimum: 10,
     },
   },
+  cvc: {
+    presence: true,
+    length: {
+      minimum: 3,
+      maximum: 4,
+    },
+  },
+  greaterThenZero: {
+    presence: true,
+    numericality: {
+      greaterThan: 0,
+    },
+  },
   equalsTo: (field) => ({ equality: field }),
 };
