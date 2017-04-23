@@ -1,6 +1,7 @@
 export function convertProfileResponse(params) {
   return {
-    email: params.Email,
-    registered: params.Registered,
+    email: params.profile.Email,
+    registered: params.profile.Registered,
+    balance: params.balance,
   };
 }

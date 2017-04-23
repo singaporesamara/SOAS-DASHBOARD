@@ -1,5 +1,5 @@
 import { withBasePath } from './request';
-import { post } from './methods';
+import { post, get } from './methods';
 const host = withBasePath('http://api.dev-soaspay.com:8080');
 
 export default {
@@ -10,5 +10,13 @@ export default {
     changePassword: post(host('/auth/set-password/')),
     register: post(host('/profile/registration-form/')),
     profile: post(host('/profile')),
+    checkProfile: post(host('/profile/check/')),
+  },
+  transactions: {
+    create: post(host('/transaction/create/')),
+    topUp: post(host('/transaction/topup/')),
+  },
+  events: {
+    news: get(host('/profile/news/')),
   },
 };

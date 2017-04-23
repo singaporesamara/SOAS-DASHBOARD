@@ -17,6 +17,7 @@ export class HomePage extends BaseComponent {
     layoutUpdate: PropTypes.func.isRequired,
     loadPage: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
   };
 
   constructor(props, context) { // eslint-disable-line no-useless-constructor
@@ -56,7 +57,8 @@ export class HomePage extends BaseComponent {
 
   render() {
     const page = this.props.page.toJS();
-    if (page.loading) return null;
+    const { profile } = this.props.user.toJS();
+    if (page.loading || !profile) return null;
     const eWalletVisible = true;
     return (
       <MainAppContainer>
@@ -64,7 +66,7 @@ export class HomePage extends BaseComponent {
         <EWalletModalWidget visible={eWalletVisible} />
         <div className={styles.page}>
           <div className={styles.pageBalance}>
-            <MyBalance />
+            <MyBalance profile={profile} />
           </div>
           <div className={styles.pageEvents}>
             {this.renderEvents()}
@@ -77,6 +79,7 @@ export class HomePage extends BaseComponent {
 
 function mapStateToProps(state) {
   return {
+    user: state.get('user'),
     page: state.getIn(['pages', 'application']),
   };
 }

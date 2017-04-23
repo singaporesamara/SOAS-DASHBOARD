@@ -34,7 +34,7 @@ export function* getUserProfile() {
   let profile = null;
 
   if (!response.err) {
-    profile = response.data.profile;
+    profile = response.data;
   }
 
   return profile;
