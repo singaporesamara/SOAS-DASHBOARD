@@ -55,6 +55,15 @@
     padding: 11px;
     min-width: 190px;
 
+    &.-tiny {
+      font-size: 14px;
+      line-height: 14px;
+      padding: 11px 0;
+      text-align: center;
+      min-width: 80px;
+      border-radius: 3px;
+    }
+
     &.-blue {
       background: $denim-color;
       border: 1px solid $denim-color;
@@ -102,15 +111,15 @@
 
       &:hover, &.-inverse {
         background: $transparent-color;
-        border: 1px solid $trout-color;
-        color: $trout-color;
+        border: 1px solid $iron-color-2;
+        color: $boulder-color;
       }
 
       &.-inverse {
         &:hover {
           background: $iron-color-2;
-          border: 1px solid $trout-color;
-          color: $trout-color;
+          border: 1px solid $silver-sand-color;
+          color: $boulder-color;
         }
       }
     }

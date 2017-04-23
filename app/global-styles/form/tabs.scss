@@ -73,5 +73,15 @@
         padding: 23px 27px 41px 27px;
       }
     }
+
+    &.-full-width {
+      .tabs-head {
+        padding: 0 45px;
+
+        .tabs-head-item {
+          width: 100%;
+        }
+      }
+    }
   }
 }

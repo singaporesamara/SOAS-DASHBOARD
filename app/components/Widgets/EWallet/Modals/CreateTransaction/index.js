@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
+import CreateTransactionForm from '../../Forms/CreateTransaction';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
 import styles from './styles.scss';
 
@@ -27,13 +28,13 @@ export class EWalletCreateTransactionModalWidget extends Component {
       <EWalletModalWrapper opened={opened} title="Create eWallet transaction" onClose={this.onWalletClose}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <Tabs className="tabs -blue-and-white">
+            <Tabs className="tabs -blue-and-white -full-width">
               <TabList className="tabs-head" activeTabClassName="-selected">
-                <Tab className="tabs-head-item">Outcome ewallet transaction </Tab>
+                <Tab className="tabs-head-item">Outcome eWallet transaction </Tab>
               </TabList>
               <TabPanel className="tabs-content">
-                <div>
-                  eWallet transactions by GIRO is currently in dev mode..
+                <div className={styles.modalContentForm}>
+                  <CreateTransactionForm />
                 </div>
               </TabPanel>
             </Tabs>

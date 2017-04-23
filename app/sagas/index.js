@@ -8,7 +8,7 @@ import applicationHomeSaga from '../containers/Application/HomePage/sagas';
 import homeSaga from '../containers/HomePage/sagas';
 
 // widgets
-import eWalletCreditCardSaga from '../components/Widgets/EWallet/CreditCard/sagas';
+import eWalletCreditCardSaga from '../components/Widgets/EWallet/Forms/CreditCard/sagas';
 
 // common
 import formSaga from './common/form';

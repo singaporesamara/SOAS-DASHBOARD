@@ -2,15 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { pick } from 'lodash';
-import BaseComponent from '../../../../../containers/Base';
-import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../UIKit';
-import { validateForm } from '../../../../../actions/common';
-import { VALIDATION_TYPES } from '../../../../../constants/common';
-import RULES from '../../../../../utils/validation/rules';
+import BaseComponent from '../../../../../../containers/Base';
+import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../../UIKit';
+import { validateForm } from '../../../../../../actions/common';
+import { VALIDATION_TYPES } from '../../../../../../constants/common';
+import RULES from '../../../../../../utils/validation/rules';
 import { topUp } from '../actions';
 import styles from './styles.scss';
-import visaIcon from '../../../../../assets/images/icons/visa.svg';
-import mcIcon from '../../../../../assets/images/icons/master-card.svg';
+import visaIcon from '../../../../../../assets/images/icons/visa.svg';
+import mcIcon from '../../../../../../assets/images/icons/master-card.svg';
 
 export class CreditCardForm extends BaseComponent {
   static propTypes = {

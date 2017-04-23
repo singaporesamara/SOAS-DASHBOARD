@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
-import CreditCardWidget from '../../CreditCard';
+import CreditCardWidget from '../../Forms/CreditCard';
 import { triggerWalletTopUp } from '../../../../../actions/wallet';
 import styles from './styles.scss';
 

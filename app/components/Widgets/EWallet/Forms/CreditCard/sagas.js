@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import routes from '../../../../utils/network/api';
-import { convertTopUpRequest } from '../../../../utils/converters/api/request';
+import routes from '../../../../../utils/network/api';
+import { convertTopUpRequest } from '../../../../../utils/converters/api/request';
 import { setLoading, transactionFinished } from './actions';
 import { TOP_UP, TRANSACTION_STATUS } from './constants';
 

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Button, BUTTON_THEMES } from '../../../../UIKit';
-import { triggerWalletTopUp } from '../../../../../actions/wallet';
+import { Button, BUTTON_THEMES } from '../../../../../UIKit';
+import { triggerWalletTopUp } from '../../../../../../actions/wallet';
 import { backToForm } from '../actions';
 import styles from './styles.scss';
-import successIcon from '../../../../../assets/images/icons/success-circle-green.svg';
+import successIcon from '../../../../../../assets/images/icons/success-circle-green.svg';
 
 export class TransactionCompleted extends Component {
   static propTypes = {
