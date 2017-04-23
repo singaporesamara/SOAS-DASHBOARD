@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { pick } from 'lodash';
-import { validateForm } from '../../../../../actions/common';
+import { validateForm, clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
@@ -15,6 +15,7 @@ export class CreateTransactionForm extends BaseComponent {
     widget: PropTypes.object.isRequired,
     validateForm: PropTypes.func.isRequired,
     triggerWalletCreateTransaction: PropTypes.func.isRequired,
+    clearFormErrors: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -34,6 +35,7 @@ export class CreateTransactionForm extends BaseComponent {
 
   onCancel(event) {
     event.preventDefault();
+    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerWalletCreateTransaction({ opened: false });
   }
 
@@ -79,4 +81,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { validateForm, triggerWalletCreateTransaction })(CreateTransactionForm);
+export default connect(mapStateToProps, { validateForm, triggerWalletCreateTransaction, clearFormErrors })(CreateTransactionForm);

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
 import CreditCardWidget from '../../Forms/CreditCard';
+import { clearFormErrors } from '../../../../../actions/common';
+import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { triggerWalletTopUp } from '../../../../../actions/wallet';
 import styles from './styles.scss';
 
@@ -10,6 +12,7 @@ export class EWalletTopUpModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
     triggerWalletTopUp: PropTypes.func.isRequired,
+    clearFormErrors: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -18,6 +21,7 @@ export class EWalletTopUpModalWidget extends Component {
   }
 
   onWalletClose() {
+    this.props.clearFormErrors('eWalletCreditCard', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerWalletTopUp({ opened: false });
   }
 
@@ -57,4 +61,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { triggerWalletTopUp })(EWalletTopUpModalWidget);
+export default connect(mapStateToProps, { triggerWalletTopUp, clearFormErrors })(EWalletTopUpModalWidget);

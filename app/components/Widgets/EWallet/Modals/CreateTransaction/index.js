@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
 import CreateTransactionForm from '../../Forms/CreateTransaction';
+import { clearFormErrors } from '../../../../../actions/common';
+import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
 import styles from './styles.scss';
 
@@ -10,6 +12,7 @@ export class EWalletCreateTransactionModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
     triggerWalletCreateTransaction: PropTypes.func.isRequired,
+    clearFormErrors: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -18,6 +21,7 @@ export class EWalletCreateTransactionModalWidget extends Component {
   }
 
   onWalletClose() {
+    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerWalletCreateTransaction({ opened: false });
   }
 
@@ -51,4 +55,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { triggerWalletCreateTransaction })(EWalletCreateTransactionModalWidget);
+export default connect(mapStateToProps, { triggerWalletCreateTransaction, clearFormErrors })(EWalletCreateTransactionModalWidget);
