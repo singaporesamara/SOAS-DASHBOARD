@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { filter } from 'lodash';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
@@ -9,8 +10,8 @@ import { EventsTable } from '../../../components/UIKit';
 import { EWalletTopUpModalWidget, EWalletCreateTransactionModalWidget } from '../../../components/Widgets';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
+import { TYPES as EVENT_TYPES } from '../../../constants/events';
 import styles from './styles.scss';
-import { FAKE_EVENTS } from './fake';
 
 export class HomePage extends BaseComponent {
   static propTypes = {
@@ -18,6 +19,7 @@ export class HomePage extends BaseComponent {
     loadPage: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    events: PropTypes.object.isRequired,
   };
 
   constructor(props, context) { // eslint-disable-line no-useless-constructor
@@ -31,6 +33,8 @@ export class HomePage extends BaseComponent {
   }
 
   renderEvents() {
+    const events = this.props.events.toJS();
+    const transactions = filter(events, (event) => event.type === EVENT_TYPES.TRANSACTION);
     return (
       <Tabs className="tabs -default">
         <TabList className="tabs-head" activeTabClassName="-selected">
@@ -39,12 +43,10 @@ export class HomePage extends BaseComponent {
           <Tab className="tabs-head-item">Invoices</Tab>
         </TabList>
         <TabPanel className="tabs-content -tiny">
-          <EventsTable events={FAKE_EVENTS} />
+          <EventsTable events={events} />
         </TabPanel>
-        <TabPanel className="tabs-content">
-          <div className={styles.pageEventsEmpty}>
-            Sorry, there are no Transactions yet..
-          </div>
+        <TabPanel className="tabs-content -tiny">
+          <EventsTable events={transactions} />
         </TabPanel>
         <TabPanel className="tabs-content">
           <div className={styles.pageEventsEmpty}>
@@ -81,6 +83,7 @@ function mapStateToProps(state) {
   return {
     user: state.get('user'),
     page: state.getIn(['pages', 'application']),
+    events: state.getIn(['entities', 'events']),
   };
 }
 

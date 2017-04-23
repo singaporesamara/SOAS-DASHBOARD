@@ -11,6 +11,7 @@ import globalReducer from '../containers/App/reducer';
 import languageProviderReducer from '../containers/LanguageProvider/reducer';
 import pages, { commonPageReducer } from './pages/index';
 import widgets, { commonWidgetReducer } from './widgets/index';
+import entities from './entities/index';
 import layout from './pages/layout';
 import user from './entities/user';
 
@@ -54,6 +55,7 @@ export default function createReducer(asyncReducers) {
     user,
     pages: pages(),
     widgets: widgets(),
+    entities: entities(),
     ...asyncReducers,
   });
 

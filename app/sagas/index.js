@@ -14,9 +14,10 @@ import eWalletCreateTransactionFormSaga from '../components/Widgets/EWallet/Form
 // common
 import formSaga from './common/form';
 import userSaga from './common/user';
+import eventsSaga from './common/events';
 
 const addSagas = (store) => {
-  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga];
+  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga, eventsSaga];
 
   allSagas.forEach((sagas) => {
     sagas.forEach((saga) => {

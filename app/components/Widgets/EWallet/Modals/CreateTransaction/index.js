@@ -30,7 +30,6 @@ export class EWalletCreateTransactionModalWidget extends Component {
     const { widget, formWidget } = this.props;
     const { opened } = widget.toJS();
     const { loading } = formWidget.toJS();
-    console.info(formWidget.toJS());
     return (
       <EWalletModalWrapper opened={opened} title="Create eWallet transaction" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>

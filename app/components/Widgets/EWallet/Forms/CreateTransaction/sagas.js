@@ -1,6 +1,7 @@
 import { call, takeLatest, put } from 'redux-saga/effects';
 import routes from '../../../../../utils/network/api';
 import { setFormErrors } from '../../../../../actions/common';
+import { loadEvents } from '../../../../../actions/events';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { updateUserProfile } from '../../../../../sagas/common/user';
 import { convertCreateTransactionRequest } from '../../../../../utils/converters/api/request';
@@ -21,6 +22,7 @@ export function* eWalletCreateTransactionFormSaga({ payload }) {
     }
   } else {
     yield updateUserProfile();
+    yield put(loadEvents());
     alert('done..');
   }
 }

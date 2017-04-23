@@ -8,7 +8,7 @@ export default function reducer(state = fromJS(initialUserState), action) {
     case SET_USER:
       return fromJS(action.payload.user);
     case DESTROY_USER:
-      return DEFAULT_USER_STATE;
+      return fromJS(DEFAULT_USER_STATE);
     case SET_PROFILE:
       return state.merge({ profile: action.payload.profile });
     default:
