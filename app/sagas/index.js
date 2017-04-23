@@ -8,14 +8,16 @@ import applicationHomeSaga from '../containers/Application/HomePage/sagas';
 import homeSaga from '../containers/HomePage/sagas';
 
 // widgets
-import eWalletCreditCardSaga from '../components/Widgets/EWallet/CreditCard/sagas';
+import eWalletCreditCardSaga from '../components/Widgets/EWallet/Forms/CreditCard/sagas';
+import eWalletCreateTransactionFormSaga from '../components/Widgets/EWallet/Forms/CreateTransaction/sagas';
 
 // common
 import formSaga from './common/form';
 import userSaga from './common/user';
+import eventsSaga from './common/events';
 
 const addSagas = (store) => {
-  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga];
+  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga, eventsSaga];
 
   allSagas.forEach((sagas) => {
     sagas.forEach((saga) => {

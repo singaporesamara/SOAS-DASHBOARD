@@ -1,0 +1,75 @@
+@import "../../../../../global-styles/variables";
+@import "../../../../../global-styles/mixins";
+
+.dialog {
+  background-color: $white-color;
+  position: absolute;
+  overflow: hidden;
+  outline: none;
+  top: 30px;
+  right: 0;
+  height: 570px;
+  width: 460px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 3px 38px rgba(0, 0, 0, 0.05), 0 0 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-out;
+}
+
+.overlay {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $transparent-color;
+  z-index: 9999;
+  padding: 0 10px;
+}
+
+.modal {
+  @include inner-placeholders();
+  height: 100%;
+  min-height: 100%;
+
+  .modalClose {
+    position: absolute;
+    top: 34px;
+    left: 30px;
+    font-size: 0;
+    height: 16px;
+    width: 16px;
+  }
+
+  .modalTitle {
+    color: $white-color;
+    background: $curious-blue-color;
+    font-size: 28px;
+    padding: 18px 30px 62px 63px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .modalLoader {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+
+    :global {
+      .av-loading-bullet {
+        color: $curious-blue-color;
+      }
+    }
+  }
+
+  input, button, textarea {
+    font-family: $font-family-regular;
+  }
+}

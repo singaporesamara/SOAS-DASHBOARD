@@ -1,76 +1,158 @@
 @import "../../../global-styles/variables";
 
 .select {
-  .selectLabel {
-    color: $tundora-color;
-    margin-bottom: 5px;
-    font-size: 16px;
+  &.selectOld {
+    .selectLabel {
+      color: $tundora-color;
+      margin-bottom: 5px;
+      font-size: 16px;
 
-    &.selectLabelInvalid {
-      color: $red-orange-color;
+      &.selectLabelInvalid {
+        color: $red-orange-color;
+      }
+    }
+
+    .selectField {
+      position: relative;
+
+      :global {
+        .Select-arrow-zone {
+          padding-right: 10px;
+        }
+
+        .Select-value-label {
+          font-size: 14px;
+          line-height: 38px;
+        }
+
+        .Select-menu-outer {
+          .Select-option {
+            font-size: 14px;
+          }
+        }
+
+        .Select-control {
+          border-color: $iron-color;
+          height: 40px;
+
+          &:hover {
+            box-shadow: none;
+          }
+
+          .Select-placeholder {
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+          }
+        }
+
+        .is-focused:not(.is-open) {
+          .Select-control {
+            border-color: $iron-color;
+            box-shadow: none;
+          }
+        }
+      }
+
+      &.selectFieldInvalid {
+        :global {
+          .Select-control {
+            border-color: $red-orange-color;
+          }
+        }
+      }
+
+      .selectFieldError {
+        color: $red-orange-color;
+        position: absolute;
+        width: 100%;
+        bottom: -15px;
+        right: 10px;
+        display: block;
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 9px;
+      }
     }
   }
 
-  .selectField {
-    position: relative;
+  &.selectInternal {
+    .selectLabel {
+      color: $tundora-color;
+      margin-bottom: 5px;
+      font-size: 16px;
 
-    :global {
-      .Select-arrow-zone {
-        padding-right: 10px;
-      }
-
-      .Select-value-label {
-        font-size: 14px;
-        line-height: 38px;
-      }
-
-      .Select-menu-outer {
-        .Select-option {
-          font-size: 14px;
-        }
-      }
-
-      .Select-control {
-        border-color: $iron-color;
-        height: 40px;
-
-        &:hover {
-          box-shadow: none;
-        }
-
-        .Select-placeholder {
-          height: 40px;
-          line-height: 40px;
-          font-size: 14px;
-        }
-      }
-
-      .is-focused:not(.is-open) {
-        .Select-control {
-          border-color: $iron-color;
-          box-shadow: none;
-        }
+      &.selectLabelInvalid {
+        color: $red-orange-color;
       }
     }
 
-    &.selectFieldInvalid {
+    .selectField {
+      position: relative;
+
       :global {
+        .Select-arrow-zone {
+          padding-right: 10px;
+        }
+
+        .Select-input, .Select-value-label {
+          font-size: 16px;
+          line-height: 44px;
+          color: $black-color;
+          font-family: $font-family-regular;
+        }
+
+        .Select-menu-outer {
+          .Select-option {
+            font-size: 14px;
+          }
+        }
+
         .Select-control {
-          border-color: $red-orange-color;
+          border-color: $iron-color-2;
+          height: 44px;
+
+          &:hover {
+            box-shadow: none;
+          }
+
+          .Select-placeholder {
+            color: transparentize($dusty-gray-color, 0.5);
+            font-family: $font-family-regular;
+            height: 44px;
+            line-height: 44px;
+            font-size: 16px;
+            padding: 0 12px;
+          }
+        }
+
+        .is-focused, .is-open {
+          .Select-control {
+            border-color: $silver-sand-color;
+            box-shadow: none;
+          }
         }
       }
-    }
 
-    .selectFieldError {
-      color: $red-orange-color;
-      position: absolute;
-      width: 100%;
-      bottom: -15px;
-      right: 10px;
-      display: block;
-      text-align: right;
-      text-transform: uppercase;
-      font-size: 9px;
+      &.selectFieldInvalid {
+        :global {
+          .Select-control {
+            border-color: $red-orange-color;
+          }
+        }
+      }
+
+      .selectFieldError {
+        color: $red-orange-color;
+        position: absolute;
+        width: 100%;
+        bottom: -15px;
+        right: 10px;
+        display: block;
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 9px;
+      }
     }
   }
 }

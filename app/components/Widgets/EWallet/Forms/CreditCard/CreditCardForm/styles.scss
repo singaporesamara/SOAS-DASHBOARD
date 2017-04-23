@@ -1,0 +1,55 @@
+@import "../../../../../../global-styles/variables";
+
+.creditCard {
+  .card {
+    padding: 14px 15px 40px 14px;
+    border-radius: 12px;
+    box-shadow: 0 3px 38px rgba(0, 0, 0, 0.05), 0 0 12px rgba(0, 0, 0, 0.05);
+
+    .cardIcons {
+      img {
+        margin-right: 10px;
+
+        & + img {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .cardNumber {
+      margin-top: 32px;
+    }
+
+    .cardExpiration {}
+
+    .cardCVC {
+      display: inline-block;
+      width: 45px;
+    }
+  }
+
+  .creditCardAmount {
+    margin-top: 45px;
+    text-align: center;
+
+    .creditCardAmountField {
+      display: inline-block;
+      width: 120px;
+      text-align: center;
+
+      input {
+        text-align: center;
+      }
+    }
+  }
+
+  .creditCardButton {
+    margin-top: 45px;
+    text-align: center;
+
+    .creditCardButtonWrapper {
+      display: inline-block;
+      width: 195px;
+    }
+  }
+}

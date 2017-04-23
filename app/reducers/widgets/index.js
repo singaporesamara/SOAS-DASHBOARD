@@ -1,10 +1,12 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { SET_FORM_ERRORS, CLEAR_FORM_ERRORS, VALIDATION_TYPES } from '../../constants/common';
-import eWalletCreditCard from '../../components/Widgets/EWallet/CreditCard/reducer';
-import eWalletModal from '../../components/Widgets/EWallet/Modal/reducer';
+import eWalletCreditCard from '../../components/Widgets/EWallet/Forms/CreditCard/reducer';
+import eWalletTopUpModal from '../../components/Widgets/EWallet/Modals/TopUp/reducer';
+import eWalletCreateTransactionModal from '../../components/Widgets/EWallet/Modals/CreateTransaction/reducer';
+import eWalletCreateTransactionForm from '../../components/Widgets/EWallet/Forms/CreateTransaction/reducer';
 
-const widgets = { eWalletModal, eWalletCreditCard };
+const widgets = { eWalletTopUpModal, eWalletCreditCard, eWalletCreateTransactionModal, eWalletCreateTransactionForm };
 
 export default () => (combineReducers(widgets));
 

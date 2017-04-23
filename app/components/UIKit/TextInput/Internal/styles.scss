@@ -1,0 +1,46 @@
+@import "../../../../global-styles/variables";
+
+.textInput {
+  position: relative;
+  font-family: $font-family-regular;
+
+  :global {
+    .text-input-label {
+      margin-bottom: 5px;
+    }
+
+    .text-input-error {
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      right: 10px;
+      display: block;
+      text-align: right;
+      padding-top: 1px;
+    }
+
+    .text-input-icon {
+      position: absolute;
+      top: 38px;
+      right: 10px;
+    }
+  }
+
+  &.textInputSuccess.textInputSuccess {
+    input {
+      border: 1px solid $emerald-color;
+    }
+  }
+
+  &.textInputError.textInputError {
+    input {
+      border: 1px solid $flamingo-color;
+    }
+
+    :global {
+      .text-input-label {
+        color: $red-orange-color;
+      }
+    }
+  }
+}

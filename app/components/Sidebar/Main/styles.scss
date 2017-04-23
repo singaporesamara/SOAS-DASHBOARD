@@ -2,7 +2,7 @@
 
 .sidebar {
   .sidebarMenu {
-    padding: 100px 0 20px 0;
+    padding: 90px 0 18px 0;
 
     .sidebarMenuItems {
       list-style: none;
@@ -18,28 +18,28 @@
       }
 
       & + .sidebarMenuItemsGroup {
-        margin-top: 40px;
+        margin-top: 36px;
       }
     }
 
     .sidebarMenuItem {
       cursor: pointer;
       color: $white-color;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 22px;
+      line-height: 22px;
       position: relative;
 
       .sidebarMenuItemTitle {
-        padding: 5px 20px;
+        padding: 5px 18px;
       }
 
       & > ul {
-        font-size: 18px;
-        line-height: 18px;
-        padding: 0 20px;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 0 18px;
 
         li {
-          padding: 10px 0;
+          padding: 9px 0;
         }
       }
 
@@ -52,11 +52,11 @@
       }
 
       &.sidebarMenuItemTiny {
-        font-size: 14px;
-        line-height: 14px;
+        font-size: 13px;
+        line-height: 13px;
 
         .sidebarMenuItemTitle {
-          padding: 10px 20px;
+          padding: 9px 18px;
         }
       }
     }

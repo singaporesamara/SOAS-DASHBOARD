@@ -1,4 +1,21 @@
+@import "./variables";
+
 @mixin background-opacity($color, $opacity: 0.2) {
   background: $color;
   background: rgba($color, $opacity);
+}
+
+@mixin inner-placeholders() {
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $dusty-gray-color;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $dusty-gray-color;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $dusty-gray-color;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $dusty-gray-color;
+  }
 }

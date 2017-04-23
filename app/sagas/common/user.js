@@ -40,6 +40,14 @@ export function* getUserProfile() {
   return profile;
 }
 
+export function* updateUserProfile() {
+  const profile = yield getUserProfile();
+
+  if (profile) {
+    yield put(setProfile(convertProfileResponse(profile)));
+  }
+}
+
 export function* getUser() {
   let user = yield select((state) => state.get('user'));
 

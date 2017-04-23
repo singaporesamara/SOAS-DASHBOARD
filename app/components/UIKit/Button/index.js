@@ -18,16 +18,18 @@ export const THEMES = {
 export default class Button extends Component { // eslint-disable-line
   static propTypes = {
     theme: PropTypes.string,
+    tiny: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   };
 
   static defaultProps = {
     theme: THEMES.GREEN,
+    tiny: false,
   };
 
   render() {
     const theme = this.props.theme;
-    const propsToRender = omit(this.props, ['theme', 'className']);
+    const propsToRender = omit(this.props, ['theme', 'className', 'tiny']);
     const buttonStyles = classNames('button', {
       '-green': theme === THEMES.GREEN,
       '-green -slim': theme === THEMES.GREEN_SLIM,
@@ -39,6 +41,7 @@ export default class Button extends Component { // eslint-disable-line
       '-default -green -inverse': theme === THEMES.DEFAULT_GREEN_INVERSE,
       '-default -gray': theme === THEMES.DEFAULT_GRAY,
       '-default -gray -inverse': theme === THEMES.DEFAULT_GRAY_INVERSE,
+      '-tiny': this.props.tiny,
     });
     return (
       <button className={buttonStyles} {...propsToRender}>{this.props.children}</button>

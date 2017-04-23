@@ -13,9 +13,19 @@ export default class EventsTable extends Component {
   };
 
   static defaultProps = {
-    onRefresh: (event) => { event.preventDefault(); },
+    onRefresh: () => {},
     events: [],
   };
+
+  constructor(props, context) {
+    super(props, context);
+    this.refresh = ::this.refresh;
+  }
+
+  refresh(event) {
+    event.preventDefault();
+    this.props.onRefresh();
+  }
 
   renderEvents() {
     return map(this.props.events, (event, index) => {
@@ -35,7 +45,7 @@ export default class EventsTable extends Component {
     return (
       <div className={styles.table}>
         <div className={refreshStyles}>
-          <a href="/" className="link -gray -dotted" onClick={this.props.onRefresh}>
+          <a href="/" className="link -gray -dotted" onClick={this.refresh}>
             <img src={refreshIcon} alt="Refresh" /> Refresh
           </a>
         </div>

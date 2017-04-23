@@ -2,21 +2,29 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { signOut } from '../../../actions/user';
+import { triggerWalletCreateTransaction } from '../../../actions/wallet';
 import styles from './styles.scss';
 
 export class MainSidebar extends Component {
   static propTypes = {
     signOut: PropTypes.func.isRequired,
+    triggerWalletCreateTransaction: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
     this.onLogOut = ::this.onLogOut;
+    this.onCreateTransaction = ::this.onCreateTransaction;
   }
 
   onLogOut(event) {
     event.preventDefault();
     this.props.signOut();
+  }
+
+  onCreateTransaction(event) {
+    event.preventDefault();
+    this.props.triggerWalletCreateTransaction({ opened: true });
   }
 
   render() {
@@ -32,7 +40,9 @@ export class MainSidebar extends Component {
                   <li className={activeItem}>
                     <div className={styles.sidebarMenuItemTitle}>Payments</div>
                     <ul>
-                      <li>Create Transaction</li>
+                      <li>
+                        <a href="/create-transaction" className="link" onClick={this.onCreateTransaction}>Create Transaction</a>
+                      </li>
                       <li>Send invoice</li>
                       <li>Payout</li>
                     </ul>
@@ -82,4 +92,4 @@ export class MainSidebar extends Component {
   }
 }
 
-export default connect(() => ({}), { signOut })(MainSidebar);
+export default connect(() => ({}), { signOut, triggerWalletCreateTransaction })(MainSidebar);

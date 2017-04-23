@@ -1,0 +1,14 @@
+@import "../../../../../global-styles/variables";
+
+.modal {
+  .modalContent {
+    position: relative;
+    z-index: 2;
+    margin-top: -40px;
+    height: 100%;
+
+    .modalContentForm {
+      padding: 25px 50px 20px 50px;
+    }
+  }
+}

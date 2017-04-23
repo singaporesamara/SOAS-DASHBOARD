@@ -29,7 +29,11 @@ export function* pageSaga() {
   yield put(requestFinished());
 
   if (user) {
-    yield put(pageLoaded('registration'));
+    if (user.profile.registered) {
+      yield put(push(ROUTES.APP.HOME));
+    } else {
+      yield put(pageLoaded('registration'));
+    }
   } else {
     yield put(push(ROUTES.USER.LOGIN));
   }

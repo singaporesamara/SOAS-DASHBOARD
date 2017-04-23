@@ -4,16 +4,16 @@
   &.-default {
     .tabs-head {
       margin: 0;
-      padding: 0 0 0 30px;
+      padding: 0 0 0 27px;
       list-style: none;
 
       .tabs-head-item {
         color: $denim-color;
         display: inline-block;
         border-radius: 0;
-        padding: 7px 20px;
+        padding: 6px 18px;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 18px;
         outline: none;
         min-width: 115px;
         text-align: center;
@@ -28,13 +28,13 @@
 
     .tabs-content {
       background: $white-color;
-      padding: 45px 30px;
+      padding: 41px 27px;
       //box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
       box-shadow: 0 3px 38px rgba(0,0,0,0.05), 0 0 12px rgba(0,0,0,0.05);
       transition: all 0.3s ease-out;
 
       &.-tiny {
-        padding: 25px 30px 45px 30px;
+        padding: 23px 27px 41px 27px;
       }
     }
   }
@@ -42,16 +42,16 @@
   &.-blue-and-white {
     .tabs-head {
       margin: 0;
-      padding: 0 0 0 50px;
+      padding: 0 0 0 45px;
       list-style: none;
 
       .tabs-head-item {
         color: $white-color;
         display: inline-block;
         border-radius: 0;
-        padding: 7px 20px;
+        padding: 6px 18px;
         cursor: pointer;
-        font-size: 20px;
+        font-size: 18px;
         outline: none;
         min-width: 115px;
         text-align: center;
@@ -65,11 +65,22 @@
 
     .tabs-content {
       background: $white-color;
-      padding: 15px 30px;
+      margin-top: -1px;
+      padding: 14px 27px;
       transition: all 0.3s ease-out;
 
       &.-tiny {
-        padding: 25px 30px 45px 30px;
+        padding: 23px 27px 41px 27px;
+      }
+    }
+
+    &.-full-width {
+      .tabs-head {
+        padding: 0 45px;
+
+        .tabs-head-item {
+          width: 100%;
+        }
       }
     }
   }

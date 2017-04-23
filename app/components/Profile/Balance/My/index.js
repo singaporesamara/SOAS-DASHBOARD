@@ -5,6 +5,8 @@ import { toMoneyString } from '../../../../utils/helpers';
 import { triggerWalletTopUp } from '../../../../actions/wallet';
 import styles from './styles.scss';
 
+const DEFAULT_COMPANY_NAME = 'Nameless Company';
+
 export class MyBalance extends Component {
   static propTypes = {
     profile: PropTypes.object,
@@ -22,10 +24,10 @@ export class MyBalance extends Component {
   }
 
   render() {
-    const { balance } = this.props.profile;
+    const { balance, company } = this.props.profile;
     return (
       <div className={styles.balance}>
-        <div className={styles.companyName}>Apple PTE Ltd</div>
+        <div className={styles.companyName}>{company.name || DEFAULT_COMPANY_NAME}</div>
         <div className={styles.accountBalance}>
           <div className={styles.accountBalanceAmount}>{toMoneyString(balance.account)}</div>
           <div className={styles.accountBalanceTitle}>Account balance</div>
