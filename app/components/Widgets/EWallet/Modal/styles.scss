@@ -28,6 +28,9 @@
 }
 
 .modal {
+  height: 100%;
+  min-height: 100%;
+
   .modalClose {
     position: absolute;
     top: 37px;
@@ -50,6 +53,7 @@
     position: relative;
     z-index: 2;
     margin-top: -44px;
+    height: 100%;
   }
 
   input, button {

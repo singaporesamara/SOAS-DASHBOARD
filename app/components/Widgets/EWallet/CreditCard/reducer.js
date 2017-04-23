@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 import { DEFAULT_WIDGET_STATE } from '../../../../constants/common';
 import { SET_LOADING } from './constants';
 
-const initialState = fromJS(merge({}, DEFAULT_WIDGET_STATE));
+const initialState = fromJS(merge({ transaction: { declined: false, completed: false } }, DEFAULT_WIDGET_STATE));
 
 function creditCardReducer(state = initialState, action) {
   switch (action.type) {
