@@ -48,4 +48,8 @@
     position: relative;
     z-index: 1;
   }
+
+  input, button, textarea {
+    font-family: $font-family-regular;
+  }
 }

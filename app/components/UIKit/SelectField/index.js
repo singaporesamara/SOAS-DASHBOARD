@@ -5,12 +5,24 @@ import classNames from 'classnames';
 import styles from './styles.scss';
 import chevronIcon from '../../../assets/images/icons/chevron-down.svg';
 
+export const THEMES = { OLD: 'old', INTERNAL: 'internal' };
+
 export default class SelectField extends Component {
   static propTypes = {
+    theme: PropTypes.string,
     label: PropTypes.string,
     error: PropTypes.string,
     className: PropTypes.string,
   };
+
+  static defaultProps = {
+    theme: THEMES.OLD,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this.renderArrow = ::this.renderArrow;
+  }
 
   renderArrow() {
     return (
@@ -53,8 +65,12 @@ export default class SelectField extends Component {
   }
 
   render() {
+    const selectStyles = classNames(styles.select, this.props.className, {
+      [styles.selectOld]: this.props.theme === THEMES.OLD,
+      [styles.selectInternal]: this.props.theme === THEMES.INTERNAL,
+    });
     return (
-      <div className={`${styles.select} ${this.props.className}`}>
+      <div className={selectStyles}>
         {this.renderLabel()}
         {this.renderSelectField()}
       </div>

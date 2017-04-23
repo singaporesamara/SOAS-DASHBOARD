@@ -6,8 +6,9 @@ import { validateForm, clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
-import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../UIKit';
+import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
+import PURPOSES from './purposes';
 import styles from './styles.scss';
 
 export class CreateTransactionForm extends BaseComponent {
@@ -43,6 +44,7 @@ export class CreateTransactionForm extends BaseComponent {
     const widget = this.props.widget.toJS();
     const tiny = true;
     const footerStyles = classNames('pure-g form-row', styles.formFooter);
+    const [searchable, clearable] = [true, false];
     return (
       <div className={styles.form}>
         <form className="form" onSubmit={this.onFormSubmit}>
@@ -50,7 +52,7 @@ export class CreateTransactionForm extends BaseComponent {
             <TextInput placeholder="Email or UEN" onChange={this.onValueChange('uen')} theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.uen} />
           </div>
           <div className="form-row">
-            <TextInput placeholder="Purpose" onChange={this.onValueChange('purpose')} theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.purpose} />
+            <SelectField theme={SELECT_FIELD_THEMES.INTERNAL} options={PURPOSES} value={this.state.purpose} searchable={searchable} clearable={clearable} placeholder="Purpose" onChange={this.onValueChange('purpose')} error={widget.errors.purpose} />
           </div>
           <div className="form-row">
             <TextInput placeholder="Description" onChange={this.onValueChange('description')} theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.description} />

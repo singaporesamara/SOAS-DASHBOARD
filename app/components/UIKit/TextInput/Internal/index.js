@@ -4,7 +4,6 @@ import MaskedInput from 'react-text-mask';
 import classNames from 'classnames';
 import { prepareMask } from '../utils';
 import styles from './styles.scss';
-import errorIcon from '../../../../assets/images/icons/danger-sign.svg';
 
 export default class TextInput extends Component {
   static propTypes = {
@@ -26,10 +25,9 @@ export default class TextInput extends Component {
   }
 
   renderErrors() {
-    return false && this.props.error ? (
+    return this.props.error ? (
       <div>
         <span className="text-input-error">{this.props.error}</span>
-        <span className="text-input-icon -right"><img src={errorIcon} alt="error" /></span>
       </div>
     ) : null;
   }
