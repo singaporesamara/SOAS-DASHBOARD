@@ -5,9 +5,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
 import { MyBalance } from '../../../components/Profile/Balance';
+import { EventsTable } from '../../../components/UIKit';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import styles from './styles.scss';
+import { FAKE_EVENTS } from './fake';
 
 export class HomePage extends BaseComponent {
   static propTypes = {
@@ -34,8 +36,8 @@ export class HomePage extends BaseComponent {
           <Tab className="tabs-head-item">Transactions</Tab>
           <Tab className="tabs-head-item">Invoices</Tab>
         </TabList>
-        <TabPanel className="tabs-content">
-          <div>Hello from Foo</div>
+        <TabPanel className="tabs-content -tiny">
+          <EventsTable events={FAKE_EVENTS} />
         </TabPanel>
         <TabPanel className="tabs-content">
           <div className={styles.pageEventsEmpty}>

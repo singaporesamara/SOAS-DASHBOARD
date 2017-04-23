@@ -1,3 +1,5 @@
+@import "./variables";
+
 .link {
   color: inherit;
 
@@ -9,5 +11,13 @@
     &, &:hover {
       text-decoration: underline;
     }
+  }
+
+  &.-gray {
+    color: $oslo-gray-color;
+  }
+
+  &.-blue {
+    color: $denim-color;
   }
 }

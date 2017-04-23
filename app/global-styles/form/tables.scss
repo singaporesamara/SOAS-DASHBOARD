@@ -1,0 +1,48 @@
+@import "../variables";
+
+.table {
+  width: 100%;
+
+  &.-default {
+    font-family: $font-family-medium;
+    color: $black-color;
+    font-size: 14px;
+
+    tr {
+      border-bottom: 1px solid $iron-color-2;
+      cursor: pointer;
+
+      &.-gray {
+        background: $alabaster-color;
+      }
+
+      &:hover {
+        background: $alabaster-color;
+      }
+
+      td {
+        padding: 35px 10px;
+
+        &.-w10 {
+          width: 10%;
+        }
+
+        &.-w15 {
+          width: 15%;
+        }
+
+        &.-w20 {
+          width: 20%;
+        }
+
+        &.-w40 {
+          width: 30%;
+        }
+
+        &.-w70 {
+          width: 70%;
+        }
+      }
+    }
+  }
+}
