@@ -1,10 +1,11 @@
 export function convertProfileResponse(params) {
+  const { profile } = params;
   return {
-    email: params.profile.Email,
-    registered: params.profile.Registered,
+    email: profile.Email,
+    registered: profile.Registered,
     company: {
-      name: params.profile.CoName,
+      name: profile.CoName,
     },
-    balance: params.balance,
+    balance: profile.balance,
   };
 }

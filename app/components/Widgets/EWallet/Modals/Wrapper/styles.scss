@@ -51,6 +51,24 @@
     z-index: 1;
   }
 
+  .modalLoader {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden;
+
+    :global {
+      .av-loading-bullet {
+        color: $curious-blue-color;
+      }
+    }
+  }
+
   input, button, textarea {
     font-family: $font-family-regular;
   }
