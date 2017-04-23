@@ -21,15 +21,15 @@ export class CreateTransactionForm extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { uen: null, purpose: null, description: null, amount: null };
+    this.state = { emailOrUEN: null, purpose: null, description: null, amount: null };
     this.onFormSubmit = ::this.onFormSubmit;
     this.onValueChange = ::this.onValueChange;
     this.onCancel = ::this.onCancel;
   }
 
   onFormSubmit(event) {
-    const form = pick(this.state, ['uen', 'purpose', 'description', 'amount']);
-    const rules = { uen: RULES.required, purpose: RULES.required, description: RULES.required, amount: RULES.greaterThenZero };
+    const form = pick(this.state, ['emailOrUEN', 'purpose', 'description', 'amount']);
+    const rules = { emailOrUEN: RULES.required, purpose: RULES.required, description: RULES.required, amount: RULES.greaterThenZero };
     event.preventDefault();
     this.props.validateForm({ form, rules, name: 'eWalletCreateTransactionForm', type: VALIDATION_TYPES.WIDGET }, { onSuccess: () => { alert('hey..'); } });
   }
@@ -49,7 +49,7 @@ export class CreateTransactionForm extends BaseComponent {
       <div className={styles.form}>
         <form className="form" onSubmit={this.onFormSubmit}>
           <div className="form-row">
-            <TextInput placeholder="Email or UEN" onChange={this.onValueChange('uen')} theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.uen} />
+            <TextInput placeholder="Email or UEN" onChange={this.onValueChange('emailOrUEN')} theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.emailOrUEN} />
           </div>
           <div className="form-row">
             <SelectField theme={SELECT_FIELD_THEMES.INTERNAL} options={PURPOSES} value={this.state.purpose} searchable={searchable} clearable={clearable} placeholder="Purpose" onChange={this.onValueChange('purpose')} error={widget.errors.purpose} />

@@ -9,13 +9,14 @@ import homeSaga from '../containers/HomePage/sagas';
 
 // widgets
 import eWalletCreditCardSaga from '../components/Widgets/EWallet/Forms/CreditCard/sagas';
+import eWalletCreateTransactionFormSaga from '../components/Widgets/EWallet/Forms/CreateTransaction/sagas';
 
 // common
 import formSaga from './common/form';
 import userSaga from './common/user';
 
 const addSagas = (store) => {
-  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga];
+  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga];
 
   allSagas.forEach((sagas) => {
     sagas.forEach((saga) => {

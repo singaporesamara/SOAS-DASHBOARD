@@ -27,3 +27,12 @@ export function convertTopUpRequest(params) {
     amount: params.amount,
   };
 }
+
+export function convertCreateTransactionRequest(params) {
+  return {
+    tokenTo: params.emailOrUEN,
+    amount: params.amount,
+    purpose: params.purpose,
+    description: params.description,
+  };
+}
