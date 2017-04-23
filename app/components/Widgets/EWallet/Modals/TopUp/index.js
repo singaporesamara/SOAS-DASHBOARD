@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Modal from 'react-modal';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import CreditCardWidget from '../CreditCard';
-import { triggerWalletTopUp } from '../../../../actions/wallet';
+import EWalletModalWrapper from '../Wrapper';
+import CreditCardWidget from '../../CreditCard';
+import { triggerWalletTopUp } from '../../../../../actions/wallet';
 import styles from './styles.scss';
-import crossIcon from '../../../../assets/images/icons/cross-white.svg';
 
-export class EWalletModalWidget extends Component {
+export class EWalletTopUpModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
     triggerWalletTopUp: PropTypes.func.isRequired,
@@ -18,8 +17,7 @@ export class EWalletModalWidget extends Component {
     this.onWalletClose = ::this.onWalletClose;
   }
 
-  onWalletClose(event) {
-    event.preventDefault();
+  onWalletClose() {
     this.props.triggerWalletTopUp({ opened: false });
   }
 
@@ -27,14 +25,8 @@ export class EWalletModalWidget extends Component {
     const { widget } = this.props;
     const { opened } = widget.toJS();
     return (
-      <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay} contentLabel="EWalletModalWidget">
+      <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose}>
         <div className={styles.modal}>
-          <div className={styles.modalTitle}>
-            <a href="/" className={styles.modalClose} onClick={this.onWalletClose}>
-              <img src={crossIcon} alt="Close" />
-            </a>
-            Top up eWallet
-          </div>
           <div className={styles.modalContent}>
             <Tabs className="tabs -blue-and-white">
               <TabList className="tabs-head" activeTabClassName="-selected">
@@ -54,15 +46,15 @@ export class EWalletModalWidget extends Component {
             </Tabs>
           </div>
         </div>
-      </Modal>
+      </EWalletModalWrapper>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    widget: state.getIn(['widgets', 'eWalletModal']),
+    widget: state.getIn(['widgets', 'eWalletTopUpModal']),
   };
 }
 
-export default connect(mapStateToProps, { triggerWalletTopUp })(EWalletModalWidget);
+export default connect(mapStateToProps, { triggerWalletTopUp })(EWalletTopUpModalWidget);
