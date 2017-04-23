@@ -1,12 +1,15 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { requestStarted, requestFinished, pageLoaded } from '../../actions/common';
+import { getUser } from '../../sagas/common/user';
 import { ROUTES } from '../../constants/routes';
 import { LOAD_PAGE } from '../../constants/common';
 
 export function* pageSaga() {
   yield put(requestStarted());
-  yield put(push(ROUTES.USER.LOGIN));
+  const user = yield getUser();
+  const route = user ? ROUTES.APP.HOME : ROUTES.USER.LOGIN;
+  yield put(push(route));
   yield put(requestFinished());
   yield put(pageLoaded('home'));
 }

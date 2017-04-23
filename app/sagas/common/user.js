@@ -1,9 +1,10 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { LOGIN, RESOLVE_APP_STAGE, GET_PROFILE, SIGN_OUT } from '../../constants/user';
 import { ROUTES } from '../../constants/routes';
-import { setUser, destroyUser } from '../../actions/user';
+import { setUser, destroyUser, setProfile } from '../../actions/user';
 import { setAuthToken, removeAuthToken } from '../../utils/auth';
+import { convertProfileResponse } from '../../utils/converters/api/response';
 import routes from '../../utils/network/api';
 
 export function* resolveAppStageSaga({ payload: { user } }) {
@@ -33,10 +34,29 @@ export function* getUserProfile() {
   let profile = null;
 
   if (!response.err) {
-    profile = response.data.profile;
+    profile = response.data;
   }
 
   return profile;
+}
+
+export function* getUser() {
+  let user = yield select((state) => state.get('user'));
+
+  if (!user.toJS().profile) {
+    const profile = yield getUserProfile();
+    if (profile) {
+      yield put(setProfile(convertProfileResponse(profile)));
+      const stateUser = yield select((state) => state.get('user'));
+      user = stateUser.toJS();
+    } else {
+      user = null;
+    }
+  } else {
+    user = user.toJS();
+  }
+
+  return user;
 }
 
 function* userFlow() {

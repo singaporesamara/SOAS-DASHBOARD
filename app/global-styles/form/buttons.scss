@@ -45,4 +45,74 @@
   &[disabled] {
     opacity: 0.7;
   }
+
+  &.-default {
+    font-family: $font-family-regular;
+    opacity: 1;
+    font-size: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    padding: 12px;
+    min-width: 190px;
+
+    &.-blue {
+      background: $denim-color;
+      border: 1px solid $denim-color;
+      color: $white-color;
+
+      &:hover, &.-inverse {
+        background: $transparent-color;
+        border: 1px solid $denim-color;
+        color: $denim-color;
+      }
+
+      &.-inverse {
+        &:hover {
+          background: $denim-color;
+          border: 1px solid $denim-color;
+          color: $white-color;
+        }
+      }
+    }
+
+    &.-green {
+      background: $jungle-green-color;
+      border: 1px solid $jungle-green-color;
+      color: $white-color;
+
+      &:hover, &.-inverse {
+        background: $transparent-color;
+        border: 1px solid $jungle-green-color;
+        color: $jungle-green-color;
+      }
+
+      &.-inverse {
+        &:hover {
+          background: $jungle-green-color;
+          border: 1px solid $jungle-green-color;
+          color: $white-color;
+        }
+      }
+    }
+
+    &.-gray {
+      background: $iron-color-2;
+      border: 1px solid $trout-color;
+      color: $trout-color;
+
+      &:hover, &.-inverse {
+        background: $transparent-color;
+        border: 1px solid $trout-color;
+        color: $trout-color;
+      }
+
+      &.-inverse {
+        &:hover {
+          background: $iron-color-2;
+          border: 1px solid $trout-color;
+          color: $trout-color;
+        }
+      }
+    }
+  }
 }

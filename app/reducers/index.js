@@ -10,6 +10,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import globalReducer from '../containers/App/reducer';
 import languageProviderReducer from '../containers/LanguageProvider/reducer';
 import pages, { commonPageReducer } from './pages/index';
+import widgets, { commonWidgetReducer } from './widgets/index';
 import layout from './pages/layout';
 import user from './entities/user';
 
@@ -52,12 +53,14 @@ export default function createReducer(asyncReducers) {
     layout,
     user,
     pages: pages(),
+    widgets: widgets(),
     ...asyncReducers,
   });
 
   return (state, action) => {
     let newState = state;
     newState = commonPageReducer(newState, action, state);
+    newState = commonWidgetReducer(newState, action, state);
     return combined(newState, action);
   };
 }

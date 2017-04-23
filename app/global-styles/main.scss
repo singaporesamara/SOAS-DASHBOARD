@@ -1,3 +1,5 @@
+@import url("https://fast.fonts.net/cssapi/b8dffe40-4194-4aef-b167-4b8857139e85.css");
+
 @import "./variables";
 
 @import "./typography";
@@ -7,6 +9,8 @@
 @import "./form/form";
 @import "./form/buttons";
 @import "./form/inputs";
+@import "./form/tabs";
+@import "./form/tables";
 
 html, body {
   height: 100%;

@@ -27,6 +27,20 @@
     }
   }
 
+  &.-bordered {
+    input {
+      color: $black-color;
+      border-bottom: 1px solid $dusty-gray-color;
+      background: $transparent-color;
+      padding: 0 0 4px 0;
+      font-size: 20px;
+
+      &:focus {
+        border-color: $curious-blue-color;
+      }
+    }
+  }
+
   .text-input-label {
     color: $heather-color;
     text-transform: uppercase;

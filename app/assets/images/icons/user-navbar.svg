@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Requests Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="soas--s3_1" transform="translate(-1365.000000, -26.000000)" fill="#7F8FA4">
+            <g id="Icons" transform="translate(1365.000000, 16.000000)">
+                <g id="Request">
+                    <path d="M14,21.800264 C14,20.6124065 12.849,19.5807303 11.138,19 C10.406,20.0272767 9.279,20.700396 8,20.700396 C6.721,20.700396 5.594,20.0272767 4.862,19 C3.151,19.5807303 2,20.6124065 2,21.800264 L2,24 L3,24 L3.557,24 L11,24 L12,24 L12.443,24 L14,24 L14,21.800264 Z M10,14 C10,12.895 9.105,12 8,12 C6.895,12 6,12.895 6,14 L6,17 C6,18.105 6.895,19 8,19 C9.105,19 10,18.105 10,17 L10,14 Z M15,26 L12.756,26 L3.244,26 L1,26 C0.448,26 0,25.552 0,25 L0,22 C0,20.136 1.648,18.528 4.068,17.669 C4.03,17.451 4,17.229 4,17 L4,14 C4,11.791 5.791,10 8,10 C10.209,10 12,11.791 12,14 L12,17 C12,17.229 11.97,17.451 11.932,17.669 C14.352,18.528 16,20.136 16,22 L16,25 C16,25.552 15.552,26 15,26 L15,26 Z" id="Requests-Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

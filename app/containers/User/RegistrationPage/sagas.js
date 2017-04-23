@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { requestStarted, requestFinished, pageLoaded, setPageNotices, clearPageNotices } from '../../../actions/common';
 import { ROUTES } from '../../../constants/routes';
 import { LOAD_PAGE } from '../../../constants/common';
-import { getUserProfile } from '../../../sagas/common/user';
+import { getUser } from '../../../sagas/common/user';
 import { REGISTER } from './constants';
 import { registrationCompleted } from './actions';
 import routes from '../../../utils/network/api';
@@ -25,10 +25,10 @@ export function* registrationSaga({ payload: { profile } }) {
 
 export function* pageSaga() {
   yield put(requestStarted());
-  const profile = yield getUserProfile();
+  const user = yield getUser();
   yield put(requestFinished());
 
-  if (profile) {
+  if (user) {
     yield put(pageLoaded('registration'));
   } else {
     yield put(push(ROUTES.USER.LOGIN));

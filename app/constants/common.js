@@ -19,3 +19,7 @@ export const DEFAULT_LAYOUT = {
 export const LAYOUT_NO_FOOTER = merge({}, DEFAULT_LAYOUT, { footer: { show: false } });
 
 export const DEFAULT_PAGE_STATE = { errors: {}, notices: {}, loading: false };
+
+export const DEFAULT_WIDGET_STATE = { errors: {}, notices: {}, loading: false };
+
+export const VALIDATION_TYPES = { PAGE: 'page', WIDGET: 'widget' };

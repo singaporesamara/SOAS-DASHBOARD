@@ -1,5 +1,5 @@
 import { merge, pick } from 'lodash';
-import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED } from '../constants/common';
+import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, VALIDATION_TYPES } from '../constants/common';
 
 export function layoutUpdate(layout) {
   return {
@@ -26,26 +26,26 @@ export function requestFailed() {
   };
 }
 
-export function validateForm({ form, rules = {}, name = null, except = [], strict = false }, lifecycle = null) {
+export function validateForm({ form, rules = {}, name = null, except = [], strict = false, type = VALIDATION_TYPES.PAGE }, lifecycle = null) {
   const defaultLifecycle = { onSuccess: () => {}, onError: () => {} };
   const { onSuccess, onError } = merge({}, defaultLifecycle, pick(lifecycle, ['onSuccess', 'onError']));
   return {
     type: VALIDATE_FORM,
-    payload: { form, rules, name, onSuccess, onError, strict, except },
+    payload: { form, rules, name, onSuccess, onError, strict, except, type },
   };
 }
 
-export function setFormErrors(page, errors) {
+export function setFormErrors(page, { errors, type = VALIDATION_TYPES.PAGE }) {
   return {
     type: SET_FORM_ERRORS,
-    payload: { page, errors },
+    payload: { page, errors, type },
   };
 }
 
-export function clearFormErrors(page) {
+export function clearFormErrors(page, { type = VALIDATION_TYPES.PAGE }) {
   return {
     type: CLEAR_FORM_ERRORS,
-    payload: { page },
+    payload: { page, type },
   };
 }
 

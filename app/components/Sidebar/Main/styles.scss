@@ -1,0 +1,64 @@
+@import "../../../global-styles/variables";
+
+.sidebar {
+  .sidebarMenu {
+    padding: 100px 0 20px 0;
+
+    .sidebarMenuItems {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebarMenuItemsGroup {
+      &, ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      & + .sidebarMenuItemsGroup {
+        margin-top: 40px;
+      }
+    }
+
+    .sidebarMenuItem {
+      cursor: pointer;
+      color: $white-color;
+      font-size: 24px;
+      line-height: 24px;
+      position: relative;
+
+      .sidebarMenuItemTitle {
+        padding: 5px 20px;
+      }
+
+      & > ul {
+        font-size: 18px;
+        line-height: 18px;
+        padding: 0 20px;
+
+        li {
+          padding: 10px 0;
+        }
+      }
+
+      &.sidebarMenuItemActive {
+        color: $white-color;
+
+        .sidebarMenuItemTitle {
+          background: transparentize($nevada-color, 0.5);
+        }
+      }
+
+      &.sidebarMenuItemTiny {
+        font-size: 14px;
+        line-height: 14px;
+
+        .sidebarMenuItemTitle {
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+}

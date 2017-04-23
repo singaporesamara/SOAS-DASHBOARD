@@ -1,0 +1,18 @@
+@import "../../../../../global-styles/variables";
+
+.loader {
+  text-align: center;
+  margin-top: 100px;
+
+  .loaderTitle {
+    vertical-align: middle;
+    color: $curious-blue-color;
+    font-family: $font-family-regular;
+    font-size: 32px;
+    line-height: 35px;
+  }
+
+  .loaderIcon {
+    margin-top: 30px;
+  }
+}
