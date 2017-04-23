@@ -4,48 +4,48 @@
   color: $black-color;
 
   .companyName {
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 22px;
+    line-height: 22px;
   }
 
   .accountBalance {
-    margin-top: 20px;
+    margin-top: 18px;
     font-family: $font-family-bold;
 
     .accountBalanceAmount {
-      font-size: 64px;
-      line-height: 64px;
+      font-size: 58px;
+      line-height: 58px;
     }
 
     .accountBalanceTitle {
-      font-size: 28px;
-      line-height: 28px;
+      font-size: 26px;
+      line-height: 26px;
     }
   }
 
   .eWalletBalance {
-    margin-top: 40px;
+    margin-top: 36px;
 
     & > div {
       display: inline-block;
       vertical-align: middle;
 
       &:first-child {
-        padding-right: 28px;
+        padding-right: 26px;
       }
     }
 
     .eWalletBalanceAmount {
       color: $tundora-color;
       font-family: $font-family-bold;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 22px;
+      line-height: 22px;
     }
 
     .eWalletBalanceTitle {
       margin-top: 2px;
-      font-size: 20px;
-      line-height: 20px;
+      font-size: 18px;
+      line-height: 18px;
     }
   }
 }
