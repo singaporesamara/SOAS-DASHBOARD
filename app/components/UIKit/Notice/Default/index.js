@@ -32,9 +32,9 @@ export class DefaultNotice extends Component { // eslint-disable-line react/pref
     return (
       <div className={noticeStyles}>
         { hasPage && this.renderNotices() }
-        { /* eslint-disable-line react/no-danger */ }
+        { /* eslint-disable */ }
         { !hasPage && <div dangerouslySetInnerHTML={{ __html: this.props.message }}></div> }
-        { /* eslint-enable-line react/no-danger */ }
+        { /* eslint-enable */ }
       </div>
     );
   }
