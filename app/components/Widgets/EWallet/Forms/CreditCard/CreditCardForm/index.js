@@ -63,7 +63,7 @@ export class CreditCardForm extends BaseComponent {
           </div>
           <div className={styles.creditCardAmount}>
             <div className={styles.creditCardAmountField}>
-              <TextInput placeholder="Amount" onChange={this.onValueChange('amount')} error={widget.errors.amount} mask="digits" theme={TEXT_INPUT_THEMES.BORDERED} />
+              <TextInput placeholder="Amount" onChange={this.onValueChange('amount')} error={widget.errors.amount} showErrorLabel={false} mask="digits" theme={TEXT_INPUT_THEMES.INTERNAL} />
             </div>
           </div>
           <div className={styles.creditCardButton}>

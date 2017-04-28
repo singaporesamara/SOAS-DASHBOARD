@@ -15,9 +15,9 @@ export default class SuccessNotice extends Component { // eslint-disable-line re
     return (
       <div className={noticeStyles}>
         <div className={styles.noticeIcon}><img src={icon} alt="success" /></div>
-        { /* eslint-disable-line react/no-danger */ }
+        { /* eslint-disable */ }
         <div className={styles.noticeText} dangerouslySetInnerHTML={{ __html: this.props.message }}></div>
-        { /* eslint-enable-line react/no-danger */ }
+        { /* eslint-enable */ }
       </div>
     );
   }

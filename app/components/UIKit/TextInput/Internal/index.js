@@ -9,12 +9,14 @@ export default class TextInput extends Component {
   static propTypes = {
     error: PropTypes.string,
     success: PropTypes.bool,
+    showErrorLabel: PropTypes.bool,
     mask: PropTypes.string,
     guide: PropTypes.bool,
   };
 
   static defaultProps = {
     success: false,
+    showErrorLabel: true,
     mask: null,
     guide: false,
   };
@@ -25,7 +27,7 @@ export default class TextInput extends Component {
   }
 
   renderErrors() {
-    return this.props.error ? (
+    return this.props.showErrorLabel && this.props.error ? (
       <div>
         <span className="text-input-error">{this.props.error}</span>
       </div>
