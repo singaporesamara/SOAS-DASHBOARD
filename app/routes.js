@@ -61,6 +61,12 @@ export default function createRoutes(store) {
         import('containers/Application/HomePage').then(loadModule(cb)).catch(errorLoading);
       },
     }, {
+      path: ROUTES.APP.INVOICES.CREATE,
+      name: 'applicationCreateInvoice',
+      getComponent(nextState, cb) {
+        import('containers/Application/Invoices/CreateInvoicePage').then(loadModule(cb)).catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
