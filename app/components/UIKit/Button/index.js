@@ -13,6 +13,8 @@ export const THEMES = {
   DEFAULT_GREEN_INVERSE: 'default-green-inverse',
   DEFAULT_GRAY: 'default-gray',
   DEFAULT_GRAY_INVERSE: 'default-gray-inverse',
+  DEFAULT_GOLD: 'default-gold',
+  DEFAULT_GOLD_INVERSE: 'default-gold-inverse',
 };
 
 export default class Button extends Component { // eslint-disable-line
@@ -41,6 +43,8 @@ export default class Button extends Component { // eslint-disable-line
       '-default -green -inverse': theme === THEMES.DEFAULT_GREEN_INVERSE,
       '-default -gray': theme === THEMES.DEFAULT_GRAY,
       '-default -gray -inverse': theme === THEMES.DEFAULT_GRAY_INVERSE,
+      '-default -gold': theme === THEMES.DEFAULT_GOLD,
+      '-default -gold -inverse': theme === THEMES.DEFAULT_GOLD_INVERSE,
       '-tiny': this.props.tiny,
     });
     return (

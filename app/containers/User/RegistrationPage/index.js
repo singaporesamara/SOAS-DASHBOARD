@@ -11,7 +11,7 @@ import { layoutUpdate, validateForm, loadPage } from '../../../actions/common';
 import { getProfile } from '../../../actions/user';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { ROUTES } from '../../../constants/routes';
-import BANKS from './banks';
+import BANKS from '../../../constants/banks';
 import { register } from './actions';
 import { getProfileFields, generalFormValidationRules, bankAccountFormValidationRules } from './helpers';
 import styles from './styles.scss';

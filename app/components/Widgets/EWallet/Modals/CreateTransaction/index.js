@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
-import CreateTransactionForm from '../../Forms/CreateTransaction';
+import { CreateTransactionForm, CreateGIROTransactionForm } from '../../Forms/';
 import { clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
@@ -31,17 +31,21 @@ export class EWalletCreateTransactionModalWidget extends Component {
     const { opened } = widget.toJS();
     const { loading } = formWidget.toJS();
     return (
-      <EWalletModalWrapper opened={opened} title="Create eWallet transaction" onClose={this.onWalletClose} loading={loading}>
+      <EWalletModalWrapper opened={opened} title="Create Transaction" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <Tabs className="tabs -blue-and-white -full-width">
+            <Tabs className="tabs -centered-buttons">
               <TabList className="tabs-head" activeTabClassName="-selected">
-                <Tab className="tabs-head-item">Outcome eWallet transaction </Tab>
+                <Tab className="tabs-head-item">eWallet</Tab>
+                <Tab className="tabs-head-item">GIRO</Tab>
               </TabList>
               <TabPanel className="tabs-content">
                 <div className={styles.modalContentForm}>
                   <CreateTransactionForm />
                 </div>
+              </TabPanel>
+              <TabPanel className="tabs-content">
+                <CreateGIROTransactionForm />
               </TabPanel>
             </Tabs>
           </div>

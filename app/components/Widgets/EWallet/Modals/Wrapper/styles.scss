@@ -36,7 +36,7 @@
 
   .modalClose {
     position: absolute;
-    top: 34px;
+    top: 32px;
     left: 30px;
     font-size: 0;
     height: 16px;
@@ -44,8 +44,8 @@
   }
 
   .modalTitle {
-    color: $white-color;
-    background: $curious-blue-color;
+    color: $black-color;
+    background: $white-color;
     font-size: 28px;
     padding: 18px 30px 62px 63px;
     position: relative;

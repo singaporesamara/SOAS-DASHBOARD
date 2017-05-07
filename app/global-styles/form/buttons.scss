@@ -123,5 +123,25 @@
         }
       }
     }
+
+    &.-gold {
+      background: $wattle-color;
+      border: 1px solid $wattle-color;
+      color: $white-color;
+
+      &:hover, &.-inverse {
+        background: $transparent-color;
+        border: 1px solid $wattle-color;
+        color: $wattle-color;
+      }
+
+      &.-inverse {
+        &:hover {
+          background: $wattle-color;
+          border: 1px solid $wattle-color;
+          color: $white-color;
+        }
+      }
+    }
   }
 }

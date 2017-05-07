@@ -1,5 +1,5 @@
 import { merge, pick } from 'lodash';
-import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, VALIDATION_TYPES } from '../constants/common';
+import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, VALIDATION_TYPES, SET_FORM_LOADING } from '../constants/common';
 
 export function layoutUpdate(layout) {
   return {
@@ -74,5 +74,12 @@ export function pageLoaded(page) {
   return {
     type: PAGE_LOADED,
     payload: { page },
+  };
+}
+
+export function setFormLoading(page, { loading, type = VALIDATION_TYPES.PAGE }) {
+  return {
+    type: SET_FORM_LOADING,
+    payload: { page, loading, type },
   };
 }
