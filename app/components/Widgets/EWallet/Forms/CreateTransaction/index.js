@@ -10,7 +10,7 @@ import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
 import { triggerWalletCreateTransaction } from '../../../../../actions/wallet';
 import { createTransaction, backToForm } from './actions';
-import PURPOSES from './purposes';
+import PURPOSES from '../../../../../constants/purposes';
 import styles from './styles.scss';
 
 export class CreateTransactionForm extends BaseComponent {

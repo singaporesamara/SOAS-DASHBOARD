@@ -18,7 +18,9 @@ export class EWalletCreateTransactionModalWidget extends Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = { selectedTabIndex: 0 };
     this.onWalletClose = ::this.onWalletClose;
+    this.onTabSelect = ::this.onTabSelect;
   }
 
   onWalletClose() {
@@ -26,15 +28,20 @@ export class EWalletCreateTransactionModalWidget extends Component {
     this.props.triggerWalletCreateTransaction({ opened: false });
   }
 
+  onTabSelect(selectedTabIndex) {
+    this.setState({ selectedTabIndex });
+  }
+
   render() {
     const { widget, formWidget } = this.props;
     const { opened } = widget.toJS();
     const { loading } = formWidget.toJS();
+    const modalStyles = this.state.selectedTabIndex ? styles.dialog : '';
     return (
-      <EWalletModalWrapper opened={opened} title="Create Transaction" onClose={this.onWalletClose} loading={loading}>
+      <EWalletModalWrapper styles={modalStyles} opened={opened} title="Create Transaction" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <Tabs className="tabs -centered-buttons">
+            <Tabs className="tabs -centered-buttons" onSelect={this.onTabSelect} selectedIndex={this.state.selectedTabIndex}>
               <TabList className="tabs-head" activeTabClassName="-selected">
                 <Tab className="tabs-head-item">eWallet</Tab>
                 <Tab className="tabs-head-item">GIRO</Tab>
@@ -45,7 +52,9 @@ export class EWalletCreateTransactionModalWidget extends Component {
                 </div>
               </TabPanel>
               <TabPanel className="tabs-content">
-                <CreateGIROTransactionForm />
+                <div className={styles.modalContentForm}>
+                  <CreateGIROTransactionForm />
+                </div>
               </TabPanel>
             </Tabs>
           </div>

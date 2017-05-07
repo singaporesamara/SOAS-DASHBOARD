@@ -47,7 +47,7 @@ export class CreateInvoicePage extends BaseComponent {
     if (page.loading || !profile) return null;
     return (
       <MainAppContainer>
-        <Helmet title="Home" />
+        <Helmet title="Create Invoice" />
         <EWalletTopUpModalWidget />
         <EWalletCreateTransactionModalWidget />
         <EWalletCreateInvoiceModalWidget />

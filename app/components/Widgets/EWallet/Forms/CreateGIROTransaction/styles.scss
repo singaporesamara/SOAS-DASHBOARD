@@ -1,0 +1,18 @@
+@import "../../../../../global-styles/variables";
+
+.form {
+  .formFooter.formFooter {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 20px 150px;
+    margin: 0;
+    background: $black-haze-color;
+    border-top: 1px solid $silver-sand-color;
+  }
+
+  .formHidden {
+    visibility: hidden;
+  }
+}
