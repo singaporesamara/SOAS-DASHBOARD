@@ -7,7 +7,6 @@ import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
 import { MyBalance } from '../../../components/Profile/Balance';
 import { EventsTable } from '../../../components/UIKit';
-import { EWalletTopUpModalWidget, EWalletCreateTransactionModalWidget, EWalletCreateInvoiceModalWidget } from '../../../components/Widgets';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { TYPES as EVENT_TYPES } from '../../../constants/events';
@@ -71,9 +70,6 @@ export class HomePage extends BaseComponent {
     return (
       <MainAppContainer>
         <Helmet title="Home" />
-        <EWalletTopUpModalWidget />
-        <EWalletCreateTransactionModalWidget />
-        <EWalletCreateInvoiceModalWidget />
         <div className={styles.page}>
           <div className={styles.pageBalance}>
             <MyBalance profile={profile} />
