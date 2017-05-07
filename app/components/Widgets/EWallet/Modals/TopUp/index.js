@@ -12,6 +12,7 @@ export class EWalletTopUpModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
     creditCardWidget: PropTypes.object.isRequired,
+    topUpGIROWidget: PropTypes.object.isRequired,
     triggerWalletTopUp: PropTypes.func.isRequired,
     clearFormErrors: PropTypes.func.isRequired,
   };
@@ -29,9 +30,9 @@ export class EWalletTopUpModalWidget extends Component {
   }
 
   render() {
-    const { widget, creditCardWidget } = this.props;
+    const { widget, creditCardWidget, topUpGIROWidget } = this.props;
     const { opened } = widget.toJS();
-    const { loading } = creditCardWidget.toJS();
+    const loading = creditCardWidget.toJS().loading || topUpGIROWidget.toJS().loading;
     return (
       <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
@@ -65,6 +66,7 @@ function mapStateToProps(state) {
   return {
     widget: state.getIn(['widgets', 'eWalletTopUpModal']),
     creditCardWidget: state.getIn(['widgets', 'eWalletCreditCard']),
+    topUpGIROWidget: state.getIn(['widgets', 'eWalletTopUpGIROForm']),
   };
 }
 

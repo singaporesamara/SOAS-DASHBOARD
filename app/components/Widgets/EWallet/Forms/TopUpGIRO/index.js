@@ -2,27 +2,32 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { pick, merge } from 'lodash';
-import { validateForm } from '../../../../../actions/common';
+import { validateForm, clearFormErrors } from '../../../../../actions/common';
+import { triggerWalletTopUp } from '../../../../../actions/wallet';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
 import BANKS from '../../../../../constants/banks';
 import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
 import { TransactionPending } from '../../Messages';
-import { topUpByGIRO } from './actions';
+import { topUpByGIRO, backToForm } from './actions';
 import styles from './styles.scss';
 
 export class TopUpGIROForm extends BaseComponent {
   static propTypes = {
     widget: PropTypes.object.isRequired,
     validateForm: PropTypes.func.isRequired,
+    clearFormErrors: PropTypes.func.isRequired,
     topUpByGIRO: PropTypes.func.isRequired,
+    backToForm: PropTypes.func.isRequired,
+    triggerWalletTopUp: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
     this.state = { bankAccountNumber: null, bankName: null, branchCode: null, amount: null };
     this.onFormSubmit = ::this.onFormSubmit;
+    this.onClose = ::this.onClose;
   }
 
   onFormSubmit(event) {
@@ -30,6 +35,12 @@ export class TopUpGIROForm extends BaseComponent {
     const rules = { bankAccountNumber: RULES.required, branchCode: RULES.required, bankName: RULES.required, amount: RULES.greaterThenZero };
     event.preventDefault();
     this.props.validateForm({ form, rules, name: 'eWalletTopUpGIROForm', type: VALIDATION_TYPES.WIDGET }, { onSuccess: () => { this.props.topUpByGIRO(form); } });
+  }
+
+  onClose() {
+    this.props.clearFormErrors('eWalletTopUpGIROForm', { type: VALIDATION_TYPES.WIDGET });
+    this.props.triggerWalletTopUp({ opened: false });
+    this.props.backToForm();
   }
 
   renderForm() {
@@ -62,7 +73,9 @@ export class TopUpGIROForm extends BaseComponent {
   }
 
   render() {
-    return <TransactionPending />;
+    const widget = this.props.widget.toJS();
+    const { transaction } = widget;
+    if (transaction.completed) return <TransactionPending onClose={this.onClose} />;
     return this.renderForm();
   }
 }
@@ -73,4 +86,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { validateForm, topUpByGIRO })(TopUpGIROForm);
+export default connect(mapStateToProps, { validateForm, clearFormErrors, triggerWalletTopUp, topUpByGIRO, backToForm })(TopUpGIROForm);
