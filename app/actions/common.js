@@ -1,5 +1,5 @@
 import { merge, pick } from 'lodash';
-import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, VALIDATION_TYPES, SET_FORM_LOADING } from '../constants/common';
+import { LAYOUT_UPDATE, REQUEST_STARTED, REQUEST_FINISHED, REQUEST_FAILED, VALIDATE_FORM, CLEAR_FORM_ERRORS, SET_FORM_ERRORS, SET_PAGE_NOTICES, CLEAR_PAGE_NOTICES, LOAD_PAGE, PAGE_LOADED, VALIDATION_TYPES, SET_FORM_LOADING, TRIGGER_MODAL } from '../constants/common';
 
 export function layoutUpdate(layout) {
   return {
@@ -81,5 +81,12 @@ export function setFormLoading(page, { loading, type = VALIDATION_TYPES.PAGE }) 
   return {
     type: SET_FORM_LOADING,
     payload: { page, loading, type },
+  };
+}
+
+export function triggerModal(name, { opened }) {
+  return {
+    type: TRIGGER_MODAL,
+    payload: { name, opened },
   };
 }

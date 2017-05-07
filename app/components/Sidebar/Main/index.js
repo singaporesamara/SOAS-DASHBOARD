@@ -3,18 +3,21 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { signOut } from '../../../actions/user';
 import { triggerWalletCreateTransaction } from '../../../actions/wallet';
+import { triggerModal } from '../../../actions/common';
 import styles from './styles.scss';
 
 export class MainSidebar extends Component {
   static propTypes = {
     signOut: PropTypes.func.isRequired,
     triggerWalletCreateTransaction: PropTypes.func.isRequired,
+    triggerModal: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
     this.onLogOut = ::this.onLogOut;
     this.onCreateTransaction = ::this.onCreateTransaction;
+    this.openModal = ::this.openModal;
   }
 
   onLogOut(event) {
@@ -25,6 +28,13 @@ export class MainSidebar extends Component {
   onCreateTransaction(event) {
     event.preventDefault();
     this.props.triggerWalletCreateTransaction({ opened: true });
+  }
+
+  openModal(name) {
+    return (event) => {
+      event.preventDefault();
+      this.props.triggerModal(name, { opened: true });
+    };
   }
 
   render() {
@@ -43,7 +53,9 @@ export class MainSidebar extends Component {
                       <li>
                         <a href="/create-transaction" className="link" onClick={this.onCreateTransaction}>Create Transaction</a>
                       </li>
-                      <li>Send invoice</li>
+                      <li>
+                        <a href="/send-invoice" className="link" onClick={this.openModal('eWalletCreateInvoiceModal')}>Send invoice</a>
+                      </li>
                       <li>Payout</li>
                     </ul>
                   </li>
@@ -92,4 +104,4 @@ export class MainSidebar extends Component {
   }
 }
 
-export default connect(() => ({}), { signOut, triggerWalletCreateTransaction })(MainSidebar);
+export default connect(() => ({}), { signOut, triggerWalletCreateTransaction, triggerModal })(MainSidebar);

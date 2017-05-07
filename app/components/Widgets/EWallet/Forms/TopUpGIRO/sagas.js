@@ -1,10 +1,9 @@
 import { call, takeLatest, put } from 'redux-saga/effects';
 import routes from '../../../../../utils/network/api';
-import { setFormErrors } from '../../../../../actions/common';
 import { convertTopUpByGIRORequest } from '../../../../../utils/converters/api/request';
 import { loadEvents } from '../../../../../actions/events';
 import { updateUserProfile } from '../../../../../sagas/common/user';
-import { setFormLoading } from '../../../../../actions/common';
+import { setFormLoading, setFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { TRANSACTION_STATUS } from '../../../../../constants/tansactions';
 import { TOP_UP_BY_GIRO } from './constants';

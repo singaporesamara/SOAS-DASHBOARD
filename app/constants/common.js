@@ -12,6 +12,7 @@ export const SET_PAGE_NOTICES = 'common/SET_PAGE_NOTICES';
 export const CLEAR_PAGE_NOTICES = 'common/CLEAR_PAGE_NOTICES';
 export const LOAD_PAGE = 'common/LOAD_PAGE';
 export const PAGE_LOADED = 'common/PAGE_LOADED';
+export const TRIGGER_MODAL = 'common/TRIGGER_MODAL';
 
 export const DEFAULT_LAYOUT = {
   footer: { show: true },
