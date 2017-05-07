@@ -1,0 +1,21 @@
+@import "../../../../../global-styles/variables";
+
+.dialog {
+  top: 50%;
+  height: 670px;
+  margin-top: -335px;
+  width: 550px;
+}
+
+.modal {
+  .modalContent {
+    position: relative;
+    z-index: 2;
+    margin-top: -42px;
+    height: 100%;
+
+    .modalContentForm {
+      padding: 0 50px 20px 50px;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import EWalletModalWrapper from '../Wrapper';
-import { CreateTransactionForm } from '../../Forms/';
+import { CreateInvoiceForm } from '../../Forms/';
 import { clearFormErrors, triggerModal } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import styles from './styles.scss';
@@ -29,10 +29,12 @@ export class EWalletCreateInvoiceModalWidget extends Component {
     const { opened } = widget.toJS();
     const { loading } = formWidget.toJS();
     return (
-      <EWalletModalWrapper opened={opened} title="Create Invoice" onClose={this.onWalletClose} loading={loading}>
+      <EWalletModalWrapper opened={opened} styles={styles.dialog} title="Create Invoice" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <CreateTransactionForm />
+            <div className={styles.modalContentForm}>
+              <CreateInvoiceForm />
+            </div>
           </div>
         </div>
       </EWalletModalWrapper>
