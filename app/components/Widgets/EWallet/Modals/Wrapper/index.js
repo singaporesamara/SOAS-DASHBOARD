@@ -14,7 +14,7 @@ export class EWalletModalWrapper extends Component {
     onClose: PropTypes.func.isRequired,
     children: PropTypes.node,
     loading: PropTypes.bool,
-    styles: PropTypes.object,
+    styles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   };
 
   static defaultProps = {

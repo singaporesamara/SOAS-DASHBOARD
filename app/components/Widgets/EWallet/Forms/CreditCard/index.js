@@ -5,7 +5,7 @@ import { clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { backToForm } from './actions';
 import CreditCardForm from './CreditCardForm';
-import TransactionCompleted from '../../Messages/TransactionCompleted';
+import { ActionSuccessMessage } from '../../Messages/';
 import TransactionDeclined from './TransactionDeclined';
 
 export class CreditCardWidget extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -30,7 +30,7 @@ export class CreditCardWidget extends Component { // eslint-disable-line react/p
   render() {
     const widget = this.props.widget.toJS();
     const { transaction } = widget;
-    if (transaction.completed) return <TransactionCompleted onClose={this.onClose} />;
+    if (transaction.completed) return <ActionSuccessMessage onClose={this.onClose} />;
     if (transaction.declined) return <TransactionDeclined />;
     return <CreditCardForm widget={widget} />;
   }

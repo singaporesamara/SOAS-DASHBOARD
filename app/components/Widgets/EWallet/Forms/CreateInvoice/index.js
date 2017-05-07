@@ -7,7 +7,7 @@ import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../UIKit';
-import { TransactionPending } from '../../Messages';
+import { ActionSuccessMessage } from '../../Messages';
 import styles from './styles.scss';
 
 export class CreateInvoiceForm extends BaseComponent {
@@ -116,6 +116,8 @@ export class CreateInvoiceForm extends BaseComponent {
   }
 
   render() {
+    const { invoice } = this.props.widget.toJS();
+    if (invoice.sent) return <ActionSuccessMessage message="Invoice was successfully sent" />;
     return this.renderForm();
   }
 }

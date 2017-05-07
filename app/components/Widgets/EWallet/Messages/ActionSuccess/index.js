@@ -4,12 +4,14 @@ import { Button, BUTTON_THEMES } from '../../../../UIKit';
 import styles from './styles.scss';
 import successIcon from '../../../../../assets/images/icons/success-circle-green.svg';
 
-export class TransactionCompleted extends Component {
+export class ActionSuccessMessage extends Component {
   static propTypes = {
+    message: PropTypes.string,
     onClose: PropTypes.func,
   };
 
   static defaultProps = {
+    message: 'Transaction completed',
     onClose: () => {},
   };
 
@@ -27,7 +29,7 @@ export class TransactionCompleted extends Component {
     return (
       <div className={styles.transactionStatus}>
         <div className={styles.transactionStatusTitle}>
-          Transaction completed
+          { this.props.message }
         </div>
         <div className={styles.transactionStatusIcon}>
           <img src={successIcon} alt="Success" />
@@ -40,4 +42,4 @@ export class TransactionCompleted extends Component {
   }
 }
 
-export default connect(() => ({}), {})(TransactionCompleted);
+export default connect(() => ({}), {})(ActionSuccessMessage);

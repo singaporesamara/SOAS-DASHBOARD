@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { pick, merge } from 'lodash';
-import TransactionCompleted from '../../Messages/TransactionCompleted';
+import { ActionSuccessMessage } from '../../Messages';
 import { validateForm, clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import RULES from '../../../../../utils/validation/rules';
@@ -91,7 +91,7 @@ export class CreateTransactionForm extends BaseComponent {
   render() {
     const widget = this.props.widget.toJS();
     const { transaction } = widget;
-    if (transaction.completed) return <TransactionCompleted onClose={this.onClose} />;
+    if (transaction.completed) return <ActionSuccessMessage onClose={this.onClose} />;
     return this.renderForm();
   }
 }
