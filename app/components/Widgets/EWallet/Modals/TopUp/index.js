@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import EWalletModalWrapper from '../Wrapper';
-import CreditCardWidget from '../../Forms/CreditCard';
+import { CreditCardForm, TopUpGIROForm } from '../../Forms';
 import { clearFormErrors } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { triggerWalletTopUp } from '../../../../../actions/wallet';
@@ -46,13 +46,11 @@ export class EWalletTopUpModalWidget extends Component {
               </TabList>
               <TabPanel className="tabs-content">
                 <div className={styles.creditCard}>
-                  <CreditCardWidget />
+                  <CreditCardForm />
                 </div>
               </TabPanel>
               <TabPanel className="tabs-content">
-                <div>
-                  eWallet transactions by GIRO is currently in dev mode..
-                </div>
+                <TopUpGIROForm />
               </TabPanel>
             </Tabs>
           </div>

@@ -1,0 +1,15 @@
+@import "../../../../../global-styles/variables";
+
+.topUpForm {
+  padding: 50px 50px 30px 50px;
+
+  .topUpFormFooter {
+    padding-top: 56px;
+    text-align: center;
+
+    .topUpFormFooterButton {
+      display: inline-block;
+      width: 195px;
+    }
+  }
+}
