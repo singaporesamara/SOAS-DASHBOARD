@@ -8,6 +8,7 @@ import RULES from '../../../../../utils/validation/rules';
 import BANKS from '../../../../../constants/banks';
 import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
+import { TransactionPending } from '../../Messages';
 import { topUpByGIRO } from './actions';
 import styles from './styles.scss';
 
@@ -61,6 +62,7 @@ export class TopUpGIROForm extends BaseComponent {
   }
 
   render() {
+    return <TransactionPending />;
     return this.renderForm();
   }
 }

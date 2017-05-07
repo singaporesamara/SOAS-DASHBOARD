@@ -1,0 +1,30 @@
+@import "../../../../../global-styles/variables";
+
+.transactionStatus {
+  text-align: center;
+  margin-top: 90px;
+
+  .transactionStatusTitle {
+    vertical-align: middle;
+    color: $wattle-color;
+    font-family: $font-family-regular;
+    font-size: 29px;
+    line-height: 32px;
+  }
+
+  .transactionStatusSubTitle {
+    color: $tundora-color;
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 20px;
+  }
+
+  .transactionStatusIcon {
+    margin-top: 27px;
+  }
+
+  .transactionStatusButton {
+    margin-top: 110px;
+    display: inline-block;
+  }
+}

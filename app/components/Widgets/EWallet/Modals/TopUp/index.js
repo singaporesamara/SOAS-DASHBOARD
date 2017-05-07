@@ -11,7 +11,7 @@ import styles from './styles.scss';
 export class EWalletTopUpModalWidget extends Component {
   static propTypes = {
     widget: PropTypes.object.isRequired,
-    formWidget: PropTypes.object.isRequired,
+    creditCardWidget: PropTypes.object.isRequired,
     triggerWalletTopUp: PropTypes.func.isRequired,
     clearFormErrors: PropTypes.func.isRequired,
   };
@@ -24,13 +24,14 @@ export class EWalletTopUpModalWidget extends Component {
 
   onWalletClose() {
     this.props.clearFormErrors('eWalletCreditCard', { type: VALIDATION_TYPES.WIDGET });
+    this.props.clearFormErrors('eWalletTopUpGIROForm', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerWalletTopUp({ opened: false });
   }
 
   render() {
-    const { widget, formWidget } = this.props;
+    const { widget, creditCardWidget } = this.props;
     const { opened } = widget.toJS();
-    const { loading } = formWidget.toJS();
+    const { loading } = creditCardWidget.toJS();
     return (
       <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
@@ -63,7 +64,7 @@ export class EWalletTopUpModalWidget extends Component {
 function mapStateToProps(state) {
   return {
     widget: state.getIn(['widgets', 'eWalletTopUpModal']),
-    formWidget: state.getIn(['widgets', 'eWalletCreditCard']),
+    creditCardWidget: state.getIn(['widgets', 'eWalletCreditCard']),
   };
 }
 
