@@ -84,4 +84,62 @@
       }
     }
   }
+
+  &.-centered-buttons {
+    .tabs-head {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+
+      .tabs-head-item {
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        font-family: $font-family-regular;
+        font-size: 16px;
+        line-height: 16px;
+        padding: 11px 20px;
+        text-align: center;
+        min-width: 115px;
+        border-radius: 3px;
+        opacity: 1;
+        background: $transparent-color;
+        border: 1px solid $denim-color;
+        color: $denim-color;
+        margin-right: 15px;
+
+        &.-selected {
+          background: $denim-color;
+          border: 1px solid $denim-color;
+          color: $white-color;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .tabs-content {
+      background: $white-color;
+      margin-top: -1px;
+      padding: 14px 27px;
+      transition: all 0.3s ease-out;
+
+      &.-tiny {
+        padding: 23px 27px 41px 27px;
+      }
+    }
+
+    &.-full-width {
+      .tabs-head {
+        padding: 0 45px;
+
+        .tabs-head-item {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

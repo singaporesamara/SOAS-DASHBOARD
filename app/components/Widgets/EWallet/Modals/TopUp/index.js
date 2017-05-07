@@ -18,6 +18,7 @@ export class EWalletTopUpModalWidget extends Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = { selectedTabIndex: 0 };
     this.onWalletClose = ::this.onWalletClose;
   }
 
@@ -34,10 +35,14 @@ export class EWalletTopUpModalWidget extends Component {
       <EWalletModalWrapper opened={opened} title="Top up eWallet" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
-            <Tabs className="tabs -blue-and-white">
+            <Tabs className="tabs -centered-buttons">
               <TabList className="tabs-head" activeTabClassName="-selected">
-                <Tab className="tabs-head-item">by credit card</Tab>
-                <Tab className="tabs-head-item">by GIRO</Tab>
+                <Tab className="tabs-head-item">
+                  Credit Card
+                </Tab>
+                <Tab className="tabs-head-item">
+                  GIRO
+                </Tab>
               </TabList>
               <TabPanel className="tabs-content">
                 <div className={styles.creditCard}>

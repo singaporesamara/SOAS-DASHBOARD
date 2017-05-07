@@ -35,7 +35,7 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const propsToRender = omit(this.props, ['id', 'autoComplete', 'error', 'success', 'mask', 'guide']);
+    const propsToRender = omit(this.props, ['id', 'autoComplete', 'error', 'success', 'mask', 'guide', 'showErrorLabel']);
     const textInputStyles = classNames('text-input -internal', styles.textInput, { [styles.textInputSuccess]: this.props.success, [styles.textInputError]: this.props.error });
     const hasMask = !!this.props.mask;
     const mask = prepareMask(this.props.mask);

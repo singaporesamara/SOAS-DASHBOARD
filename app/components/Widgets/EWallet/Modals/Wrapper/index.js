@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import classNames from 'classnames';
 import { triggerWalletTopUp } from '../../../../../actions/wallet';
 import styles from './styles.scss';
-import crossIcon from '../../../../../assets/images/icons/cross-white.svg';
+import crossIcon from '../../../../../assets/images/icons/cross-gray.svg';
 
 export class EWalletModalWrapper extends Component {
   static propTypes = {
