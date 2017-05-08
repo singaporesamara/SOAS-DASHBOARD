@@ -10,5 +10,8 @@ export const ROUTES = {
   },
   APP: {
     HOME: '/app',
+    INVOICES: {
+      CREATE: '/app/invoices/create',
+    },
   },
 };

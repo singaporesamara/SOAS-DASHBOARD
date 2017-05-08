@@ -14,11 +14,13 @@ export class EWalletModalWrapper extends Component {
     onClose: PropTypes.func.isRequired,
     children: PropTypes.node,
     loading: PropTypes.bool,
+    styles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   };
 
   static defaultProps = {
     opened: false,
     loading: false,
+    styles: {},
   };
 
   constructor(props, context) {
@@ -34,8 +36,9 @@ export class EWalletModalWrapper extends Component {
   render() {
     const { opened, title, loading } = this.props;
     const loaderStyles = classNames({ [styles.modalLoader]: loading });
+    const modalStyles = classNames(styles.dialog, this.props.styles);
     return (
-      <Modal isOpen={opened} className={styles.dialog} overlayClassName={styles.overlay} contentLabel="EWalletModalWrapper">
+      <Modal isOpen={opened} className={modalStyles} overlayClassName={styles.overlay} contentLabel="EWalletModalWrapper">
         <div className={styles.modal}>
           <BlockUi tag="div" blocking={loading} className={loaderStyles}>
             <div className={styles.modalTitle}>

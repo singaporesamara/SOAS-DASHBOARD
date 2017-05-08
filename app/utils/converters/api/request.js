@@ -36,3 +36,25 @@ export function convertCreateTransactionRequest(params) {
     description: params.description,
   };
 }
+
+export function convertTopUpByGIRORequest(params) {
+  return {
+    bank_account: params.bankAccountNumber,
+    bank_name: params.bankName,
+    branch_code: params.branchCode,
+    amount: params.amount,
+  };
+}
+
+export function convertCreateGIROTransactionRequest(params) {
+  return {
+    uen: params.companyUEN,
+    bank_account: params.bankAccountNumber,
+    bank_name: params.bankName,
+    branch_code: params.branchCode,
+    purpose: params.purpose,
+    description: params.description,
+    file: '',
+    amount: params.amount,
+  };
+}

@@ -5,9 +5,12 @@ import eWalletCreditCard from '../../components/Widgets/EWallet/Forms/CreditCard
 import eWalletTopUpModal from '../../components/Widgets/EWallet/Modals/TopUp/reducer';
 import eWalletCreateTransactionModal from '../../components/Widgets/EWallet/Modals/CreateTransaction/reducer';
 import eWalletCreateTransactionForm from '../../components/Widgets/EWallet/Forms/CreateTransaction/reducer';
+import eWalletCreateGIROTransactionForm from '../../components/Widgets/EWallet/Forms/CreateGIROTransaction/reducer';
 import eWalletTopUpGIROForm from '../../components/Widgets/EWallet/Forms/TopUpGIRO/reducer';
+import eWalletCreateInvoiceModal from '../../components/Widgets/EWallet/Modals/CreateInvoice/reducer';
+import eWalletCreateInvoiceForm from '../../components/Widgets/EWallet/Forms/CreateInvoice/reducer';
 
-const widgets = { eWalletTopUpModal, eWalletCreditCard, eWalletCreateTransactionModal, eWalletCreateTransactionForm, eWalletTopUpGIROForm };
+const widgets = { eWalletTopUpModal, eWalletCreditCard, eWalletCreateTransactionModal, eWalletCreateTransactionForm, eWalletTopUpGIROForm, eWalletCreateInvoiceModal, eWalletCreateInvoiceForm, eWalletCreateGIROTransactionForm };
 
 export default () => (combineReducers(widgets));
 

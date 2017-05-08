@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { MainSidebar } from '../../Sidebar';
+import { EWalletTopUpModalWidget, EWalletCreateTransactionModalWidget } from '../../Widgets';
 import styles from './styles.scss';
 
 export class MainAppContainer extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -19,6 +20,8 @@ export class MainAppContainer extends Component { // eslint-disable-line react/p
             {this.props.children}
           </div>
         </div>
+        <EWalletTopUpModalWidget />
+        <EWalletCreateTransactionModalWidget />
       </div>
     );
   }
