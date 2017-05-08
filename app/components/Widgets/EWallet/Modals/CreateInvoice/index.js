@@ -20,7 +20,7 @@ export class EWalletCreateInvoiceModalWidget extends Component {
   }
 
   onWalletClose() {
-    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
+    this.props.clearFormErrors('eWalletCreateInvoiceForm', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerModal('eWalletCreateInvoiceModal', { opened: false });
   }
 

@@ -4,7 +4,7 @@ import { map } from 'lodash';
 import classNames from 'classnames';
 import styles from './styles.scss';
 
-export const NOTICE_TYPES = { ERROR: 'error' };
+export const NOTICE_TYPES = { ERROR: 'error', INFO: 'info' };
 
 export class DefaultNotice extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -13,7 +13,10 @@ export class DefaultNotice extends Component { // eslint-disable-line react/pref
   };
 
   renderNotice(notice, key = 0) {
-    const noticeStyles = classNames(styles.singleNotice, { [styles.singleNoticeError]: notice.type === NOTICE_TYPES.ERROR });
+    const noticeStyles = classNames(styles.singleNotice, {
+      [styles.singleNoticeError]: notice.type === NOTICE_TYPES.ERROR,
+      [styles.singleNoticeInfo]: notice.type === NOTICE_TYPES.INFO,
+    });
     return (
       <div className={noticeStyles} key={key}>{notice.message}</div>
     );

@@ -6,7 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BaseComponent from '../../Base';
 import { MainAppContainer } from '../../../components/Containers';
 import { MyBalance } from '../../../components/Profile/Balance';
-import { EventsTable } from '../../../components/UIKit';
+import { EventsTable, Notice } from '../../../components/UIKit';
 import { layoutUpdate, loadPage } from '../../../actions/common';
 import { LAYOUT_NO_FOOTER } from '../../../constants/common';
 import { TYPES as EVENT_TYPES } from '../../../constants/events';
@@ -75,6 +75,9 @@ export class HomePage extends BaseComponent {
             <MyBalance profile={profile} />
           </div>
           <div className={styles.pageEvents}>
+            <div className={styles.pageNotice}>
+              <Notice page="application" />
+            </div>
             {this.renderEvents()}
           </div>
         </div>

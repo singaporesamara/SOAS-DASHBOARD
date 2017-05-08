@@ -73,7 +73,9 @@ export class CreateGIROTransaction extends BaseComponent {
             <TextInput placeholder="Amount" onChange={this.onValueChange('amount')} mask="digits" theme={TEXT_INPUT_THEMES.INTERNAL} error={widget.errors.amount} />
           </div>
           <div className="form-row">
-            <TextInput placeholder="Upload you file" disabled={disabled} mask="digits" theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <div className={styles.formHidden}>
+              <TextInput placeholder="Upload you file" disabled={disabled} mask="digits" theme={TEXT_INPUT_THEMES.INTERNAL} />
+            </div>
           </div>
           <div className={footerStyles}>
             <div className="pure-u-1-2 form-col">
