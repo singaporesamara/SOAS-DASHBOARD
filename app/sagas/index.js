@@ -17,9 +17,10 @@ import eWalletTopUpGIROFormSaga from '../components/Widgets/EWallet/Forms/TopUpG
 import formSaga from './common/form';
 import userSaga from './common/user';
 import eventsSaga from './common/events';
+import invoicesSaga from './common/invoices';
 
 const addSagas = (store) => {
-  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga, eventsSaga, eWalletTopUpGIROFormSaga, eWalletCreateGIROTransactionFormSaga];
+  const allSagas = [formSaga, userSaga, loginSaga, signUpSaga, forgotPasswordSaga, changePasswordSaga, registrationSaga, applicationHomeSaga, homeSaga, eWalletCreditCardSaga, eWalletCreateTransactionFormSaga, eventsSaga, eWalletTopUpGIROFormSaga, eWalletCreateGIROTransactionFormSaga, invoicesSaga];
 
   allSagas.forEach((sagas) => {
     sagas.forEach((saga) => {

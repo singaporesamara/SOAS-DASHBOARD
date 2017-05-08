@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { map, sum } from 'lodash';
 import { triggerModal } from '../../../../actions/common';
+import { createInvoice } from '../../../../actions/invoices';
 import { Button, BUTTON_THEMES, TextInput, TEXT_INPUT_THEMES } from '../../index';
 import BaseComponent from '../../../../containers/Base';
 import styles from './styles.scss';
@@ -10,6 +11,7 @@ import styles from './styles.scss';
 export class InvoiceTable extends BaseComponent {
   static propTypes = {
     triggerModal: PropTypes.func.isRequired,
+    createInvoice: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
     invoice: PropTypes.object.isRequired,
   };
@@ -32,7 +34,8 @@ export class InvoiceTable extends BaseComponent {
   }
 
   onSend() {
-    alert(this.state.buyerEmail);
+    const { total, items } = this.props.invoice;
+    this.props.createInvoice({ gst: '', email: this.state.buyerEmail, total, items });
   }
 
   renderInvoice() {
@@ -69,7 +72,6 @@ export class InvoiceTable extends BaseComponent {
   }
 
   renderTotal() {
-    const total = sum(map(this.props.invoice.items, (item) => item.price * item.quantity));
     return (
       <tr>
         <td colSpan={4}>
@@ -79,7 +81,7 @@ export class InvoiceTable extends BaseComponent {
           TOTAL:
         </td>
         <td>
-          { total }
+          { this.props.invoice.total }
         </td>
       </tr>
     );
@@ -134,4 +136,4 @@ export class InvoiceTable extends BaseComponent {
   }
 }
 
-export default connect(null, { push, triggerModal })(InvoiceTable);
+export default connect(null, { push, triggerModal, createInvoice })(InvoiceTable);
