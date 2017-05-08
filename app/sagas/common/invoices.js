@@ -1,6 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { requestStarted, requestFinished } from '../../actions/common';
+import { requestStarted, requestFinished, setPageNotices } from '../../actions/common';
 import { clearInvoice } from '../../actions/invoices';
 import { CREATE_INVOICE } from '../../constants/invoices';
 import { ROUTES } from '../../constants/routes';
@@ -15,8 +15,11 @@ export function* createInvoiceSaga({ payload }) {
     const { message } = response.err;
     alert(message);
   } else {
+    const { number } = response.data;
+    const message = `Invoice #${number} has been successfully sent`;
     yield put(clearInvoice());
     yield put(push(ROUTES.APP.HOME));
+    yield put(setPageNotices('application', [{ type: 'info', message }]));
   }
 }
 

@@ -11,4 +11,13 @@
       font-size: 16px;
     }
   }
+
+  .pageNotice {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 150;
+    text-align: center;
+  }
 }
