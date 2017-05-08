@@ -9,4 +9,10 @@
   .tableWrapper {
     margin-top: 10px;
   }
+
+  .tableRow {
+    td {
+      font-family: $font-family-regular;
+    }
+  }
 }

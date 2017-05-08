@@ -17,6 +17,7 @@ export class CreateInvoicePage extends BaseComponent {
     loadPage: PropTypes.func.isRequired,
     page: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    invoice: PropTypes.object.isRequired,
   };
 
   constructor(props, context) { // eslint-disable-line no-useless-constructor
@@ -29,11 +30,8 @@ export class CreateInvoicePage extends BaseComponent {
     Tabs.setUseDefaultStyles(false);
   }
 
-  renderEvents() {
-    const invoice = { items: [
-      {"code":"2123131", name: "iPhone 7S", "quantity":1,"description":"item 1","price":20},
-      {"code":"2123131", name: "iPhone 7S", "quantity":2,"description":"item 2","price":40},
-    ]};
+  renderInvoice() {
+    const invoice = this.props.invoice.toJS();
     return (
       <Tabs className="tabs -default">
         <TabList className="tabs-head" activeTabClassName="-selected">
@@ -61,7 +59,7 @@ export class CreateInvoicePage extends BaseComponent {
             <MyBalance profile={profile} />
           </div>
           <div className={styles.pageEvents}>
-            {this.renderEvents()}
+            {this.renderInvoice()}
           </div>
         </div>
       </MainAppContainer>
@@ -73,6 +71,7 @@ function mapStateToProps(state) {
   return {
     user: state.get('user'),
     page: state.getIn(['pages', 'application']),
+    invoice: state.getIn(['entities', 'invoices', 'current']),
   };
 }
 

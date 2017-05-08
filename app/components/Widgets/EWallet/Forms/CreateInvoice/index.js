@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { pick, merge } from 'lodash';
 import { validateForm, clearFormErrors, triggerModal } from '../../../../../actions/common';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
+import { addInvoiceItem } from '../../../../../actions/invoices';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
 import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../UIKit';
@@ -15,6 +16,7 @@ export class CreateInvoiceForm extends BaseComponent {
     triggerModal: PropTypes.func.isRequired,
     validateForm: PropTypes.func.isRequired,
     clearFormErrors: PropTypes.func.isRequired,
+    addInvoiceItem: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
@@ -25,8 +27,13 @@ export class CreateInvoiceForm extends BaseComponent {
   }
 
   onFormSubmit(event) {
+    const form = pick(this.state, ['code', 'name', 'description', 'price', 'quantity', 'gst']);
+    const rules = { code: RULES.required, name: RULES.required, description: RULES.required, price: RULES.greaterThenZero, quantity: RULES.greaterThenZero };
     event.preventDefault();
-    alert('send invoice is gonna be here...');
+    this.props.validateForm({ form, rules, name: 'eWalletCreateInvoiceForm', type: VALIDATION_TYPES.WIDGET }, { onSuccess: () => {
+      this.props.addInvoiceItem(form);
+      this.onCancel();
+    }});
   }
 
   onCancel() {
@@ -61,19 +68,19 @@ export class CreateInvoiceForm extends BaseComponent {
 
         <div className="pure-g form-row">
           <div className="pure-u-1-1 form-col">
-            <TextInput placeholder="Unit price" onChange={this.onValueChange('price')} error={widget.errors.price} theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <TextInput placeholder="Unit price" onChange={this.onValueChange('price')} mask="digits" error={widget.errors.price} theme={TEXT_INPUT_THEMES.INTERNAL} />
           </div>
         </div>
 
         <div className="pure-g form-row">
           <div className="pure-u-1-1 form-col">
-            <TextInput placeholder="Quantity" onChange={this.onValueChange('quantity')} error={widget.errors.quantity} theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <TextInput placeholder="Quantity" onChange={this.onValueChange('quantity')} mask="digits" error={widget.errors.quantity} theme={TEXT_INPUT_THEMES.INTERNAL} />
           </div>
         </div>
 
         <div className="pure-g form-row">
           <div className="pure-u-1-1 form-col">
-            <TextInput placeholder="Total" onChange={this.onValueChange('total')} error={widget.errors.total} theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <TextInput placeholder="GST" onChange={this.onValueChange('gst')} mask="digits" error={widget.errors.gst} theme={TEXT_INPUT_THEMES.INTERNAL} />
           </div>
         </div>
 
@@ -102,4 +109,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { validateForm, clearFormErrors, triggerModal })(CreateInvoiceForm);
+export default connect(mapStateToProps, { validateForm, addInvoiceItem, clearFormErrors, triggerModal })(CreateInvoiceForm);

@@ -22,7 +22,7 @@ export class InvoiceTable extends Component {
 
   renderInvoice() {
     return map(this.props.invoice.items, (item, index) => {
-      return (<tr key={index}>
+      return (<tr className={styles.tableRow} key={index}>
         <td>{ item.code }</td>
         <td>{ item.name }</td>
         <td>{ item.description }</td>

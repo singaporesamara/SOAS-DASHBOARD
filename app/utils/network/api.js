@@ -21,4 +21,8 @@ export default {
   events: {
     news: get(host('/profile/news/')),
   },
+  invoices: {
+    get: get(host('/invoice/get/:id')),
+    create: post(host('/invoice/create/')),
+  }
 };
