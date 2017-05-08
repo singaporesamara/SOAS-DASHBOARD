@@ -15,4 +15,12 @@
       font-family: $font-family-regular;
     }
   }
+
+  .tableButton {
+    display: inline-block;
+
+    & + .tableButton {
+      margin-left: 15px;
+    }
+  }
 }

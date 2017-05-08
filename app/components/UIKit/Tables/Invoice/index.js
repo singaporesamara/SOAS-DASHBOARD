@@ -1,23 +1,38 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { map, sum } from 'lodash';
 import { triggerModal } from '../../../../actions/common';
-import { Button, BUTTON_THEMES } from '../../index';
+import { Button, BUTTON_THEMES, TextInput, TEXT_INPUT_THEMES } from '../../index';
+import BaseComponent from '../../../../containers/Base';
 import styles from './styles.scss';
 
-export class InvoiceTable extends Component {
+export class InvoiceTable extends BaseComponent {
   static propTypes = {
     triggerModal: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
     invoice: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
+    this.state = { buyerEmail: null };
+    this.onValueChange = ::this.onValueChange;
     this.onAddItem = ::this.onAddItem;
+    this.onCancel = ::this.onCancel;
+    this.onSend = ::this.onSend;
   }
 
   onAddItem() {
     this.props.triggerModal('eWalletCreateInvoiceModal', { opened: true });
+  }
+
+  onCancel() {
+    this.props.push('/app');
+  }
+
+  onSend() {
+    alert(this.state.buyerEmail);
   }
 
   renderInvoice() {
@@ -38,7 +53,9 @@ export class InvoiceTable extends Component {
     return (
       <tr>
         <td>
-          <Button tiny={tiny} theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} onClick={this.onAddItem}>Add Item</Button>
+          <div className={styles.tableButton}>
+            <Button tiny={tiny} theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} onClick={this.onAddItem}>Add Item</Button>
+          </div>
         </td>
         <td colSpan={3}></td>
         <td>
@@ -68,6 +85,27 @@ export class InvoiceTable extends Component {
     );
   }
 
+  renderSendForm() {
+    const tiny = true;
+    return (
+      <tr>
+        <td colSpan={2}>
+          <TextInput placeholder="Email of buyer" onChange={this.onValueChange('buyerEmail')} theme={TEXT_INPUT_THEMES.INTERNAL} />
+        </td>
+        <td colSpan={2}>
+        </td>
+        <td colSpan={2} className="text-right">
+          <div className={styles.tableButton}>
+            <Button tiny={tiny} theme={BUTTON_THEMES.DEFAULT_GRAY_INVERSE} onClick={this.onCancel}>Cancel</Button>
+          </div>
+          <div className={styles.tableButton}>
+            <Button tiny={tiny} theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} onClick={this.onSend}>Send</Button>
+          </div>
+        </td>
+      </tr>
+    );
+  }
+
   render() {
     return (
       <div className={styles.table}>
@@ -87,6 +125,7 @@ export class InvoiceTable extends Component {
               { this.renderInvoice() }
               { this.renderGST() }
               { this.renderTotal() }
+              { this.renderSendForm() }
             </tbody>
           </table>
         </div>
@@ -95,4 +134,4 @@ export class InvoiceTable extends Component {
   }
 }
 
-export default connect(null, { triggerModal })(InvoiceTable);
+export default connect(null, { push, triggerModal })(InvoiceTable);
