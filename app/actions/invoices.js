@@ -1,4 +1,4 @@
-import { ADD_INVOICE_ITEM, CREATE_INVOICE } from '../constants/invoices';
+import { ADD_INVOICE_ITEM, CREATE_INVOICE, CLEAR_INVOICE } from '../constants/invoices';
 
 export function addInvoiceItem({ code, name, description, price, quantity, gst, total }) {
   return {
@@ -11,5 +11,11 @@ export function createInvoice({ email, gst, total, items }) {
   return {
     type: CREATE_INVOICE,
     payload: { email, gst, total, items },
+  };
+}
+
+export function clearInvoice() {
+  return {
+    type: CLEAR_INVOICE,
   };
 }
