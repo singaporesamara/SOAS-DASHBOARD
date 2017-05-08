@@ -91,7 +91,7 @@ export class CreateGIROTransaction extends BaseComponent {
   render() {
     const widget = this.props.widget.toJS();
     const { transaction } = widget;
-    if (transaction.completed) return <ActionSuccessMessage onClose={this.onClose} />;
+    if (transaction.completed) return <ActionSuccessMessage onClose={this.onCancel} />;
     return this.renderForm();
   }
 }

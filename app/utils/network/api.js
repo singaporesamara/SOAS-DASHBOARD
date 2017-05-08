@@ -14,6 +14,7 @@ export default {
   },
   transactions: {
     create: post(host('/transaction/create/')),
+    createByGIRO: post(host('/transaction/create/giro')),
     topUp: post(host('/transaction/topup/')),
     topUpByGIRO: post(host('/transaction/topup/giro')),
   },

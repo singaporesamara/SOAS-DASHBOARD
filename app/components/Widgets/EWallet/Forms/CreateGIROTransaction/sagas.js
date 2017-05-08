@@ -5,17 +5,13 @@ import { loadEvents } from '../../../../../actions/events';
 import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { TRANSACTION_STATUS } from '../../../../../constants/tansactions';
 import { updateUserProfile } from '../../../../../sagas/common/user';
-import { convertCreateTransactionRequest } from '../../../../../utils/converters/api/request';
+import { convertCreateGIROTransactionRequest } from '../../../../../utils/converters/api/request';
 import { CREATE_TRANSACTION } from './constants';
 import { transactionFinished } from './actions';
 
 export function* eWalletCreateTransactionFormSaga({ payload }) {
-  console.info(payload);
-  return;
-
-  // TODO GIRO Transaction here..
   yield put(setFormLoading('eWalletCreateGIROTransactionForm', { loading: true, type: VALIDATION_TYPES.WIDGET }));
-  const response = yield call(routes.transactions.create, convertCreateTransactionRequest(payload));
+  const response = yield call(routes.transactions.createByGIRO, convertCreateGIROTransactionRequest(payload));
   yield put(setFormLoading('eWalletCreateGIROTransactionForm', { loading: false, type: VALIDATION_TYPES.WIDGET }));
 
   if (response.err) {

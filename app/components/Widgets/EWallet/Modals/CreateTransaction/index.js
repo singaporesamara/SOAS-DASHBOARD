@@ -33,9 +33,9 @@ export class EWalletCreateTransactionModalWidget extends Component {
   }
 
   render() {
-    const { widget, formWidget } = this.props;
+    const { widget, formWidget, giroFormWidget } = this.props;
     const { opened } = widget.toJS();
-    const { loading } = formWidget.toJS();
+    const loading = formWidget.toJS().loading || giroFormWidget.toJS().loading;
     const modalStyles = this.state.selectedTabIndex ? styles.dialog : '';
     return (
       <EWalletModalWrapper styles={modalStyles} opened={opened} title="Create Transaction" onClose={this.onWalletClose} loading={loading}>
@@ -68,6 +68,7 @@ function mapStateToProps(state) {
   return {
     widget: state.getIn(['widgets', 'eWalletCreateTransactionModal']),
     formWidget: state.getIn(['widgets', 'eWalletCreateTransactionForm']),
+    giroFormWidget: state.getIn(['widgets', 'eWalletCreateGIROTransactionForm']),
   };
 }
 
