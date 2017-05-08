@@ -7,9 +7,14 @@ import { VALIDATION_TYPES } from '../../../../../constants/common';
 import { addInvoiceItem } from '../../../../../actions/invoices';
 import RULES from '../../../../../utils/validation/rules';
 import BaseComponent from '../../../../../containers/Base';
-import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES } from '../../../../UIKit';
+import { TextInput, TEXT_INPUT_THEMES, Button, BUTTON_THEMES, SelectField, SELECT_FIELD_THEMES } from '../../../../UIKit';
 import { ActionSuccessMessage } from '../../Messages';
 import styles from './styles.scss';
+
+const GST_OPTIONS = [
+  { label: 'No', value: false },
+  { label: 'Yes', value: true },
+];
 
 export class CreateInvoiceForm extends BaseComponent {
   static propTypes = {
@@ -27,8 +32,8 @@ export class CreateInvoiceForm extends BaseComponent {
   }
 
   onFormSubmit(event) {
-    const form = pick(this.state, ['code', 'name', 'description', 'price', 'quantity', 'gst']);
-    const rules = { code: RULES.required, name: RULES.required, description: RULES.required, price: RULES.greaterThenZero, quantity: RULES.greaterThenZero };
+    const form = merge(pick(this.state, ['code', 'name', 'description', 'price', 'quantity']), { gst: (this.state.gst || {}).value });
+    const rules = { code: RULES.required, name: RULES.required, description: RULES.required, price: RULES.greaterThenZero, quantity: RULES.greaterThenZero, gst: RULES.required };
     event.preventDefault();
     this.props.validateForm({ form, rules, name: 'eWalletCreateInvoiceForm', type: VALIDATION_TYPES.WIDGET }, { onSuccess: () => {
       this.props.addInvoiceItem(form);
@@ -37,13 +42,13 @@ export class CreateInvoiceForm extends BaseComponent {
   }
 
   onCancel() {
-    this.props.clearFormErrors('eWalletCreateTransactionForm', { type: VALIDATION_TYPES.WIDGET });
+    this.props.clearFormErrors('eWalletCreateInvoiceForm', { type: VALIDATION_TYPES.WIDGET });
     this.props.triggerModal('eWalletCreateInvoiceModal', { opened: false });
   }
 
   renderForm() {
     const widget = this.props.widget.toJS();
-    const tiny = true;
+    const [tiny, searchable, clearable] = [true, false, false];
     const formStyles = classNames('form', styles.form);
     const formFooterStyles = classNames('form-footer -fixed -gray pure-g form-row', styles.formFooter);
     return (
@@ -80,7 +85,7 @@ export class CreateInvoiceForm extends BaseComponent {
 
         <div className="pure-g form-row">
           <div className="pure-u-1-1 form-col">
-            <TextInput placeholder="GST" onChange={this.onValueChange('gst')} mask="digits" error={widget.errors.gst} theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <SelectField theme={SELECT_FIELD_THEMES.INTERNAL} options={GST_OPTIONS} value={this.state.gst} searchable={searchable} clearable={clearable} placeholder="GST" onChange={this.onValueChange('gst')} error={widget.errors.gst} />
           </div>
         </div>
 

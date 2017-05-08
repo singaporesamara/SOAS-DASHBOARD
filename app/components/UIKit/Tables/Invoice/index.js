@@ -34,8 +34,8 @@ export class InvoiceTable extends BaseComponent {
   }
 
   onSend() {
-    const { total, items } = this.props.invoice;
-    this.props.createInvoice({ gst: '', email: this.state.buyerEmail, total, items });
+    const { total, items, gst } = this.props.invoice;
+    this.props.createInvoice({ gst, email: this.state.buyerEmail, total, items });
   }
 
   renderInvoice() {
@@ -65,7 +65,7 @@ export class InvoiceTable extends BaseComponent {
           GST:
         </td>
         <td>
-          -
+          { this.props.invoice.gst }
         </td>
       </tr>
     );
