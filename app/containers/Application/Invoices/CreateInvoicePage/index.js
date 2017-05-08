@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import BaseComponent from '../../../Base';
 import { MainAppContainer } from '../../../../components/Containers';
+import { InvoiceTable } from '../../../../components/UIKit';
 import { MyBalance } from '../../../../components/Profile/Balance';
 import { EWalletTopUpModalWidget, EWalletCreateTransactionModalWidget, EWalletCreateInvoiceModalWidget } from '../../../../components/Widgets';
 import { layoutUpdate, loadPage } from '../../../../actions/common';
@@ -29,13 +30,17 @@ export class CreateInvoicePage extends BaseComponent {
   }
 
   renderEvents() {
+    const invoice = { items: [
+      {"code":"2123131", name: "iPhone 7S", "quantity":1,"description":"item 1","price":20},
+      {"code":"2123131", name: "iPhone 7S", "quantity":2,"description":"item 2","price":40},
+    ]};
     return (
       <Tabs className="tabs -default">
         <TabList className="tabs-head" activeTabClassName="-selected">
           <Tab className="tabs-head-item">Create Invoice</Tab>
         </TabList>
         <TabPanel className="tabs-content -tiny">
-          XXX
+          <InvoiceTable invoice={invoice} />
         </TabPanel>
       </Tabs>
     );

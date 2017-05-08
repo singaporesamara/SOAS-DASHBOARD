@@ -10,3 +10,4 @@ export { default as Wrapper } from './Wrapper';
 export { Notice } from './Notice';
 export { SuccessNotice } from './Notice';
 export { EventsTable } from './Tables';
+export { InvoiceTable } from './Tables';

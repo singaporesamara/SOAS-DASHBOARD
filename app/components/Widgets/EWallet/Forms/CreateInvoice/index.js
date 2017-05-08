@@ -19,7 +19,7 @@ export class CreateInvoiceForm extends BaseComponent {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { invoiceNumber: null, invoiceDate: null, companyUEN: null, buyerEmail: null, deliveryPlace: null, itemCode: null, description: null, quantity: null, unitPrice: null, subtotal: null, gst: null, total: null };
+    this.state = { code: null, name: null, description: null, price: null, quantity: null, gst: null, total: null };
     this.onFormSubmit = ::this.onFormSubmit;
     this.onCancel = ::this.onCancel;
   }
@@ -42,58 +42,32 @@ export class CreateInvoiceForm extends BaseComponent {
     return (
       <form className={formStyles} onSubmit={this.onFormSubmit}>
         <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Invoice Number" onChange={this.onValueChange('invoiceNumber')} error={widget.errors.invoiceNumber} mask="digits" theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Invoice Date" onChange={this.onValueChange('invoiceDate')} error={widget.errors.invoiceDate} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-        </div>
-
-        <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Company UEN" onChange={this.onValueChange('companyUEN')} error={widget.errors.companyUEN} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Email of buyer" onChange={this.onValueChange('buyerEmail')} error={widget.errors.buyerEmail} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-        </div>
-
-        <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Place of delivery" onChange={this.onValueChange('deliveryPlace')} error={widget.errors.deliveryPlace} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-          <div className="pure-u-1-2 form-col"></div>
-        </div>
-
-        <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Item code" onChange={this.onValueChange('itemCode')} error={widget.errors.itemCode} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Description" onChange={this.onValueChange('description')} error={widget.errors.description} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-        </div>
-
-        <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Quantity" onChange={this.onValueChange('quantity')} error={widget.errors.quantity} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Unit price" onChange={this.onValueChange('unitPrice')} error={widget.errors.unitPrice} theme={TEXT_INPUT_THEMES.INTERNAL} />
-          </div>
-        </div>
-
-        <div className="pure-g form-row">
-          <div className="pure-u-1-2 form-col"></div>
-          <div className="pure-u-1-2 form-col">
-            <TextInput placeholder="Subtotal" onChange={this.onValueChange('subtotal')} error={widget.errors.subtotal} theme={TEXT_INPUT_THEMES.INTERNAL} />
+          <div className="pure-u-1-1 form-col">
+            <TextInput placeholder="Item code" onChange={this.onValueChange('code')} error={widget.errors.code} theme={TEXT_INPUT_THEMES.INTERNAL} />
           </div>
         </div>
 
         <div className="pure-g form-row">
           <div className="pure-u-1-1 form-col">
-            <TextInput placeholder="GST" onChange={this.onValueChange('gst')} error={widget.errors.gst} theme={TEXT_INPUT_THEMES.INTERNAL} />
+            <TextInput placeholder="Item name" onChange={this.onValueChange('name')} error={widget.errors.name} theme={TEXT_INPUT_THEMES.INTERNAL} />
+          </div>
+        </div>
+
+        <div className="pure-g form-row">
+          <div className="pure-u-1-1 form-col">
+            <TextInput placeholder="Description" onChange={this.onValueChange('description')} error={widget.errors.description} theme={TEXT_INPUT_THEMES.INTERNAL} />
+          </div>
+        </div>
+
+        <div className="pure-g form-row">
+          <div className="pure-u-1-1 form-col">
+            <TextInput placeholder="Unit price" onChange={this.onValueChange('price')} error={widget.errors.price} theme={TEXT_INPUT_THEMES.INTERNAL} />
+          </div>
+        </div>
+
+        <div className="pure-g form-row">
+          <div className="pure-u-1-1 form-col">
+            <TextInput placeholder="Quantity" onChange={this.onValueChange('quantity')} error={widget.errors.quantity} theme={TEXT_INPUT_THEMES.INTERNAL} />
           </div>
         </div>
 
@@ -108,7 +82,7 @@ export class CreateInvoiceForm extends BaseComponent {
             <Button type="button" theme={BUTTON_THEMES.DEFAULT_GRAY_INVERSE} tiny={tiny} onClick={this.onCancel}>Cancel</Button>
           </div>
           <div className="pure-u-1-2 form-col">
-            <Button theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} tiny={tiny}>Send</Button>
+            <Button theme={BUTTON_THEMES.DEFAULT_BLUE_INVERSE} tiny={tiny}>Add</Button>
           </div>
         </div>
       </form>

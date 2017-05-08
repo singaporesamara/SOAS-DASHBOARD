@@ -29,7 +29,7 @@ export class EWalletCreateInvoiceModalWidget extends Component {
     const { opened } = widget.toJS();
     const { loading } = formWidget.toJS();
     return (
-      <EWalletModalWrapper opened={opened} styles={styles.dialog} title="Create Invoice" onClose={this.onWalletClose} loading={loading}>
+      <EWalletModalWrapper opened={opened} styles={styles.dialog} title="Add Item" onClose={this.onWalletClose} loading={loading}>
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <div className={styles.modalContentForm}>
